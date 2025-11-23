@@ -1,10 +1,10 @@
 'use client';
 
-import React, { FC, ReactNode } from 'react';
+import React, { FC, ReactNode, useEffect } from 'react';
 import classNames from 'classnames';
 import { redirect, usePathname } from 'next/navigation';
 import purePathnameUtil from '@/utils/purePathname.util';
-import { useSession } from 'next-auth/react';
+import { authClient } from '@/lib/auth-client';
 
 interface IPageWrapperProps {
 	children: ReactNode;
@@ -14,14 +14,15 @@ const PageWrapper: FC<IPageWrapperProps> = (props) => {
 	const { children, className = undefined, ...rest } = props;
 
 	const pathname = usePathname();
-	const purePath = purePathnameUtil(pathname);
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	const { data: session, status } = useSession({
-		required: true,
-		onUnauthenticated() {
-			if (purePath !== '/login') redirect('/login');
-		},
-	});
+	const purePath = purePathnameUtil(pathname || '');
+	const { data: session, isPending } = authClient.useSession();
+
+	// Redirect to login if not authenticated and not on login page
+	useEffect(() => {
+		if (!isPending && !session && purePath !== '/login') {
+			redirect('/login');
+		}
+	}, [session, isPending, purePath]);
 
 	return (
 		<main

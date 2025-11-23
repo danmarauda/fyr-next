@@ -13,7 +13,7 @@ import Icon from '@/components/icon/Icon';
 import Input from '@/components/form/Input';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { signIn } from 'next-auth/react';
+import { authClient } from '@/lib/auth-client';
 
 type TValues = {
 	username: string;
@@ -45,15 +45,14 @@ const LoginPage = () => {
 		},
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		onSubmit: async (values: TValues, { setFieldError }) => {
-			const res = await signIn('credentials', {
-				username: values.username,
+			const res = await authClient.signIn.email({
+				email: values.username,
 				password: values.password,
-				redirect: false,
 			});
 
-			if (!res?.error) {
+			if (res?.data) {
 				const callbackUrl =
-					searchParams.get('callbackUrl') ?? (process.env.NEXT_PUBLIC_URL as string);
+					searchParams?.get('callbackUrl') ?? (process.env.NEXT_PUBLIC_URL as string);
 				router.push(callbackUrl);
 			}
 
@@ -92,7 +91,7 @@ const LoginPage = () => {
 								color='zinc'
 								size='lg'
 								className='w-full'
-								onClick={() => signIn('google', { callbackUrl: '/' })}>
+								onClick={() => authClient.signIn.social({ provider: 'google' })}>
 								Google
 							</Button>
 						</div>
@@ -103,7 +102,7 @@ const LoginPage = () => {
 								color='zinc'
 								size='lg'
 								className='w-full'
-								onClick={() => signIn('google', { callbackUrl: '/' })}>
+								onClick={() => authClient.signIn.social({ provider: 'apple' })}>
 								Apple
 							</Button>
 						</div>

@@ -5,7 +5,7 @@ import Icon from '@/components/icon/Icon';
 import Badge from '@/components/ui/Badge';
 import User from '@/components/layouts/User/User';
 import usersDb, { TUser } from '@/mocks/db/users.db';
-import { signOut } from 'next-auth/react';
+import { authClient } from '@/lib/auth-client';
 
 const UserTemplate = () => {
 	// Use mock user data for now since we're mixing auth systems
@@ -31,7 +31,11 @@ const UserTemplate = () => {
 				</Badge>
 				<NavButton icon='HeroPlusCircle' title='New Mail' onClick={() => {}} />
 			</NavItem>
-			<NavItem text='Logout' icon='HeroArrowRightOnRectangle' onClick={() => signOut()} />
+			<NavItem
+				text='Logout'
+				icon='HeroArrowRightOnRectangle'
+				onClick={() => authClient.signOut()}
+			/>
 		</User>
 	);
 };

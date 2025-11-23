@@ -1,23 +1,151 @@
-import { defineSchema, defineTable } from 'convex/server';
 import { v } from 'convex/values';
+import { defineEnt, defineEntSchema, getEntDefinitions } from 'convex-ents';
 
-export default defineSchema({
-	// AuthKit users
-	users: defineTable({
-		email: v.string(),
-		name: v.string(),
-		image: v.optional(v.string()),
-		emailVerified: v.optional(v.boolean()),
+const schema = defineEntSchema({
+	// --------------------
+	// Better Auth Tables (forked locally)
+	// --------------------
+
+	session: defineEnt({
+		expiresAt: v.number(),
 		createdAt: v.number(),
 		updatedAt: v.number(),
-		// North East Link specific fields
-		role: v.optional(v.string()),
-		department: v.optional(v.string()),
-		permissions: v.optional(v.array(v.string())),
-	}).index('by_email', ['email']),
+		ipAddress: v.optional(v.union(v.null(), v.string())),
+		userAgent: v.optional(v.union(v.null(), v.string())),
+		impersonatedBy: v.optional(v.union(v.null(), v.string())),
+		activeOrganizationId: v.optional(v.union(v.null(), v.string())),
+	})
+		.field('token', v.string(), { index: true })
+		.edge('user', { to: 'user', field: 'userId' })
+		.index('expiresAt', ['expiresAt'])
+		.index('expiresAt_userId', ['expiresAt', 'userId']),
+
+	account: defineEnt({
+		accountId: v.string(),
+		providerId: v.string(),
+		accessToken: v.optional(v.union(v.null(), v.string())),
+		refreshToken: v.optional(v.union(v.null(), v.string())),
+		idToken: v.optional(v.union(v.null(), v.string())),
+		accessTokenExpiresAt: v.optional(v.union(v.null(), v.number())),
+		refreshTokenExpiresAt: v.optional(v.union(v.null(), v.number())),
+		scope: v.optional(v.union(v.null(), v.string())),
+		password: v.optional(v.union(v.null(), v.string())),
+		createdAt: v.number(),
+		updatedAt: v.number(),
+	})
+		.edge('user', { to: 'user', field: 'userId' })
+		.index('accountId', ['accountId'])
+		.index('accountId_providerId', ['accountId', 'providerId'])
+		.index('providerId_userId', ['providerId', 'userId']),
+
+	verification: defineEnt({
+		value: v.string(),
+		createdAt: v.number(),
+		updatedAt: v.number(),
+	})
+		.field('identifier', v.string(), { index: true })
+		.field('expiresAt', v.number(), { index: true }),
+
+	organization: defineEnt({
+		logo: v.optional(v.union(v.null(), v.string())),
+		createdAt: v.number(),
+		metadata: v.optional(v.union(v.null(), v.string())),
+		monthlyCredits: v.number(),
+	})
+		.field('slug', v.string(), { unique: true })
+		.field('name', v.string(), { index: true })
+		.edges('members', { to: 'member', ref: true })
+		.edges('invitations', { to: 'invitation', ref: true })
+		.edges('usersLastActive', {
+			to: 'user',
+			ref: 'lastActiveOrganizationId',
+		})
+		.edges('usersPersonal', { to: 'user', ref: 'personalOrganizationId' }),
+
+	member: defineEnt({
+		createdAt: v.number(),
+	})
+		.field('role', v.string(), { index: true })
+		.edge('organization', { to: 'organization', field: 'organizationId' })
+		.edge('user', { to: 'user', field: 'userId' })
+		.index('organizationId_userId', ['organizationId', 'userId'])
+		.index('organizationId_role', ['organizationId', 'role']),
+
+	invitation: defineEnt({
+		role: v.optional(v.union(v.null(), v.string())),
+		expiresAt: v.number(),
+	})
+		.field('email', v.string(), { index: true })
+		.field('status', v.string(), { index: true })
+		.edge('organization', { to: 'organization', field: 'organizationId' })
+		.edge('inviter', { to: 'user', field: 'inviterId' })
+		.index('email_organizationId_status', ['email', 'organizationId', 'status'])
+		.index('organizationId_status', ['organizationId', 'status'])
+		.index('email_status', ['email', 'status'])
+		.index('organizationId_email', ['organizationId', 'email'])
+		.index('organizationId_email_status', ['organizationId', 'email', 'status']),
+
+	jwks: defineEnt({
+		publicKey: v.string(),
+		privateKey: v.string(),
+		createdAt: v.number(),
+	}),
+
+	// --------------------
+	// Unified User Model (App + Better Auth)
+	// --------------------
+	user: defineEnt({
+		// Better Auth required fields
+		name: v.string(),
+		emailVerified: v.boolean(),
+		createdAt: v.number(),
+		updatedAt: v.number(),
+
+		// Better Auth optional fields
+		image: v.optional(v.union(v.null(), v.string())),
+		role: v.optional(v.union(v.null(), v.string())),
+		banned: v.optional(v.union(v.null(), v.boolean())),
+		banReason: v.optional(v.union(v.null(), v.string())),
+		banExpires: v.optional(v.union(v.null(), v.number())),
+		bio: v.optional(v.union(v.null(), v.string())),
+		firstName: v.optional(v.union(v.null(), v.string())),
+		github: v.optional(v.union(v.null(), v.string())),
+		lastName: v.optional(v.union(v.null(), v.string())),
+		linkedin: v.optional(v.union(v.null(), v.string())),
+		location: v.optional(v.union(v.null(), v.string())),
+		username: v.optional(v.union(v.null(), v.string())),
+		website: v.optional(v.union(v.null(), v.string())),
+		x: v.optional(v.union(v.null(), v.string())),
+
+		// App-specific fields
+		deletedAt: v.optional(v.number()),
+	})
+		.field('email', v.string(), { unique: true })
+		.field('customerId', v.optional(v.string()), { index: true })
+		// Better Auth edges
+		.edges('sessions', { to: 'session', ref: 'userId' })
+		.edges('accounts', { to: 'account', ref: 'userId' })
+		.edges('members', { to: 'member', ref: 'userId' })
+		.edges('invitations', { to: 'invitation', ref: 'inviterId' })
+		// App-specific edges
+		.edge('lastActiveOrganization', {
+			to: 'organization',
+			field: 'lastActiveOrganizationId',
+			optional: true,
+		})
+		.edge('personalOrganization', {
+			to: 'organization',
+			field: 'personalOrganizationId',
+			optional: true,
+		})
+		.edges('subscriptions', { to: 'subscriptions', ref: 'userId' }),
+
+	// --------------------
+	// App-specific tables
+	// --------------------
 
 	// North East Link Projects
-	projects: defineTable({
+	projects: defineEnt({
 		name: v.string(),
 		description: v.string(),
 		status: v.string(), // planning, active, on_hold, completed, cancelled
@@ -26,7 +154,6 @@ export default defineSchema({
 		endDate: v.number(),
 		budget: v.number(),
 		spent: v.number(),
-		managerId: v.id('users'),
 		location: v.object({
 			lat: v.number(),
 			lng: v.number(),
@@ -47,16 +174,16 @@ export default defineSchema({
 		),
 		createdAt: v.number(),
 		updatedAt: v.number(),
-	}).index('by_status', ['status']),
+	})
+		.edge('manager', { to: 'user', field: 'managerId' })
+		.index('by_status', ['status']),
 
 	// Construction Tasks
-	tasks: defineTable({
+	tasks: defineEnt({
 		title: v.string(),
 		description: v.string(),
 		status: v.string(), // pending, in_progress, completed, blocked
 		priority: v.string(), // low, medium, high, critical
-		assigneeId: v.optional(v.id('users')),
-		projectId: v.id('projects'),
 		dueDate: v.optional(v.number()),
 		completedAt: v.optional(v.number()),
 		estimatedHours: v.optional(v.number()),
@@ -65,16 +192,18 @@ export default defineSchema({
 		tags: v.array(v.string()),
 		createdAt: v.number(),
 		updatedAt: v.number(),
-	}).index('by_project', ['projectId']),
+	})
+		.edge('assignee', { to: 'user', field: 'assigneeId', optional: true })
+		.edge('project', { to: 'projects', field: 'projectId' })
+		.index('by_project', ['projectId']),
 
 	// Resources (Materials, Equipment, Labor)
-	resources: defineTable({
+	resources: defineEnt({
 		name: v.string(),
 		type: v.string(), // labor, equipment, material, subcontractor
 		quantity: v.number(),
 		unit: v.string(),
 		cost: v.number(),
-		projectId: v.id('projects'),
 		supplier: v.string(),
 		status: v.string(), // ordered, delivered, in_use, returned, damaged
 		deliveryDate: v.optional(v.number()),
@@ -82,14 +211,14 @@ export default defineSchema({
 		specifications: v.optional(v.object({})),
 		createdAt: v.number(),
 		updatedAt: v.number(),
-	}).index('by_project', ['projectId']),
+	})
+		.edge('project', { to: 'projects', field: 'projectId' })
+		.index('by_project', ['projectId']),
 
 	// Site Activities
-	siteActivities: defineTable({
-		projectId: v.id('projects'),
+	siteActivities: defineEnt({
 		type: v.string(), // inspection, work_completed, incident, weather_delay
 		description: v.string(),
-		recordedBy: v.id('users'),
 		location: v.object({
 			lat: v.number(),
 			lng: v.number(),
@@ -106,10 +235,13 @@ export default defineSchema({
 		),
 		timestamp: v.number(),
 		createdAt: v.number(),
-	}).index('by_project', ['projectId']),
+	})
+		.edge('project', { to: 'projects', field: 'projectId' })
+		.edge('recordedBy', { to: 'user', field: 'recordedById' })
+		.index('by_project', ['projectId']),
 
 	// Equipment Management
-	equipment: defineTable({
+	equipment: defineEnt({
 		name: v.string(),
 		type: v.string(),
 		status: v.string(), // available, in_use, maintenance, retired
@@ -118,25 +250,21 @@ export default defineSchema({
 			lng: v.number(),
 			site: v.optional(v.string()),
 		}),
-		projectId: v.id('projects'),
-		operatorId: v.optional(v.id('users')),
-		maintenanceSchedule: v.optional(v.number()),
-		lastMaintenance: v.optional(v.number()),
-		nextMaintenance: v.optional(v.number()),
 		hourlyRate: v.number(),
 		dailyRate: v.optional(v.number()),
 		specifications: v.optional(v.object({})),
 		createdAt: v.number(),
 		updatedAt: v.number(),
-	}).index('by_project', ['projectId']),
+	})
+		.edge('project', { to: 'projects', field: 'projectId' })
+		.edge('operator', { to: 'user', field: 'operatorId', optional: true })
+		.index('by_project', ['projectId']),
 
 	// Safety Incidents
-	safetyIncidents: defineTable({
-		projectId: v.id('projects'),
+	safetyIncidents: defineEnt({
 		type: v.string(), // near_miss, injury, property_damage, environmental
 		severity: v.string(), // low, medium, high, critical
 		description: v.string(),
-		reportedBy: v.id('users'),
 		location: v.object({
 			lat: v.number(),
 			lng: v.number(),
@@ -148,46 +276,55 @@ export default defineSchema({
 		resolutionNotes: v.optional(v.string()),
 		timestamp: v.number(),
 		createdAt: v.number(),
-	}).index('by_project', ['projectId']),
+	})
+		.edge('project', { to: 'projects', field: 'projectId' })
+		.edge('reportedBy', { to: 'user', field: 'reportedById' })
+		.index('by_project', ['projectId']),
 
 	// Documents & Files
-	documents: defineTable({
+	documents: defineEnt({
 		name: v.string(),
 		type: v.string(), // drawing, specification, report, photo, video
 		url: v.string(),
-		projectId: v.id('projects'),
-		uploadedBy: v.id('users'),
 		size: v.number(),
 		mimeType: v.string(),
 		tags: v.array(v.string()),
 		metadata: v.optional(v.object({})),
 		createdAt: v.number(),
-	}).index('by_project', ['projectId']),
+	})
+		.edge('project', { to: 'projects', field: 'projectId' })
+		.edge('uploadedBy', { to: 'user', field: 'uploadedById' })
+		.index('by_project', ['projectId']),
 
 	// Notifications
-	notifications: defineTable({
-		userId: v.id('users'),
+	notifications: defineEnt({
 		title: v.string(),
 		message: v.string(),
 		type: v.string(), // info, warning, error, success
 		read: v.boolean(),
 		data: v.optional(v.object({})),
 		createdAt: v.number(),
-	}).index('by_user', ['userId', 'read']),
+	})
+		.edge('user', { to: 'user', field: 'userId' })
+		.index('by_user', ['userId', 'read']),
 
 	// Analytics & Metrics
-	analytics: defineTable({
-		projectId: v.id('projects'),
+	analytics: defineEnt({
 		metric: v.string(), // progress, efficiency, quality, safety, budget
 		value: v.number(),
 		unit: v.string(),
 		timestamp: v.number(),
 		metadata: v.optional(v.object({})),
 		createdAt: v.number(),
-	}).index('by_project_metric', ['projectId', 'metric']),
+	})
+		.edge('project', { to: 'projects', field: 'projectId' })
+		.index('by_project_metric', ['projectId', 'metric']),
 
 	// Original numbers table from nel-convex
-	numbers: defineTable({
+	numbers: defineEnt({
 		value: v.number(),
 	}),
 });
+
+export const entDefinitions = getEntDefinitions(schema);
+export default schema;
