@@ -1,0 +1,12 @@
+{
+	"name": "@fyr/navigation",
+	"version": "1.0.0",
+	"main": "src/index.ts",
+	"types": "src/index.ts",
+	"dependencies": {
+		"react": "^19.0.0",
+		"next": "^15.5.2",
+		"framer-motion": "^12.0.10",
+		"react-i18next": "^15.4.0"
+	}
+}

@@ -1,45 +1,38 @@
 'use client';
 
-import React, { ReactNode, useCallback } from 'react';
+import React, { ReactNode } from 'react';
 import { ConvexProviderWithAuth } from 'convex/react';
-import { AuthKitProvider, useAuth, useAccessToken } from '@workos-inc/authkit-nextjs/components';
 import { convexClient } from '@/lib/convex-client';
+import { authClient } from '@fyr/auth';
 
 export const ConvexClientProvider = ({ children }: { children: ReactNode }) => {
 	return (
-		<AuthKitProvider>
-			<ConvexProviderWithAuth client={convexClient} useAuth={useAuthFromAuthKit}>
-				{children}
-			</ConvexProviderWithAuth>
-		</AuthKitProvider>
+		<ConvexProviderWithAuth client={convexClient} useAuth={useAuthFromBetterAuth}>
+			{children}
+		</ConvexProviderWithAuth>
 	);
 };
 
-function useAuthFromAuthKit() {
-	const { user, loading: isLoading } = useAuth();
-	const { getAccessToken, refresh } = useAccessToken();
+function useAuthFromBetterAuth() {
+	const { data: session, isPending } = authClient.useSession();
 
-	const isAuthenticated = !!user;
+	const isAuthenticated = !!session;
+	const isLoading = isPending;
 
-	const fetchAccessToken = useCallback(
-		async ({ forceRefreshToken }: { forceRefreshToken?: boolean } = {}) => {
-			if (!user) {
-				return null;
+	const fetchAccessToken = async ({
+		forceRefreshToken,
+	}: { forceRefreshToken?: boolean } = {}) => {
+		try {
+			// For better-auth, we can get the session token
+			if (session?.session?.token) {
+				return session.session.token;
 			}
-
-			try {
-				if (forceRefreshToken) {
-					return (await refresh()) ?? null;
-				}
-
-				return (await getAccessToken()) ?? null;
-			} catch (error) {
-				console.error('Failed to get access token:', error);
-				return null;
-			}
-		},
-		[user, refresh, getAccessToken],
-	);
+			return null;
+		} catch (error) {
+			console.error('Failed to get access token:', error);
+			return null;
+		}
+	};
 
 	return {
 		isLoading,
