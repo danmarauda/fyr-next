@@ -6,10 +6,10 @@ import * as ResizablePrimitive from 'react-resizable-panels';
 
 import { cn } from '../lib/utils';
 
-function ResizablePanelGroup({
+const ResizablePanelGroup = ({
 	className,
 	...props
-}: React.ComponentProps<typeof ResizablePrimitive.PanelGroup>) {
+}: React.ComponentProps<typeof ResizablePrimitive.PanelGroup>) => {
 	return (
 		<ResizablePrimitive.PanelGroup
 			className={cn(
@@ -20,19 +20,19 @@ function ResizablePanelGroup({
 			{...props}
 		/>
 	);
-}
+};
 
-function ResizablePanel({ ...props }: React.ComponentProps<typeof ResizablePrimitive.Panel>) {
+const ResizablePanel = ({ ...props }: React.ComponentProps<typeof ResizablePrimitive.Panel>) => {
 	return <ResizablePrimitive.Panel data-slot='resizable-panel' {...props} />;
-}
+};
 
-function ResizableHandle({
+const ResizableHandle = ({
 	withHandle,
 	className,
 	...props
 }: React.ComponentProps<typeof ResizablePrimitive.PanelResizeHandle> & {
 	withHandle?: boolean;
-}) {
+}) => {
 	return (
 		<ResizablePrimitive.PanelResizeHandle
 			className={cn(
@@ -48,6 +48,6 @@ function ResizableHandle({
 			)}
 		</ResizablePrimitive.PanelResizeHandle>
 	);
-}
+};
 
 export { ResizablePanelGroup, ResizablePanel, ResizableHandle };

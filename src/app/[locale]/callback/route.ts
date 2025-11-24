@@ -1,3 +1,5 @@
-import { handleAuth } from '@workos-inc/authkit-nextjs';
+import { redirect } from 'next/navigation';
 
-export const GET = handleAuth();
+export const GET = () => {
+	redirect('/login');
+};

@@ -12,7 +12,7 @@ interface ResourceData {
 	efficiency: number;
 }
 
-export function ResourceAllocation({ projectId }: ResourceAllocationProps) {
+export const ResourceAllocation = ({ projectId }: ResourceAllocationProps) => {
 	// Mock data for demonstration
 	const resourceData: ResourceData[] = [
 		{
@@ -97,4 +97,4 @@ export function ResourceAllocation({ projectId }: ResourceAllocationProps) {
 			</div>
 		</Card>
 	);
-}
+};

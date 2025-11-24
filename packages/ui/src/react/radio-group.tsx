@@ -6,10 +6,10 @@ import type * as React from 'react';
 
 import { cn } from '../lib/utils';
 
-function RadioGroup({
+const RadioGroup = ({
 	className,
 	...props
-}: React.ComponentProps<typeof RadioGroupPrimitive.Root>) {
+}: React.ComponentProps<typeof RadioGroupPrimitive.Root>) => {
 	return (
 		<RadioGroupPrimitive.Root
 			className={cn('grid gap-3', className)}
@@ -17,12 +17,12 @@ function RadioGroup({
 			{...props}
 		/>
 	);
-}
+};
 
-function RadioGroupItem({
+const RadioGroupItem = ({
 	className,
 	...props
-}: React.ComponentProps<typeof RadioGroupPrimitive.Item>) {
+}: React.ComponentProps<typeof RadioGroupPrimitive.Item>) => {
 	return (
 		<RadioGroupPrimitive.Item
 			className={cn(
@@ -38,6 +38,6 @@ function RadioGroupItem({
 			</RadioGroupPrimitive.Indicator>
 		</RadioGroupPrimitive.Item>
 	);
-}
+};
 
 export { RadioGroup, RadioGroupItem };

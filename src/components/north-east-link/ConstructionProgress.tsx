@@ -5,7 +5,7 @@ interface ConstructionProgressProps {
 	projectId: string;
 }
 
-export function ConstructionProgress({ projectId }: ConstructionProgressProps) {
+export const ConstructionProgress = ({ projectId }: ConstructionProgressProps) => {
 	// Mock data for demonstration
 	const progressData = [
 		{ date: 'Jan', progress: 15, target: 20 },
@@ -73,4 +73,4 @@ export function ConstructionProgress({ projectId }: ConstructionProgressProps) {
 			</div>
 		</Card>
 	);
-}
+};

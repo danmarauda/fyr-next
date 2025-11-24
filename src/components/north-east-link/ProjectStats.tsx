@@ -13,7 +13,7 @@ interface ProjectStatsProps {
 	projectId: string;
 }
 
-export function ProjectStats({ projectId }: ProjectStatsProps) {
+export const ProjectStats = ({ projectId }: ProjectStatsProps) => {
 	// Use Convex real-time queries
 	const project = useQuery(api.projects.getProject, { id: projectId });
 	const tasks = useQuery(api.tasks.getTasksByProject, { projectId });
@@ -86,4 +86,4 @@ export function ProjectStats({ projectId }: ProjectStatsProps) {
 			))}
 		</div>
 	);
-}
+};

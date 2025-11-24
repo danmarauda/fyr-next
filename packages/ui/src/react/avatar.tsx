@@ -5,7 +5,7 @@ import type * as React from 'react';
 
 import { cn } from '../lib/utils';
 
-function Avatar({ className, ...props }: React.ComponentProps<typeof AvatarPrimitive.Root>) {
+const Avatar = ({ className, ...props }: React.ComponentProps<typeof AvatarPrimitive.Root>) => {
 	return (
 		<AvatarPrimitive.Root
 			className={cn('relative flex size-8 shrink-0 overflow-hidden rounded-full', className)}
@@ -13,9 +13,12 @@ function Avatar({ className, ...props }: React.ComponentProps<typeof AvatarPrimi
 			{...props}
 		/>
 	);
-}
+};
 
-function AvatarImage({ className, ...props }: React.ComponentProps<typeof AvatarPrimitive.Image>) {
+const AvatarImage = ({
+	className,
+	...props
+}: React.ComponentProps<typeof AvatarPrimitive.Image>) => {
 	return (
 		<AvatarPrimitive.Image
 			className={cn('aspect-square size-full', className)}
@@ -23,12 +26,12 @@ function AvatarImage({ className, ...props }: React.ComponentProps<typeof Avatar
 			{...props}
 		/>
 	);
-}
+};
 
-function AvatarFallback({
+const AvatarFallback = ({
 	className,
 	...props
-}: React.ComponentProps<typeof AvatarPrimitive.Fallback>) {
+}: React.ComponentProps<typeof AvatarPrimitive.Fallback>) => {
 	return (
 		<AvatarPrimitive.Fallback
 			className={cn(
@@ -39,6 +42,6 @@ function AvatarFallback({
 			{...props}
 		/>
 	);
-}
+};
 
 export { Avatar, AvatarImage, AvatarFallback };

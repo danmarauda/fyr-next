@@ -4,11 +4,11 @@ import type * as React from 'react';
 
 import { cn } from '../lib/utils';
 
-function Breadcrumb({ ...props }: React.ComponentProps<'nav'>) {
+const Breadcrumb = ({ ...props }: React.ComponentProps<'nav'>) => {
 	return <nav aria-label='breadcrumb' data-slot='breadcrumb' {...props} />;
-}
+};
 
-function BreadcrumbList({ className, ...props }: React.ComponentProps<'ol'>) {
+const BreadcrumbList = ({ className, ...props }: React.ComponentProps<'ol'>) => {
 	return (
 		<ol
 			className={cn(
@@ -19,9 +19,9 @@ function BreadcrumbList({ className, ...props }: React.ComponentProps<'ol'>) {
 			{...props}
 		/>
 	);
-}
+};
 
-function BreadcrumbItem({ className, ...props }: React.ComponentProps<'li'>) {
+const BreadcrumbItem = ({ className, ...props }: React.ComponentProps<'li'>) => {
 	return (
 		<li
 			className={cn('inline-flex items-center gap-1.5', className)}
@@ -29,15 +29,15 @@ function BreadcrumbItem({ className, ...props }: React.ComponentProps<'li'>) {
 			{...props}
 		/>
 	);
-}
+};
 
-function BreadcrumbLink({
+const BreadcrumbLink = ({
 	asChild,
 	className,
 	...props
 }: React.ComponentProps<'a'> & {
 	asChild?: boolean;
-}) {
+}) => {
 	const Comp = asChild ? SlotPrimitive.Slot : 'a';
 
 	return (
@@ -47,9 +47,9 @@ function BreadcrumbLink({
 			{...props}
 		/>
 	);
-}
+};
 
-function BreadcrumbPage({ className, ...props }: React.ComponentProps<'span'>) {
+const BreadcrumbPage = ({ className, ...props }: React.ComponentProps<'span'>) => {
 	return (
 		<span
 			aria-current='page'
@@ -60,9 +60,9 @@ function BreadcrumbPage({ className, ...props }: React.ComponentProps<'span'>) {
 			{...props}
 		/>
 	);
-}
+};
 
-function BreadcrumbSeparator({ children, className, ...props }: React.ComponentProps<'li'>) {
+const BreadcrumbSeparator = ({ children, className, ...props }: React.ComponentProps<'li'>) => {
 	return (
 		<li
 			aria-hidden='true'
@@ -73,9 +73,9 @@ function BreadcrumbSeparator({ children, className, ...props }: React.ComponentP
 			{children ?? <ChevronRight />}
 		</li>
 	);
-}
+};
 
-function BreadcrumbEllipsis({ className, ...props }: React.ComponentProps<'span'>) {
+const BreadcrumbEllipsis = ({ className, ...props }: React.ComponentProps<'span'>) => {
 	return (
 		<span
 			aria-hidden='true'
@@ -87,7 +87,7 @@ function BreadcrumbEllipsis({ className, ...props }: React.ComponentProps<'span'
 			<span className='sr-only'>More</span>
 		</span>
 	);
-}
+};
 
 export {
 	Breadcrumb,

@@ -5,11 +5,11 @@ import type * as React from 'react';
 
 import { cn } from '../lib/utils';
 
-function Progress({
+const Progress = ({
 	className,
 	value,
 	...props
-}: React.ComponentProps<typeof ProgressPrimitive.Root>) {
+}: React.ComponentProps<typeof ProgressPrimitive.Root>) => {
 	return (
 		<ProgressPrimitive.Root
 			className={cn(
@@ -25,6 +25,6 @@ function Progress({
 			/>
 		</ProgressPrimitive.Root>
 	);
-}
+};
 
 export { Progress };

@@ -1,48 +1,44 @@
-import type React from 'react';
+'use client';
 
-import { useMounted } from '@/hooks/use-mounted';
+import type React from 'react';
+import { useEffect, useState } from 'react';
 import { cn } from '../lib/utils';
 
-export function Skeleton({
+export const useMounted = () => {
+	const [isMounted, setIsMounted] = useState(false);
+
+	useEffect(() => {
+		setIsMounted(true);
+	}, []);
+
+	return isMounted;
+};
+
+export const Skeleton = ({
 	className,
 	variant = 'primary',
 	...props
 }: React.ComponentProps<'div'> & {
-	variant?: 'primary' | 'secondary';
-}) {
+	variant?: 'primary' | 'secondary' | 'tertiary';
+}) => {
+	const isMounted = useMounted();
+
+	if (!isMounted) {
+		return null;
+	}
+
 	return (
 		<div
 			className={cn(
-				'bg-muted animate-pulse rounded-md',
-				variant === 'secondary' && 'bg-zinc-300',
+				'animate-pulse rounded-md',
+				{
+					'bg-gray-200 dark:bg-gray-700': variant === 'primary',
+					'bg-gray-300 dark:bg-gray-600': variant === 'secondary',
+					'bg-gray-100 dark:bg-gray-800': variant === 'tertiary',
+				},
 				className,
 			)}
 			{...props}
 		/>
 	);
-}
-
-export function WithSkeleton({
-	children,
-	className,
-	isLoading,
-	...props
-}: React.ComponentProps<'div'> & {
-	isLoading?: boolean;
-}) {
-	const mounted = useMounted();
-
-	return (
-		<div className={cn('relative', className)} {...props}>
-			{children}
-
-			{(!mounted || isLoading) && (
-				<>
-					<div className={cn('bg-background absolute inset-0')} />
-
-					<Skeleton className={cn('absolute inset-0', className)} />
-				</>
-			)}
-		</div>
-	);
-}
+};

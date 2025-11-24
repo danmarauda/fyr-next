@@ -5,11 +5,11 @@ import type * as React from 'react';
 
 import { cn } from '../lib/utils';
 
-function ScrollArea({
+const ScrollArea = ({
 	className,
 	children,
 	...props
-}: React.ComponentProps<typeof ScrollAreaPrimitive.Root>) {
+}: React.ComponentProps<typeof ScrollAreaPrimitive.Root>) => {
 	return (
 		<ScrollAreaPrimitive.Root
 			className={cn('relative', className)}
@@ -24,13 +24,13 @@ function ScrollArea({
 			<ScrollAreaPrimitive.Corner />
 		</ScrollAreaPrimitive.Root>
 	);
-}
+};
 
-function ScrollBar({
+const ScrollBar = ({
 	className,
 	orientation = 'vertical',
 	...props
-}: React.ComponentProps<typeof ScrollAreaPrimitive.ScrollAreaScrollbar>) {
+}: React.ComponentProps<typeof ScrollAreaPrimitive.ScrollAreaScrollbar>) => {
 	return (
 		<ScrollAreaPrimitive.ScrollAreaScrollbar
 			className={cn(
@@ -48,6 +48,6 @@ function ScrollBar({
 			/>
 		</ScrollAreaPrimitive.ScrollAreaScrollbar>
 	);
-}
+};
 
 export { ScrollArea, ScrollBar };
