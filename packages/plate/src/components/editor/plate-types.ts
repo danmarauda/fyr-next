@@ -20,7 +20,7 @@ import type {
 	TTableElement,
 	TText,
 	TTextAlignProps,
-} from 'platejs';
+} from '@udecode/plate';
 
 export interface MyBlockElement extends TElement, TListProps {
 	id?: string;

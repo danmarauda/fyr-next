@@ -1,6 +1,6 @@
 'use client';
 
-import { CalloutPlugin } from '@platejs/callout/react';
+import { CalloutPlugin } from '@udecode/plate-callout/react';
 
 import { CalloutElement } from '@/components/ui/callout-node';
 

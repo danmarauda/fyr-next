@@ -173,4 +173,5 @@ const Card = forwardRef<HTMLDivElement, ICardProps>((props, ref) => {
 });
 Card.displayName = 'Card';
 
+export { Card };
 export default Card;

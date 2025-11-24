@@ -1,4 +1,11 @@
-import { getEnv } from '@t3-oss/env-nextjs';
 import { env } from '../../src/env';
 
-export const getConvexEnv = getEnv(env);
+export const getConvexEnv = {
+	CONVEX_URL: env.CONVEX_URL,
+	BETTER_AUTH_SECRET: env.BETTER_AUTH_SECRET,
+	BETTER_AUTH_URL: env.BETTER_AUTH_URL,
+	GITHUB_CLIENT_ID: env.GITHUB_CLIENT_ID,
+	GITHUB_CLIENT_SECRET: env.GITHUB_CLIENT_SECRET,
+	GOOGLE_CLIENT_ID: env.GOOGLE_CLIENT_ID,
+	GOOGLE_CLIENT_SECRET: env.GOOGLE_CLIENT_SECRET,
+};

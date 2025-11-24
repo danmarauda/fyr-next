@@ -9,8 +9,8 @@ import {
 	H5Plugin,
 	H6Plugin,
 	HorizontalRulePlugin,
-} from '@platejs/basic-nodes/react';
-import { ParagraphPlugin } from 'platejs/react';
+} from '@udecode/plate-basic-nodes/react';
+import { ParagraphPlugin } from '@udecode/plate/react';
 
 import { BlockquoteElement } from '@/components/ui/blockquote-node';
 import {

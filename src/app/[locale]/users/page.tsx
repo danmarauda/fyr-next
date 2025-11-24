@@ -2,19 +2,11 @@ import React from 'react';
 import PageWrapper from '@/components/layouts/PageWrapper/PageWrapper';
 import Container from '@/components/layouts/Container/Container';
 import Subheader, { SubheaderLeft, SubheaderRight } from '@/components/layouts/Subheader/Subheader';
-import { Card, CardContent, CardHeader, CardTitle } from '@fyr/ui';
-import { Button } from '@fyr/ui';
-import { Badge } from '@fyr/ui';
-import { Avatar, AvatarFallback, AvatarImage } from '@fyr/ui';
-import {
-	Users as UsersIcon,
-	Plus as PlusIcon,
-	Search as MagnifyingGlassIcon,
-	MoreVertical as EllipsisVerticalIcon,
-	Shield as ShieldCheckIcon,
-	Clock as ClockIcon,
-	CheckCircle as CheckCircleIcon,
-} from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from '@alias/ui';
+import { Button } from '@alias/ui';
+import { Badge } from '@alias/ui';
+import { Avatar, AvatarFallback, AvatarImage } from '@alias/ui';
+import { Users, Plus, Search, MoreVertical, Shield, Clock, CheckCircle } from 'lucide-react';
 
 const UserManagement = () => {
 	// Mock data for users
@@ -120,9 +112,9 @@ const UserManagement = () => {
 
 	const getStatusIcon = (status: string) => {
 		return status === 'active' ? (
-			<CheckCircleIcon className='h-4 w-4 text-green-500' />
+			<CheckCircle className='h-4 w-4 text-green-500' />
 		) : (
-			<ClockIcon className='h-4 w-4 text-gray-500' />
+			<Clock className='h-4 w-4 text-gray-500' />
 		);
 	};
 
@@ -146,11 +138,11 @@ const UserManagement = () => {
 				</SubheaderLeft>
 				<SubheaderRight>
 					<Button className='mr-2'>
-						<PlusIcon className='mr-2 h-4 w-4' />
+						<Plus className='mr-2 h-4 w-4' />
 						Add User
 					</Button>
 					<Button variant='outline'>
-						<MagnifyingGlassIcon className='mr-2 h-4 w-4' />
+						<Search className='mr-2 h-4 w-4' />
 						Search Users
 					</Button>
 				</SubheaderRight>
@@ -163,7 +155,7 @@ const UserManagement = () => {
 						<Card key={role} className='text-center'>
 							<CardContent className='pt-6'>
 								<div className='mx-auto mb-2 flex h-8 w-8 items-center justify-center rounded-full bg-blue-100'>
-									<ShieldCheckIcon className='h-4 w-4 text-blue-600' />
+									<Shield className='h-4 w-4 text-blue-600' />
 								</div>
 								<h3 className='text-lg font-bold text-gray-900'>{count}</h3>
 								<p className='text-xs text-gray-600'>{getRoleLabel(role)}</p>
@@ -176,7 +168,7 @@ const UserManagement = () => {
 				<Card>
 					<CardHeader>
 						<CardTitle className='flex items-center gap-2'>
-							<UsersIcon className='h-5 w-5' />
+							<Users className='h-5 w-5' />
 							All Users
 						</CardTitle>
 					</CardHeader>
@@ -256,7 +248,7 @@ const UserManagement = () => {
 											</td>
 											<td className='py-4 text-right'>
 												<Button size='sm' variant='ghost'>
-													<EllipsisVerticalIcon className='h-4 w-4' />
+													<MoreVertical className='h-4 w-4' />
 												</Button>
 											</td>
 										</tr>
@@ -272,7 +264,7 @@ const UserManagement = () => {
 					<Card>
 						<CardContent className='text-center'>
 							<div className='mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-blue-100'>
-								<PlusIcon className='h-8 w-8 text-blue-600' />
+								<Plus className='h-8 w-8 text-blue-600' />
 							</div>
 							<h3 className='mb-2 text-lg font-semibold'>Add New User</h3>
 							<p className='mb-4 text-sm text-gray-600'>
@@ -285,7 +277,7 @@ const UserManagement = () => {
 					<Card>
 						<CardContent className='text-center'>
 							<div className='mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-100'>
-								<ShieldCheckIcon className='h-8 w-8 text-green-600' />
+								<Shield className='h-8 w-8 text-green-600' />
 							</div>
 							<h3 className='mb-2 text-lg font-semibold'>Manage Roles</h3>
 							<p className='mb-4 text-sm text-gray-600'>Configure user permissions</p>
@@ -296,7 +288,7 @@ const UserManagement = () => {
 					<Card>
 						<CardContent className='text-center'>
 							<div className='mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-purple-100'>
-								<UsersIcon className='h-8 w-8 text-purple-600' />
+								<Users className='h-8 w-8 text-purple-600' />
 							</div>
 							<h3 className='mb-2 text-lg font-semibold'>User Reports</h3>
 							<p className='mb-4 text-sm text-gray-600'>

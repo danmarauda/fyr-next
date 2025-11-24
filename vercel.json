@@ -1,0 +1,34 @@
+{
+	"buildCommand": "pnpm build",
+	"devCommand": "pnpm dev",
+	"installCommand": "pnpm install",
+	"framework": "nextjs",
+	"outputDirectory": ".next",
+	"regions": ["iad1"],
+	"functions": {
+		"src/app/api/**/*.ts": {
+			"maxDuration": 30
+		}
+	},
+	"env": {
+		"NEXT_PUBLIC_ENVIRONMENT": "development"
+	},
+	"build": {
+		"env": {
+			"NEXT_PUBLIC_ENVIRONMENT": "production"
+		}
+	},
+	"crons": [
+		{
+			"path": "/api/cron/daily-cleanup",
+			"schedule": "0 2 * * *"
+		}
+	],
+	"git": {
+		"deploymentEnabled": {
+			"preview": true,
+			"production": true,
+			"development": true
+		}
+	}
+}

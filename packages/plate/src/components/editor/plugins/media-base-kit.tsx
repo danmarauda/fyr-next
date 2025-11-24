@@ -1,4 +1,4 @@
-import { BaseCaptionPlugin } from '@platejs/caption';
+import { BaseCaptionPlugin } from '@udecode/plate-caption';
 import {
 	BaseAudioPlugin,
 	BaseFilePlugin,
@@ -6,8 +6,8 @@ import {
 	BaseMediaEmbedPlugin,
 	BasePlaceholderPlugin,
 	BaseVideoPlugin,
-} from '@platejs/media';
-import { KEYS } from 'platejs';
+} from '@udecode/plate-media';
+import { KEYS } from '@udecode/plate';
 
 import { AudioElementStatic } from '@/components/ui/media-audio-node-static';
 import { FileElementStatic } from '@/components/ui/media-file-node-static';

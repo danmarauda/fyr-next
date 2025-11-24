@@ -2,7 +2,7 @@
 
 import { usePathname } from 'next/navigation';
 import purePathnameUtil from '@/utils/purePathname.util';
-import asideRoutes from '../../routes/asideRoutes';
+import asideRoutes from '@/routes/asideRoutes';
 
 const AsideRouter = () => {
 	const pathname = usePathname();

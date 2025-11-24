@@ -1,8 +1,8 @@
 'use client';
 
-import { AIChatPlugin } from '@platejs/ai/react';
-import { BlockSelectionPlugin } from '@platejs/selection/react';
-import { getPluginTypes, isHotkey, KEYS } from 'platejs';
+import { AIChatPlugin } from '@udecode/plate-ai/react';
+import { BlockSelectionPlugin } from '@udecode/plate-selection/react';
+import { getPluginTypes, isHotkey, KEYS } from '@udecode/plate';
 
 import { BlockSelection } from '@/components/ui/block-selection';
 

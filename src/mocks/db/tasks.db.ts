@@ -27,7 +27,7 @@ const tasksDb: TTasks = {
 		{
 			id: '6',
 			title: 'Mail App',
-			subtitle: 'Fyr Themes',
+			subtitle: 'ALIAS Themes',
 			description:
 				'[{"type":"paragraph","children":[{"text":"Mail application and screens will be added"}]}]',
 			label: '7 day left',
@@ -59,7 +59,7 @@ const tasksDb: TTasks = {
 		{
 			id: '5',
 			title: 'Invoice',
-			subtitle: 'Fyr Themes',
+			subtitle: 'ALIAS Themes',
 			description:
 				'[{"type":"paragraph","children":[{"text":"Invoice preview and new creation screens will be added"}]}]',
 			label: '5 day left',
@@ -88,7 +88,7 @@ const tasksDb: TTasks = {
 		{
 			id: '3',
 			title: 'Write Blog',
-			subtitle: 'Fyr Themes',
+			subtitle: 'ALIAS Themes',
 			description:
 				'[{"type":"paragraph","children":[{"text":"Explain why it should be chosen"}]}]',
 			label: '7 day left',
@@ -103,7 +103,7 @@ const tasksDb: TTasks = {
 		{
 			id: '2',
 			title: 'Bug Fix',
-			subtitle: 'Fyr Themes',
+			subtitle: 'ALIAS Themes',
 			description: '[{"type":"paragraph","children":[{"text":"Minor bugs will be fixed"}]}]',
 			label: '5 day left',
 			items: [
@@ -123,7 +123,7 @@ const tasksDb: TTasks = {
 		{
 			id: '1',
 			title: 'Project App',
-			subtitle: 'Fyr Themes',
+			subtitle: 'ALIAS Themes',
 			description:
 				'[{"type":"paragraph","children":[{"text":"Project tracking screen will be added"}]}]',
 			label: '1 day ago',

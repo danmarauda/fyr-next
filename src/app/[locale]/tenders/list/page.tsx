@@ -2,10 +2,10 @@ import React from 'react';
 import PageWrapper from '@/components/layouts/PageWrapper/PageWrapper';
 import Container from '@/components/layouts/Container/Container';
 import Subheader, { SubheaderLeft } from '@/components/layouts/Subheader/Subheader';
-import { Card, CardContent, CardHeader, CardTitle } from '@fyr/ui';
-import { Button } from '@fyr/ui';
-import { Badge } from '@fyr/ui';
-import { PlusIcon, MagnifyingGlassIcon } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from '@alias/ui';
+import { Button } from '@alias/ui';
+import { Badge } from '@alias/ui';
+import { Plus, Search } from 'lucide-react';
 
 const TendersList = () => {
 	// Mock data for demonstration
@@ -98,11 +98,11 @@ const TendersList = () => {
 							<CardTitle>Tenders ({tenders.length})</CardTitle>
 							<div className='flex gap-2'>
 								<Button variant='outline'>
-									<MagnifyingGlassIcon className='mr-2 h-4 w-4' />
+									<Search className='mr-2 h-4 w-4' />
 									Filter
 								</Button>
 								<Button>
-									<PlusIcon className='mr-2 h-4 w-4' />
+									<Plus className='mr-2 h-4 w-4' />
 									New Tender
 								</Button>
 							</div>

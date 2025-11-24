@@ -1,5 +1,5 @@
-import { MarkdownPlugin, remarkMdx, remarkMention } from '@platejs/markdown';
-import { KEYS } from 'platejs';
+import { MarkdownPlugin, remarkMdx, remarkMention } from '@udecode/plate-markdown';
+import { KEYS } from '@udecode/plate';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 

@@ -1,6 +1,6 @@
 'use client';
 
-import { LinkPlugin } from '@platejs/link/react';
+import { LinkPlugin } from '@udecode/plate-link/react';
 
 import { LinkElement } from '@/components/ui/link-node';
 import { LinkFloatingToolbar } from '@/components/ui/link-toolbar';

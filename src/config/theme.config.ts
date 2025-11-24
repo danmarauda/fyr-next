@@ -38,8 +38,8 @@ type TThemeConfigs = {
 };
 
 const themeConfig: TThemeConfigs = {
-	projectTitle: 'Fyr',
-	projectName: 'React TypeScript Tailwind Admin & AI Chat Template',
+	projectTitle: 'ALIAS',
+	projectName: 'ALIAS - Sovereign AI Admin & Business Intelligence Template',
 	language: 'en',
 
 	theme: DARK_MODE.SYSTEM,

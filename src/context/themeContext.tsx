@@ -44,7 +44,7 @@ export const ThemeContextProvider: FC<IThemeContextProviderProps> = ({ children 
 	 * Language
 	 */
 	const [language, setLanguage] = useState<TLang>(
-		(typeof window !== 'undefined' && (localStorage.getItem('fyr_language') as TLang)) ||
+		(typeof window !== 'undefined' && (localStorage.getItem('alias_language') as TLang)) ||
 			themeConfig.language,
 	);
 

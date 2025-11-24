@@ -1,7 +1,7 @@
 'use client';
 
-import { TextAlignPlugin } from '@platejs/basic-styles/react';
-import { KEYS } from 'platejs';
+import { TextAlignPlugin } from '@udecode/plate-basic-styles/react';
+import { KEYS } from '@udecode/plate';
 
 export const AlignKit = [
 	TextAlignPlugin.configure({

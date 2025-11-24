@@ -10,8 +10,7 @@ export const getProgressByProject = query({
 				q.eq('projectId', args.projectId).eq('metric', 'progress'),
 			)
 			.order('desc')
-			.limit(30)
-			.collect();
+			.take(30);
 
 		return analytics;
 	},

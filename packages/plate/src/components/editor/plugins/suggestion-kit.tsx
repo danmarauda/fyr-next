@@ -1,14 +1,14 @@
 'use client';
 
-import { type BaseSuggestionConfig, BaseSuggestionPlugin } from '@platejs/suggestion';
+import { type BaseSuggestionConfig, BaseSuggestionPlugin } from '@udecode/plate-suggestion';
 import {
 	type ExtendConfig,
 	type Path,
 	isSlateEditor,
 	isSlateElement,
 	isSlateString,
-} from 'platejs';
-import { toTPlatePlugin } from 'platejs/react';
+} from '@udecode/plate';
+import { toTPlatePlugin } from '@udecode/plate/react';
 
 import { BlockSuggestion } from '@/components/ui/block-suggestion';
 import { SuggestionLeaf, SuggestionLineBreak } from '@/components/ui/suggestion-node';

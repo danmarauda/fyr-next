@@ -7,7 +7,23 @@ const nextConfig: NextConfig = {
 	},
 	// reactCompiler: true, // Disabled until babel-plugin-react-compiler is installed
 	typedRoutes: true,
-	turbopack: {},
+	webpack: (config, { isServer }) => {
+		// Ignore markdown files during build
+		config.module.rules.push({
+			test: /\.md$/,
+			type: 'asset/source',
+		});
+
+		// Fix radix-ui imports
+		if (!isServer) {
+			config.resolve.fallback = {
+				...config.resolve.fallback,
+				fs: false,
+			};
+		}
+
+		return config;
+	},
 };
 
 export default nextConfig;

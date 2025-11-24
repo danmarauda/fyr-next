@@ -7,8 +7,8 @@ import {
 	BaseH5Plugin,
 	BaseH6Plugin,
 	BaseHorizontalRulePlugin,
-} from '@platejs/basic-nodes';
-import { BaseParagraphPlugin } from 'platejs';
+} from '@udecode/plate-basic-nodes';
+import { BaseParagraphPlugin } from '@udecode/plate';
 
 import { BlockquoteElementStatic } from '@/components/ui/blockquote-node-static';
 import {

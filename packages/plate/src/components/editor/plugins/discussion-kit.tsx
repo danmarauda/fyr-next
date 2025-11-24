@@ -2,7 +2,7 @@
 
 import type { TComment } from '@/components/ui/comment';
 
-import { createPlatePlugin } from 'platejs/react';
+import { createPlatePlugin } from '@udecode/plate/react';
 
 import { BlockDiscussion } from '@/components/ui/block-discussion';
 

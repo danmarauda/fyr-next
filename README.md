@@ -1,4 +1,4 @@
-# Fyr
+# ALIAS
 
 > React TypeScript Tailwind Admin & AI Chat Template [ref: src/config/theme.config.ts:42]
 
@@ -8,7 +8,7 @@ A sophisticated Next.js 16 admin template featuring AI chat capabilities, intern
 
 ## Overview
 
-Fyr is a production-ready admin template that combines a modern React ecosystem with AI-powered chat features. Built with Next.js 16 App Router, TypeScript, and Tailwind CSS, it provides developers with a flexible foundation for building sophisticated web applications with multi-language support and dynamic theming.
+ALIAS is a sovereign AI-powered admin template that combines modern React architecture with intelligent business features. Built with Next.js 16 App Router, TypeScript, and Tailwind CSS, it provides developers with a comprehensive foundation for building enterprise-grade applications that unify data, understand business context, and activate intelligent automation.
 
 **Target Users:** Enterprise developers, startups, and teams building admin dashboards, SaaS applications, or AI-powered interfaces requiring rapid development with comprehensive internationalization.
 
@@ -63,7 +63,7 @@ graph TD
     E --> G[Auth Provider]
     E --> H[Layout Routers]
     H --> I[AsideRouter]
-    H --> J[HeaderRouter] 
+    H --> J[HeaderRouter]
     H --> K[FooterRouter]
     F --> L["@fyr/ui Components"]
     G --> M[BetterAuth + Convex]
@@ -150,14 +150,14 @@ Add translations to `src/locales/[locale]/translation.json`:
 
 ```json
 {
-  "navigation": {
-    "dashboard": "Dashboard",
-    "ai_chat": "AI Chat"
-  },
-  "common": {
-    "save": "Save",
-    "cancel": "Cancel"
-  }
+	"navigation": {
+		"dashboard": "Dashboard",
+		"ai_chat": "AI Chat"
+	},
+	"common": {
+		"save": "Save",
+		"cancel": "Cancel"
+	}
 }
 ```
 
@@ -166,21 +166,23 @@ Add translations to `src/locales/[locale]/translation.json`:
 ### Adding New Pages
 
 1. **Create page structure** in `src/app/[locale]/[feature]/` [ref: src/app/[locale]/ui/button/page.tsx:1-6]:
-   ```bash
-   src/app/[locale]/my-feature/
-   ├── page.tsx              # Server component
-   └── _client.tsx           # Client component
-   ```
+
+    ```bash
+    src/app/[locale]/my-feature/
+    ├── page.tsx              # Server component
+    └── _client.tsx           # Client component
+    ```
 
 2. **Add page configuration** to `src/config/pages.config.ts` [ref: src/config/pages.config.ts:22-27]:
-   ```typescript
-   myFeaturePage: {
-     id: 'myFeaturePage',
-     to: '/my-feature',
-     text: 'My Feature',
-     icon: 'HeroStar',
-   }
-   ```
+
+    ```typescript
+    myFeaturePage: {
+      id: 'myFeaturePage',
+      to: '/my-feature',
+      text: 'My Feature',
+      icon: 'HeroStar',
+    }
+    ```
 
 3. **Add translations** to all locale files in `src/locales/`
 
@@ -192,11 +194,11 @@ Add translations to `src/locales/[locale]/translation.json`:
 import { Button } from '@/components/ui'; // Maps to packages/ui [ref: next.config.ts:19-22]
 
 export const MyComponent = () => {
-  return (
-    <Button variant="default" size="md">
-      Click me
-    </Button>
-  );
+	return (
+		<Button variant='default' size='md'>
+			Click me
+		</Button>
+	);
 };
 ```
 
@@ -208,21 +210,20 @@ import * as Yup from 'yup';
 import { Input, FieldWrap } from '@/components/form'; // [ref: src/components/form/]
 
 const validationSchema = Yup.object({
-  email: Yup.string().email().required('Email is required'),
+	email: Yup.string().email().required('Email is required'),
 });
 
 export const MyForm = () => (
-  <Formik
-    initialValues={{ email: '' }}
-    validationSchema={validationSchema}
-    onSubmit={handleSubmit}
-  >
-    <Form>
-      <FieldWrap label="Email">
-        <Input name="email" type="email" />
-      </FieldWrap>
-    </Form>
-  </Formik>
+	<Formik
+		initialValues={{ email: '' }}
+		validationSchema={validationSchema}
+		onSubmit={handleSubmit}>
+		<Form>
+			<FieldWrap label='Email'>
+				<Input name='email' type='email' />
+			</FieldWrap>
+		</Form>
+	</Formik>
 );
 ```
 
@@ -292,6 +293,7 @@ Icons are automatically converted to typed React components in `src/components/i
 **Current State**: No test framework currently configured [evidence: absence of test files in search].
 
 **Recommended Setup** (based on project patterns):
+
 ```bash
 # Install testing dependencies
 pnpm add -D jest jest-environment-jsdom @testing-library/react @testing-library/jest-dom
@@ -338,6 +340,7 @@ pnpm start
 ## Hypotheses & Evidence Gaps
 
 **Evidence Gaps Identified:**
+
 - **Performance**: No specific performance benchmarks or optimization strategies observed
 - **Testing**: No test framework currently configured (hypothesis: testing setup would add Jest + React Testing Library)
 - **CI/CD**: No GitHub Actions or automated deployment workflows detected
@@ -362,6 +365,7 @@ MIT License - as evidenced by standard package.json structure and repository con
 ## Acknowledgments
 
 Built with:
+
 - **Next.js** 16 for React framework and App Router [ref: package.json:49]
 - **Radix UI** for accessible component primitives [ref: packages/ui/package.json:7-33]
 - **BetterAuth** with Convex for authentication [ref: package.json:32,15]

@@ -44,7 +44,7 @@ export const getProjectProgress = query({
 
 // Get projects for the current user
 export const getUserProjects = query({
-	args: { userId: v.id('users') },
+	args: { userId: v.id('user') },
 	handler: async (ctx, args) => {
 		const projects = await ctx.db
 			.query('projects')

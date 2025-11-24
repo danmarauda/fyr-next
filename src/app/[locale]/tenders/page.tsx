@@ -2,19 +2,11 @@ import React from 'react';
 import PageWrapper from '@/components/layouts/PageWrapper/PageWrapper';
 import Container from '@/components/layouts/Container/Container';
 import Subheader, { SubheaderLeft, SubheaderRight } from '@/components/layouts/Subheader/Subheader';
-import { Card, CardContent, CardHeader, CardTitle } from '@fyr/ui';
-import { Button } from '@fyr/ui';
-import { Badge } from '@fyr/ui';
-import { Progress } from '@fyr/ui';
-import {
-	DocumentTextIcon,
-	ClockIcon,
-	CheckCircleIcon,
-	ChartBarIcon,
-	PlusIcon,
-	MagnifyingGlassIcon,
-	TagIcon,
-} from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from '@alias/ui';
+import { Button } from '@alias/ui';
+import { Badge } from '@alias/ui';
+import { Progress } from '@alias/ui';
+import { FileText, Clock, CheckCircle, BarChart3, Plus, Search, Tag } from 'lucide-react';
 
 const TendersDashboard = () => {
 	// Mock data for demonstration
@@ -94,11 +86,11 @@ const TendersDashboard = () => {
 				</SubheaderLeft>
 				<SubheaderRight>
 					<Button className='mr-2'>
-						<PlusIcon className='mr-2 h-4 w-4' />
+						<Plus className='mr-2 h-4 w-4' />
 						New Tender
 					</Button>
 					<Button variant='outline'>
-						<MagnifyingGlassIcon className='mr-2 h-4 w-4' />
+						<Search className='mr-2 h-4 w-4' />
 						Advanced Search
 					</Button>
 				</SubheaderRight>
@@ -110,7 +102,7 @@ const TendersDashboard = () => {
 					<Card>
 						<CardContent className='text-center'>
 							<div className='mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-blue-100'>
-								<DocumentTextIcon className='h-6 w-6 text-blue-600' />
+								<FileText className='h-6 w-6 text-blue-600' />
 							</div>
 							<h3 className='text-2xl font-bold text-gray-900'>
 								{stats.totalTenders}
@@ -122,7 +114,7 @@ const TendersDashboard = () => {
 					<Card>
 						<CardContent className='text-center'>
 							<div className='mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-green-100'>
-								<CheckCircleIcon className='h-6 w-6 text-green-600' />
+								<CheckCircle className='h-6 w-6 text-green-600' />
 							</div>
 							<h3 className='text-2xl font-bold text-gray-900'>
 								{stats.activeTenders}
@@ -134,7 +126,7 @@ const TendersDashboard = () => {
 					<Card>
 						<CardContent className='text-center'>
 							<div className='mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-yellow-100'>
-								<ClockIcon className='h-6 w-6 text-yellow-600' />
+								<Clock className='h-6 w-6 text-yellow-600' />
 							</div>
 							<h3 className='text-2xl font-bold text-gray-900'>{stats.dueSoon}</h3>
 							<p className='text-sm text-gray-600'>Due Soon</p>
@@ -144,7 +136,7 @@ const TendersDashboard = () => {
 					<Card>
 						<CardContent className='text-center'>
 							<div className='mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-purple-100'>
-								<ChartBarIcon className='h-6 w-6 text-purple-600' />
+								<BarChart3 className='h-6 w-6 text-purple-600' />
 							</div>
 							<h3 className='text-2xl font-bold text-gray-900'>{stats.completed}</h3>
 							<p className='text-sm text-gray-600'>Completed</p>
@@ -205,7 +197,7 @@ const TendersDashboard = () => {
 					<Card>
 						<CardContent className='text-center'>
 							<div className='mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-blue-100'>
-								<PlusIcon className='h-8 w-8 text-blue-600' />
+								<Plus className='h-8 w-8 text-blue-600' />
 							</div>
 							<h3 className='mb-2 text-lg font-semibold'>Create Tender</h3>
 							<p className='mb-4 text-sm text-gray-600'>
@@ -218,7 +210,7 @@ const TendersDashboard = () => {
 					<Card>
 						<CardContent className='text-center'>
 							<div className='mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-100'>
-								<MagnifyingGlassIcon className='h-8 w-8 text-green-600' />
+								<Search className='h-8 w-8 text-green-600' />
 							</div>
 							<h3 className='mb-2 text-lg font-semibold'>Advanced Search</h3>
 							<p className='mb-4 text-sm text-gray-600'>
@@ -231,7 +223,7 @@ const TendersDashboard = () => {
 					<Card>
 						<CardContent className='text-center'>
 							<div className='mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-purple-100'>
-								<TagIcon className='h-8 w-8 text-purple-600' />
+								<Tag className='h-8 w-8 text-purple-600' />
 							</div>
 							<h3 className='mb-2 text-lg font-semibold'>Manage Tags</h3>
 							<p className='mb-4 text-sm text-gray-600'>Organize tenders with tags</p>

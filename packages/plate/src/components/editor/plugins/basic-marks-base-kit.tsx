@@ -8,7 +8,7 @@ import {
 	BaseSubscriptPlugin,
 	BaseSuperscriptPlugin,
 	BaseUnderlinePlugin,
-} from '@platejs/basic-nodes';
+} from '@udecode/plate-basic-nodes';
 
 import { CodeLeafStatic } from '@/components/ui/code-node-static';
 import { HighlightLeafStatic } from '@/components/ui/highlight-node-static';

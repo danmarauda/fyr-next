@@ -2,12 +2,14 @@
 
 import * as React from 'react';
 
-import { normalizeNodeId } from 'platejs';
-import { Plate, usePlateEditor } from 'platejs/react';
+// import { createNormalizeNodeId } from '@udecode/plate-normalizers';
+import { Plate, usePlateEditor } from '@udecode/plate/react';
 
-import { EditorKit } from '@/components/editor/editor-kit';
-import { SettingsDialog } from '@/components/editor/settings-dialog';
-import { Editor, EditorContainer } from '@/components/ui/editor';
+import { EditorKit } from './editor-kit';
+import { SettingsDialog } from './settings-dialog';
+// Placeholder components
+const Editor = ({ variant }: { variant?: string }) => <div>Editor Component ({variant})</div>;
+const EditorContainer = ({ children }: { children: React.ReactNode }) => <div>{children}</div>;
 
 export const PlateEditor = () => {
 	const editor = usePlateEditor({
@@ -26,7 +28,7 @@ export const PlateEditor = () => {
 	);
 };
 
-const value = normalizeNodeId([
+const value = [
 	{
 		children: [{ text: 'Welcome to the Plate Playground!' }],
 		type: 'h1',
@@ -563,4 +565,6 @@ const value = normalizeNodeId([
 		children: [{ text: '' }],
 		type: 'p',
 	},
-]);
+];
+
+export default PlateEditor;

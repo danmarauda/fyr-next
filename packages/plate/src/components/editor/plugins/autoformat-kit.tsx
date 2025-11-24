@@ -1,6 +1,6 @@
 'use client';
 
-import type { AutoformatRule } from '@platejs/autoformat';
+import type { AutoformatRule } from '@udecode/plate-autoformat';
 
 import {
 	autoformatArrow,
@@ -10,10 +10,10 @@ import {
 	AutoformatPlugin,
 	autoformatPunctuation,
 	autoformatSmartQuotes,
-} from '@platejs/autoformat';
-import { insertEmptyCodeBlock } from '@platejs/code-block';
-import { toggleList } from '@platejs/list';
-import { KEYS } from 'platejs';
+} from '@udecode/plate-autoformat';
+import { insertEmptyCodeBlock } from '@udecode/plate-code-block';
+import { toggleList } from '@udecode/plate-list';
+import { KEYS } from '@udecode/plate';
 
 const autoformatMarks: AutoformatRule[] = [
 	{

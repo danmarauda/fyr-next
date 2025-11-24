@@ -1,4 +1,4 @@
-import { BaseCommentPlugin } from '@platejs/comment';
+import { BaseCommentPlugin } from '@udecode/plate-comment';
 
 import { CommentLeafStatic } from '@/components/ui/comment-node-static';
 

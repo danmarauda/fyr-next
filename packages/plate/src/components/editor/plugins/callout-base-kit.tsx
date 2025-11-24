@@ -1,4 +1,4 @@
-import { BaseCalloutPlugin } from '@platejs/callout';
+import { BaseCalloutPlugin } from '@udecode/plate-callout';
 
 import { CalloutElementStatic } from '@/components/ui/callout-node-static';
 

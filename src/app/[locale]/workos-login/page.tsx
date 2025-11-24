@@ -3,7 +3,7 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import PageWrapper from '@/components/layouts/PageWrapper/PageWrapper';
-import { Button } from '@fyr/ui';
+import { Button } from '@alias/ui';
 import LogoTemplate from '@/templates/layouts/Logo/Logo.template';
 import Link from 'next/link';
 

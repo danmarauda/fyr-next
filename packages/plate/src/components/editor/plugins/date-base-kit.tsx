@@ -1,4 +1,4 @@
-import { BaseDatePlugin } from '@platejs/date';
+import { BaseDatePlugin } from '@udecode/plate-date';
 
 import { DateElementStatic } from '@/components/ui/date-node-static';
 

@@ -12,12 +12,12 @@ import TranslationsProvider from '@/components/TranslationsProvider';
 import { useTranslation } from 'react-i18next';
 import { StaticImageData } from 'next/image';
 import purePathnameUtil from '@/utils/purePathname.util';
-import Icon, { IIconProps } from '../../icon/Icon';
-import useAsideStatus from '../../../hooks/useAsideStatus';
-import themeConfig from '../../../config/theme.config';
-import Tooltip from '../../ui/Tooltip';
-import Avatar from '../../Avatar';
-import i18nConfig from '../../../../i18nConfig';
+import Icon, { IIconProps } from '@/components/icon/Icon';
+import useAsideStatus from '@/hooks/useAsideStatus';
+import themeConfig from '@/config/theme.config';
+import Tooltip from '@/components/ui/Tooltip';
+import Avatar from '@/components/Avatar';
+import i18nConfig from '@/i18n';
 
 const i18nNamespaces = ['translation'];
 
@@ -207,7 +207,7 @@ export const NavItem: FC<INavItemProps> = (props) => {
 					<>
 						{/* For Desktop */}
 						<Link
-							href={to}
+							href={to as any}
 							className={
 								purePath === to
 									? classNames(
@@ -225,7 +225,7 @@ export const NavItem: FC<INavItemProps> = (props) => {
 						</Link>
 						{/* For Mobile */}
 						<Link
-							href={to}
+							href={to as any}
 							onClick={() => setAsideStatus(false)}
 							className={
 								purePath === to
@@ -437,7 +437,7 @@ export const NavUser: FC<INavUserProps> = (props) => {
 					<>
 						{/* For Desktop */}
 						<Link
-							href={to}
+							href={to as any}
 							className={
 								purePath === to
 									? classNames(
@@ -455,7 +455,7 @@ export const NavUser: FC<INavUserProps> = (props) => {
 						</Link>
 						{/* For Mobile */}
 						<Link
-							href={to}
+							href={to as any}
 							onClick={() => setAsideStatus(false)}
 							className={
 								purePath === to
@@ -528,7 +528,7 @@ interface INavProps extends HTMLAttributes<HTMLDivElement> {
 }
 const Nav: FC<INavProps> = (props) => {
 	const { children, className, ...rest } = props;
-	const locale = useCurrentLocale(i18nConfig);
+	const locale = useCurrentLocale(i18nConfig as any);
 
 	return (
 		<TranslationsProvider namespaces={i18nNamespaces} locale={locale || 'en'}>

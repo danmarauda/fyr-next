@@ -1,6 +1,6 @@
 'use client';
 
-import { EquationPlugin, InlineEquationPlugin } from '@platejs/math/react';
+import { EquationPlugin, InlineEquationPlugin } from '@udecode/plate-math/react';
 
 import { EquationElement, InlineEquationElement } from '@/components/ui/equation-node';
 

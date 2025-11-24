@@ -3,7 +3,7 @@ import {
 	BaseTableCellPlugin,
 	BaseTablePlugin,
 	BaseTableRowPlugin,
-} from '@platejs/table';
+} from '@udecode/plate-table';
 
 import {
 	TableCellElementStatic,

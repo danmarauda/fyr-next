@@ -4,15 +4,15 @@ import * as React from 'react';
 
 import { type UseChatHelpers, useChat as useBaseChat } from '@ai-sdk/react';
 import { faker } from '@faker-js/faker';
-import { AIChatPlugin, aiCommentToRange } from '@platejs/ai/react';
-import { getCommentKey, getTransientCommentKey } from '@platejs/comment';
-import { deserializeMd } from '@platejs/markdown';
-import { BlockSelectionPlugin } from '@platejs/selection/react';
+import { AIChatPlugin, aiCommentToRange } from '@udecode/plate-ai/react';
+import { getCommentKey, getTransientCommentKey } from '@udecode/plate-comment';
+import { deserializeMd } from '@udecode/plate-markdown';
+import { BlockSelectionPlugin } from '@udecode/plate-selection/react';
 import { type UIMessage, DefaultChatTransport } from 'ai';
-import { type TNode, KEYS, nanoid, NodeApi, TextApi } from 'platejs';
-import { type PlateEditor, useEditorRef, usePluginOption } from 'platejs/react';
+import { type TNode, KEYS, nanoid, NodeApi, TextApi } from '@udecode/plate';
+import { type PlateEditor, useEditorRef, usePluginOption } from '@udecode/plate/react';
 
-import { aiChatPlugin } from '@/components/editor/plugins/ai-kit';
+import { aiChatPlugin } from './plugins/ai-kit';
 
 import { discussionPlugin } from './plugins/discussion-kit';
 

@@ -1,6 +1,6 @@
 'use client';
 
-import { CaptionPlugin } from '@platejs/caption/react';
+import { CaptionPlugin } from '@udecode/plate-caption/react';
 import {
 	AudioPlugin,
 	FilePlugin,
@@ -8,8 +8,8 @@ import {
 	MediaEmbedPlugin,
 	PlaceholderPlugin,
 	VideoPlugin,
-} from '@platejs/media/react';
-import { KEYS } from 'platejs';
+} from '@udecode/plate-media/react';
+import { KEYS } from '@udecode/plate';
 
 import { AudioElement } from '@/components/ui/media-audio-node';
 import { MediaEmbedElement } from '@/components/ui/media-embed-node';

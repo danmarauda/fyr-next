@@ -1,4 +1,4 @@
-import { BaseMentionPlugin } from '@platejs/mention';
+import { BaseMentionPlugin } from '@udecode/plate-mention';
 
 import { MentionElementStatic } from '@/components/ui/mention-node-static';
 

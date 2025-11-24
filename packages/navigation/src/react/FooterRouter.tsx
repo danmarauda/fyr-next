@@ -2,7 +2,7 @@
 
 import { usePathname } from 'next/navigation';
 import purePathnameUtil from '@/utils/purePathname.util';
-import footerRoutes from '../../routes/footerRoutes';
+import footerRoutes from '@/routes/footerRoutes';
 
 const FooterRouter = () => {
 	const pathname = usePathname();
