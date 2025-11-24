@@ -19,7 +19,7 @@ const EditorPage = () => {
 								Rich Text Editor component temporarily disabled.
 							</p>
 							<p className='mt-2 text-sm text-gray-500'>
-								Please configure the @fyr/plate package to enable the editor.
+								Please configure the @alias/plate package to enable the editor.
 							</p>
 						</div>
 					</CardBody>

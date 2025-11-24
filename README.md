@@ -29,18 +29,18 @@ ALIAS is a sovereign AI-powered admin template that combines modern React archit
 
 ### Mental Model
 
-Fyr follows a **monorepo architecture** where functionality is organized into workspace packages, allowing for maintainable scaling and clear separation of concerns. The application uses Next.js App Router with locale-based routing, where each page follows a server/client component pattern for optimal performance.
+ALIAS follows a **monorepo architecture** where functionality is organized into workspace packages, allowing for maintainable scaling and clear separation of concerns. The application uses Next.js App Router with locale-based routing, where each page follows a server/client component pattern for optimal performance.
 
 ### Structural Overview
 
 ```
-fyr-next/
+alias-nextjs/
 ├── packages/                 # Workspace packages (monorepo)
-│   ├── @fyr/auth/           # BetterAuth configuration [ref: packages/auth/]
-│   ├── @fyr/ui/             # Radix UI component library [ref: packages/ui/]
-│   ├── @fyr/theme/          # Theme context system [ref: packages/theme/]
-│   ├── @fyr/navigation/     # Route-based layout routers [ref: packages/navigation/]
-│   └── plate.disabled/      # Rich text editor (disabled) [ref: next.config.ts:36]
+│   ├── @alias/auth/         # BetterAuth configuration [ref: packages/auth/]
+│   ├── @alias/ui/           # Radix UI component library [ref: packages/ui/]
+│   ├── @alias/theme/        # Theme context system [ref: packages/theme/]
+│   ├── @alias/navigation/   # Route-based layout routers [ref: packages/navigation/]
+│   └── @alias/plate/        # Rich text editor [ref: packages/plate/]
 ├── src/
 │   ├── app/[locale]/        # Internationalized pages [ref: src/app/[locale]/]
 │   ├── components/          # Application-scoped components
@@ -65,7 +65,7 @@ graph TD
     H --> I[AsideRouter]
     H --> J[HeaderRouter]
     H --> K[FooterRouter]
-    F --> L["@fyr/ui Components"]
+    F --> L["@alias/ui Components"]
     G --> M[BetterAuth + Convex]
     M --> N[Social Providers]
 ```
@@ -83,7 +83,7 @@ graph TD
 ```bash
 # Clone the repository
 git clone <repository-url>
-cd fyr-next
+cd alias-nextjs
 
 # Install dependencies (uses pnpm workspace)
 pnpm install

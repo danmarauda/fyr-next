@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
 		// turbopackFileSystemCacheForDev: true, // Disabled to avoid turbopack issues
 		browserDebugInfoInTerminal: true,
 	},
-	// reactCompiler: true, // Disabled until babel-plugin-react-compiler is installed
+	reactCompiler: true, // ✅ Enabled - automatic React optimization
 	typedRoutes: true,
 	webpack: (config, { isServer }) => {
 		// Ignore markdown files during build
@@ -23,6 +23,14 @@ const nextConfig: NextConfig = {
 		}
 
 		return config;
+	},
+	turbopack: {
+		rules: {
+			'*.md': {
+				loaders: [{ loader: 'raw-loader' }],
+				as: '*.js',
+			},
+		},
 	},
 };
 

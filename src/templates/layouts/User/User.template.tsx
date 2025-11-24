@@ -4,20 +4,19 @@ import { appPages, authPages } from '@/config/pages.config';
 import Icon from '@/components/icon/Icon';
 import Badge from '@/components/ui/Badge';
 import User from '@/components/layouts/User/User';
-import usersDb, { TUser } from '@/mocks/db/users.db';
 import { authClient } from '@/lib/auth-client';
 
 const UserTemplate = () => {
-	// Use mock user data for now since we're mixing auth systems
-	const userData: TUser = usersDb[0]; // Use first user from mock data
+	const { data: session, isPending } = authClient.useSession();
+	const user = session?.user;
 
 	return (
 		<User
-			isLoading={false}
-			name={userData?.firstName}
-			nameSuffix={userData?.isVerified && <Icon icon='HeroCheckBadge' color='blue' />}
-			position={userData?.position}
-			src={userData?.image?.thumb}
+			isLoading={isPending}
+			name={user?.name || user?.email?.split('@')[0] || 'User'}
+			nameSuffix={user?.emailVerified && <Icon icon='HeroCheckBadge' color='blue' />}
+			position={user?.role || 'Member'}
+			src={user?.image}
 			suffix={
 				<Badge color='amber' variant='solid' className='text-xs font-bold'>
 					PRO

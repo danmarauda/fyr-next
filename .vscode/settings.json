@@ -1,0 +1,16 @@
+{
+	"typescript.tsdk": "node_modules/typescript/lib",
+	"typescript.enablePromptUseWorkspaceTsdk": true,
+	"typescript.preferences.includePackageJsonAutoImports": "auto",
+	"typescript.suggest.autoImports": true,
+	"typescript.updateImportsOnFileMove.enabled": "always",
+	"typescript.preferences.preferTypeOnlyAutoImports": true,
+	"typescript.preferences.importModuleSpecifier": "relative",
+	"typescript.format.enable": false,
+	"typescript.validate.enable": true,
+	"typescript.suggest.completeFunctionCalls": true,
+	"typescript.preferences.quoteStyle": "double",
+	"typescript.preferences.semicolons": "insert",
+	"typescript.preferences.bracketSpacing": true,
+	"typescript.preferences.objectLiteralTypeRemoval": true
+}

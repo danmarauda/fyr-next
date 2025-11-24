@@ -1,10 +1,33 @@
-import { i18nRouter } from 'next-i18n-router';
-import { NextRequest } from 'next/server';
-import i18nConfig from '../i18nConfig';
+import { NextRequest, NextResponse } from 'next/server';
+
+const locales = ['en', 'es', 'ar', 'tr'];
+const defaultLocale = 'en';
 
 export function middleware(request: NextRequest) {
-	// Apply i18n routing
-	return i18nRouter(request, i18nConfig);
+	const { pathname } = request.nextUrl;
+
+	// Skip middleware for API routes, static files, etc.
+	if (
+		pathname.startsWith('/api') ||
+		pathname.startsWith('/_next') ||
+		pathname.startsWith('/static') ||
+		pathname.includes('.')
+	) {
+		return;
+	}
+
+	// Check if pathname already includes a locale
+	const pathnameHasLocale = locales.some(
+		(locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`,
+	);
+
+	if (pathnameHasLocale) {
+		return;
+	}
+
+	// Redirect to default locale
+	const newUrl = new URL(`/${defaultLocale}${pathname}`, request.url);
+	return NextResponse.redirect(newUrl);
 }
 
 // only applies this middleware to files in the app directory

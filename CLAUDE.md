@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-Fyr is a React TypeScript Tailwind admin template with AI chat capabilities built on Next.js 14. It features internationalization (i18n), theme management, comprehensive UI components, and a flexible routing system with customizable layouts.
+ALIAS is a React TypeScript Tailwind admin template with AI chat capabilities built on Next.js 16. It features internationalization (i18n), theme management, comprehensive UI components, and a flexible routing system with customizable layouts.
 
 ## Development Commands
 

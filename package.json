@@ -9,14 +9,15 @@
 		"lint": "eslint .",
 		"lint:fix": "eslint --fix .",
 		"prettier:fix": "prettier --write .",
+		"biome:check": "biome check .",
+		"biome:fix": "biome check --write .",
+		"biome:format": "biome format --write .",
+		"biome:lint": "biome lint .",
 		"icon": "svgr SvgIcons -d src/components/icon/svg-icons --typescript --no-prettier"
 	},
 	"dependencies": {
+		"@convex-dev/auth": "^0.0.90",
 		"@convex-dev/better-auth": "0.9.7",
-		"@fyr/auth": "workspace:*",
-		"@fyr/navigation": "workspace:*",
-		"@fyr/theme": "workspace:*",
-		"@fyr/ui": "workspace:*",
 		"@fullcalendar/core": "^6.1.15",
 		"@fullcalendar/daygrid": "^6.1.15",
 		"@fullcalendar/interaction": "^6.1.15",
@@ -24,6 +25,7 @@
 		"@fullcalendar/react": "^6.1.15",
 		"@fullcalendar/timegrid": "^6.1.15",
 		"@hello-pangea/dnd": "^17.0.0",
+		"@liveblocks/node": "^3.10.1",
 		"@popperjs/core": "^2.11.8",
 		"@t3-oss/env-nextjs": "^0.13.8",
 		"@tanstack/react-table": "^8.20.6",
@@ -76,6 +78,7 @@
 	},
 	"devDependencies": {
 		"@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+		"@biomejs/biome": "^2.3.7",
 		"@eslint/compat": "^1.2.6",
 		"@eslint/js": "^9.19.0",
 		"@next/eslint-plugin-next": "^15.1.6",
@@ -93,6 +96,7 @@
 		"@types/react-simple-maps": "^3.0.6",
 		"@types/react-syntax-highlighter": "^15.5.13",
 		"autoprefixer": "^10.4.20",
+		"babel-plugin-react-compiler": "^1.0.0",
 		"date-fns": "^3.6.0",
 		"eslint": "^9.19.0",
 		"eslint-config-airbnb": "19.0.4",
@@ -108,7 +112,8 @@
 		"prettier": "^3.4.2",
 		"prettier-plugin-tailwindcss": "^0.6.11",
 		"raw-loader": "^4.0.2",
-		"typescript-eslint": "^8.22.0"
+		"typescript-eslint": "^8.22.0",
+		"ultracite": "^6.3.6"
 	},
 	"resolutions": {
 		"d3-color": ">=3.1.0",

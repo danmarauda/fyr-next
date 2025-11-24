@@ -1,0 +1,12 @@
+{
+	"recommendations": [
+		"ms-vscode.vscode-typescript-next",
+		"bradlc.vscode-tailwindcss",
+		"esbenp.prettier-vscode",
+		"dbaeumer.vscode-eslint",
+		"ms-vscode.vscode-json",
+		"unifiedjs.vscode-mdx",
+		"ms-vscode-remote.remote-containers"
+	],
+	"unwantedRecommendations": ["ms-vscode.vscode-typescript", "hookyqr.beautify"]
+}

@@ -11,8 +11,6 @@ import Subheader, { SubheaderLeft, SubheaderRight } from '@/components/layouts/S
 import FieldWrap from '@/components/form/FieldWrap';
 import Icon from '@/components/icon/Icon';
 import Input from '@/components/form/Input';
-import Image, { StaticImageData } from 'next/image';
-import usersDb from '@/mocks/db/users.db';
 import Container from '@/components/layouts/Container/Container';
 import BoardPartial from '@/app/[locale]/project/_partial/Board.partial';
 import ColumnsPartial from '@/app/[locale]/project/_partial/Columns.partial';
@@ -129,26 +127,7 @@ const ProjectBoardClient = () => {
 				</SubheaderLeft>
 				<SubheaderRight>
 					<div className='flex -space-x-2 overflow-hidden'>
-						<Image
-							src={usersDb[0].image?.thumb as StaticImageData}
-							alt='User 1'
-							className='inline-block h-8 w-8 rounded-full ring-2 ring-white dark:ring-zinc-900'
-						/>
-						<Image
-							src={usersDb[1].image?.thumb as StaticImageData}
-							alt='User 1'
-							className='inline-block h-8 w-8 rounded-full ring-2 ring-white dark:ring-zinc-900'
-						/>
-						<Image
-							src={usersDb[2].image?.thumb as StaticImageData}
-							alt='User 1'
-							className='inline-block h-8 w-8 rounded-full ring-2 ring-white dark:ring-zinc-900'
-						/>
-						<Image
-							src={usersDb[3].image?.thumb as StaticImageData}
-							alt='User 1'
-							className='inline-block h-8 w-8 rounded-full ring-2 ring-white dark:ring-zinc-900'
-						/>
+						{/* TODO: Add PresenceIndicator when Vercel Liveblocks integration is set up */}
 					</div>
 				</SubheaderRight>
 			</Subheader>

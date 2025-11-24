@@ -92,7 +92,28 @@ const ProfileClient = () => {
 	const { setDarkModeStatus } = useDarkMode();
 
 	const { data: session } = authClient.useSession();
-	const userData: TUser = usersDb.find((key) => key.username === session?.name) as TUser;
+	const user = session?.user;
+
+	// Create a user object that matches the expected TUser interface
+	const userData: TUser = user
+		? {
+				id: user.id || '1',
+				username: user.username || user.email?.split('@')[0] || 'user',
+				email: user.email || '',
+				firstName: user.firstName || user.name?.split(' ')[0] || '',
+				lastName: user.lastName || user.name?.split(' ').slice(1).join(' ') || '',
+				image: {
+					thumb: user.image || undefined,
+					full: user.image || undefined,
+				},
+				position: user.role || 'Member',
+				isVerified: user.emailVerified || false,
+				isOnline: true,
+				lastSeen: new Date().toISOString(),
+				role: user.role || 'user',
+				permissions: [],
+			}
+		: usersDb[0]; // Fallback to mock data if no user
 
 	const [activeTab, setActiveTab] = useState<TTab>(TAB.EDIT);
 

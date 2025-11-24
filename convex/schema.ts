@@ -119,6 +119,21 @@ const schema = defineEntSchema({
 
 		// App-specific fields
 		deletedAt: v.optional(v.number()),
+		lastLoginAt: v.optional(v.number()),
+		loginCount: v.optional(v.number()),
+		preferences: v.optional(
+			v.object({
+				theme: v.optional(v.string()),
+				notifications: v.optional(
+					v.object({
+						email: v.boolean(),
+						push: v.boolean(),
+						marketing: v.boolean(),
+					}),
+				),
+				language: v.optional(v.string()),
+			}),
+		),
 	})
 		.field('email', v.string(), { unique: true })
 		.field('customerId', v.optional(v.string()), { index: true })
@@ -138,7 +153,8 @@ const schema = defineEntSchema({
 			field: 'personalOrganizationId',
 			optional: true,
 		})
-		.edges('subscriptions', { to: 'subscriptions', ref: 'userId' }),
+		.edges('subscriptions', { to: 'subscriptions', ref: 'userId' })
+		.edges('auditLogs', { to: 'auditLog', ref: 'userId' }),
 
 	// --------------------
 	// App-specific tables
@@ -296,29 +312,120 @@ const schema = defineEntSchema({
 		.edge('uploadedBy', { to: 'user', field: 'uploadedById' })
 		.index('by_project', ['projectId']),
 
-	// Notifications
+	// Notifications (extended)
 	notifications: defineEnt({
 		title: v.string(),
 		message: v.string(),
-		type: v.string(), // info, warning, error, success
+		type: v.string(), // info, warning, error, success, system
 		read: v.boolean(),
+		readAt: v.optional(v.number()),
 		data: v.optional(v.object({})),
+		expiresAt: v.optional(v.number()),
 		createdAt: v.number(),
 	})
 		.edge('user', { to: 'user', field: 'userId' })
-		.index('by_user', ['userId', 'read']),
+		.index('by_user', ['userId', 'read'])
+		.index('by_expires', ['expiresAt']),
 
-	// Analytics & Metrics
+	// Analytics & Metrics (extended)
 	analytics: defineEnt({
-		metric: v.string(), // progress, efficiency, quality, safety, budget
+		metric: v.string(), // user_signups, project_created, task_completed, etc.
 		value: v.number(),
 		unit: v.string(),
+		dimensions: v.optional(v.object({})), // additional metadata
 		timestamp: v.number(),
-		metadata: v.optional(v.object({})),
+		period: v.string(), // hour, day, week, month
 		createdAt: v.number(),
 	})
 		.edge('project', { to: 'projects', field: 'projectId' })
-		.index('by_project_metric', ['projectId', 'metric']),
+		.index('by_project_metric', ['projectId', 'metric'])
+		.index('by_metric_timestamp', ['metric', 'timestamp'])
+		.index('by_period_timestamp', ['period', 'timestamp']),
+
+	// Audit logging for security events
+	auditLog: defineEnt({
+		action: v.string(), // login, logout, create, update, delete, permission_change
+		resource: v.string(), // user, project, task, organization, etc.
+		resourceId: v.optional(v.string()),
+		details: v.optional(v.object({})),
+		ipAddress: v.optional(v.string()),
+		userAgent: v.optional(v.string()),
+		timestamp: v.number(),
+	})
+		.edge('user', { to: 'user', field: 'userId', optional: true })
+		.index('by_user', ['userId'])
+		.index('by_action', ['action'])
+		.index('by_resource', ['resource'])
+		.index('by_timestamp', ['timestamp']),
+
+	// Subscription management (Stripe integration)
+	subscriptions: defineEnt({
+		stripeSubscriptionId: v.string(),
+		stripeCustomerId: v.string(),
+		stripePriceId: v.string(),
+		status: v.string(), // active, canceled, past_due, incomplete
+		currentPeriodStart: v.number(),
+		currentPeriodEnd: v.number(),
+		cancelAtPeriodEnd: v.boolean(),
+		amount: v.number(),
+		currency: v.string(),
+		interval: v.string(), // month, year
+		planName: v.string(),
+		createdAt: v.number(),
+		updatedAt: v.number(),
+	})
+		.edge('user', { to: 'user', field: 'userId' })
+		.index('by_user', ['userId'])
+		.index('by_stripe_subscription', ['stripeSubscriptionId'])
+		.index('by_stripe_customer', ['stripeCustomerId'])
+		.index('by_status', ['status']),
+
+	// Subscription plans
+	plans: defineEnt({
+		name: v.string(),
+		description: v.string(),
+		stripeProductId: v.string(),
+		price: v.number(),
+		currency: v.string(),
+		interval: v.string(), // month, year
+		stripePriceId: v.string(),
+		features: v.array(v.string()),
+		maxUsers: v.optional(v.number()),
+		maxProjects: v.optional(v.number()),
+		isActive: v.boolean(),
+		sortOrder: v.number(),
+	})
+		.index('by_active', ['isActive'])
+		.index('by_sort_order', ['sortOrder']),
+
+	// Background jobs for heavy operations
+	jobs: defineEnt({
+		type: v.string(), // export_data, bulk_import, email_campaign, etc.
+		status: v.string(), // pending, running, completed, failed
+		priority: v.number(), // 1-10, higher = more important
+		data: v.object({}), // job-specific parameters
+		result: v.optional(v.object({})), // job result data
+		error: v.optional(v.string()),
+		progress: v.optional(v.number()), // 0-100
+		startedAt: v.optional(v.number()),
+		completedAt: v.optional(v.number()),
+		createdAt: v.number(),
+	})
+		.edge('createdBy', { to: 'user', field: 'createdById' })
+		.index('by_status_priority', ['status', 'priority'])
+		.index('by_type_status', ['type', 'status'])
+		.index('by_created_at', ['createdAt']),
+
+	// Rate limiting
+	rateLimits: defineEnt({
+		key: v.string(), // userId_endpoint or ip_endpoint
+		endpoint: v.string(),
+		requests: v.number(),
+		windowStart: v.number(), // timestamp when window started
+		windowSize: v.number(), // window size in milliseconds
+	})
+		.index('by_key_endpoint', ['key', 'endpoint'])
+		.index('by_window_start', ['windowStart']),
 
 	// Original numbers table from nel-convex
 	numbers: defineEnt({

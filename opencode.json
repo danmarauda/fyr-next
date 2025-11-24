@@ -1,0 +1,24 @@
+{
+	"$schema": "https://opencode.ai/config.json",
+	"mcp": {
+		"nia": {
+			"type": "local",
+			"command": ["nia-mcp-server"],
+			"enabled": true,
+			"environment": {
+				"NIA_API_KEY": "nk_qAUiCPDru8DFex4NPyiV3hVPvF94fRmm",
+				"NIA_API_URL": "https://apigcp.trynia.ai/"
+			},
+			"timeout": 30000
+		},
+		"gh_grep": {
+			"type": "remote",
+			"url": "https://mcp.grep.app",
+			"enabled": true
+		}
+	},
+	"tools": {
+		"nia": true,
+		"gh_grep": true
+	}
+}
