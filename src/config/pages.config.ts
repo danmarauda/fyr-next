@@ -322,6 +322,38 @@ export const appPages = {
 			},
 		},
 	},
+	tendersAppPages: {
+		id: 'tendersApp',
+		to: '/tenders',
+		text: 'Tenders',
+		icon: 'HeroDocumentText',
+		subPages: {
+			tendersDashboardPage: {
+				id: 'tendersDashboardPage',
+				to: '/tenders',
+				text: 'Dashboard',
+				icon: 'HeroChartBar',
+			},
+			tendersListPage: {
+				id: 'tendersListPage',
+				to: '/tenders/list',
+				text: 'All Tenders',
+				icon: 'HeroQueueList',
+			},
+			tendersSearchPage: {
+				id: 'tendersSearchPage',
+				to: '/tenders/search',
+				text: 'Search',
+				icon: 'HeroMagnifyingGlass',
+			},
+			tendersTagsPage: {
+				id: 'tendersTagsPage',
+				to: '/tenders/tags',
+				text: 'Tags',
+				icon: 'HeroTag',
+			},
+		},
+	},
 };
 
 export const componentsPages = {

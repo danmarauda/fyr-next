@@ -1,9 +1,7 @@
 import { betterAuth } from 'better-auth';
-import { ConvexAdapter } from 'better-auth/adapters/convex';
-import { convexClient } from './convex-client';
 
 export const auth = betterAuth({
-	database: ConvexAdapter(convexClient),
+	baseURL: process.env.BETTER_AUTH_URL || 'http://localhost:3000',
 	socialProviders: {
 		google: {
 			clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -13,9 +11,6 @@ export const auth = betterAuth({
 			clientId: process.env.GITHUB_CLIENT_ID!,
 			clientSecret: process.env.GITHUB_CLIENT_SECRET!,
 		},
-	},
-	advanced: {
-		generateId: false, // Let Convex handle ID generation
 	},
 	session: {
 		expiresIn: 60 * 60 * 24 * 7, // 7 days
@@ -30,8 +25,6 @@ export const auth = betterAuth({
 		autoSignIn: true,
 		requireEmailVerification: false,
 	},
-	plugins: [],
 });
 
 export type Session = typeof auth.$Infer.Session;
-export type User = typeof auth.$Infer.User;

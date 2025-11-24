@@ -18,9 +18,9 @@ const Wrapper: FC<IWrapperProps> = (props) => {
 		<section
 			data-component-name='Wrapper'
 			className={classNames('flex flex-auto flex-col', themeConfig.transition, className, {
-				'ltr:peer-[]:md:pl-[20rem] rtl:peer-[]:md:pr-[20rem]': asideStatus,
+				'ltr:md:ml-[20rem] rtl:md:mr-[20rem]': asideStatus,
 				// Mobile Design
-				'ltr:peer-[]:md:pl-[6.225em] rtl:peer-[]:md:pr-[6.225em]': !asideStatus,
+				'ltr:md:ml-[6.225em] rtl:md:mr-[6.225em]': !asideStatus,
 			})}
 			{...rest}>
 			{children}

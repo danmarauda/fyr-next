@@ -4,7 +4,7 @@ import { useAuth } from '@workos-inc/authkit-nextjs/components';
 import { Authenticated, Unauthenticated } from 'convex/react';
 import { PageWrapper } from '@/components/layouts/PageWrapper/PageWrapper';
 import { Subheader } from '@/components/layouts/Subheader/Subheader';
-import { Breadcrumb } from '@/components/layouts/Breadcrumb/Breadcrumb';
+import Breadcrumb from '@/components/layouts/Breadcrumb/Breadcrumb';
 import { ProjectStats } from '@/components/north-east-link/ProjectStats';
 import { ConstructionProgress } from '@/components/north-east-link/ConstructionProgress';
 import { ResourceAllocation } from '@/components/north-east-link/ResourceAllocation';

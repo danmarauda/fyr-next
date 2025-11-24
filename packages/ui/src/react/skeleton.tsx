@@ -1,7 +1,7 @@
 import type React from 'react';
 
 import { useMounted } from '@/hooks/use-mounted';
-import { cn } from '@/lib/utils';
+import { cn } from '../lib/utils';
 
 export function Skeleton({
 	className,
