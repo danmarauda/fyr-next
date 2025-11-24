@@ -154,7 +154,15 @@ const schema = defineEntSchema({
 			optional: true,
 		})
 		.edges('subscriptions', { to: 'subscriptions', ref: 'userId' })
-		.edges('auditLogs', { to: 'auditLog', ref: 'userId' }),
+		.edges('auditLogs', { to: 'auditLog', ref: 'userId' })
+		// Project management edges
+		.edges('managedProjects', { to: 'projects', ref: 'managerId' })
+		.edges('assignedTasks', { to: 'tasks', ref: 'assigneeId' })
+		.edges('recordedActivities', { to: 'siteActivities', ref: 'recordedById' })
+		.edges('operatedEquipment', { to: 'equipment', ref: 'operatorId' })
+		.edges('reportedIncidents', { to: 'safetyIncidents', ref: 'reportedById' })
+		.edges('uploadedDocuments', { to: 'documents', ref: 'uploadedById' })
+		.edges('createdJobs', { to: 'jobs', ref: 'createdById' }),
 
 	// --------------------
 	// App-specific tables
