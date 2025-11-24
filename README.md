@@ -1,381 +1,368 @@
-# Fyr | React TypeScript Tailwind Admin & AI Chat Template
+# Fyr
 
-[![Fyr | React TypeScript Tailwind Admin & AI Chat Template](./src/assets/Cover.png)](https://fyr.omtanke.studio)
+> React TypeScript Tailwind Admin & AI Chat Template [ref: src/config/theme.config.ts:42]
 
-# Getting Started with Create React App
+A sophisticated Next.js 16 admin template featuring AI chat capabilities, internationalization, and a comprehensive component system built on modern web technologies.
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## Install Dependencies
+## Overview
 
-### `npm install` or `yarn install`
+Fyr is a production-ready admin template that combines a modern React ecosystem with AI-powered chat features. Built with Next.js 16 App Router, TypeScript, and Tailwind CSS, it provides developers with a flexible foundation for building sophisticated web applications with multi-language support and dynamic theming.
 
-## SSL
+**Target Users:** Enterprise developers, startups, and teams building admin dashboards, SaaS applications, or AI-powered interfaces requiring rapid development with comprehensive internationalization.
+
+## Features
+
+- **🚀 Next.js 16 App Router** with TypeScript strict mode and typed routes [ref: next.config.ts:9]
+- **🎨 Dynamic Theme System** with 8 predefined colors, dark/light/system modes [ref: tailwind.config.ts:47-78]
+- **🌍 Full Internationalization** supporting English, Spanish, Arabic, Turkish with RTL [ref: i18nConfig.ts:4]
+- **🤖 AI Chat Integration** with multimedia support (text, images, video, audio) [ref: src/config/pages.config.ts:22-50]
+- **🧩 Component Library** built on Radix UI primitives in monorepo structure [ref: packages/ui/package.json:7-33]
+- **🔐 BetterAuth Integration** with social providers (Google, GitHub) [ref: src/lib/auth.ts:5-14]
+- **💾 Convex Backend** with real-time capabilities and TypeScript generation [ref: convex.json:2-3]
+- **📊 Rich Integrations**: FullCalendar, ApexCharts, React Simple Maps, WaveSurfer [ref: package.json:20-26,31-32,63-64,72]
+- **🎯 Form System** with Formik and Yup validation patterns [ref: package.json:42,75]
+- **📱 Mobile-First Responsive** design with Tailwind CSS optimization [ref: tailwind.config.ts:6]
+
+## Architecture
+
+### Mental Model
+
+Fyr follows a **monorepo architecture** where functionality is organized into workspace packages, allowing for maintainable scaling and clear separation of concerns. The application uses Next.js App Router with locale-based routing, where each page follows a server/client component pattern for optimal performance.
+
+### Structural Overview
+
+```
+fyr-next/
+├── packages/                 # Workspace packages (monorepo)
+│   ├── @fyr/auth/           # BetterAuth configuration [ref: packages/auth/]
+│   ├── @fyr/ui/             # Radix UI component library [ref: packages/ui/]
+│   ├── @fyr/theme/          # Theme context system [ref: packages/theme/]
+│   ├── @fyr/navigation/     # Route-based layout routers [ref: packages/navigation/]
+│   └── plate.disabled/      # Rich text editor (disabled) [ref: next.config.ts:36]
+├── src/
+│   ├── app/[locale]/        # Internationalized pages [ref: src/app/[locale]/]
+│   ├── components/          # Application-scoped components
+│   ├── config/             # Configuration files [ref: src/config/]
+│   ├── types/              # TypeScript definitions
+│   ├── locales/            # Translation files [ref: src/locales/]
+│   └── mocks/              # Development mock data
+└── convex/                 # Backend functions and schema [ref: convex/]
+```
+
+### Module Flow
+
+```mermaid
+graph TD
+    A[User Request] --> B[Next.js App Router]
+    B --> C[Locale Detection]
+    C --> D[Server Component]
+    D --> E[Client Component _client.tsx]
+    E --> F[Theme Context]
+    E --> G[Auth Provider]
+    E --> H[Layout Routers]
+    H --> I[AsideRouter]
+    H --> J[HeaderRouter] 
+    H --> K[FooterRouter]
+    F --> L["@fyr/ui Components"]
+    G --> M[BetterAuth + Convex]
+    M --> N[Social Providers]
+```
+
+## Getting Started
+
+### Prerequisites
+
+- **Node.js 18+** [ref: convex.json:3]
+- **pnpm** (preferred package manager) [ref: pnpm-workspace.yaml:1]
+- **Convex CLI** for backend operations [ref: package.json:35]
+
+### Installation
 
 ```bash
-openssl rand -base64 32
+# Clone the repository
+git clone <repository-url>
+cd fyr-next
+
+# Install dependencies (uses pnpm workspace)
+pnpm install
+
+# Set up environment variables
+cp .env.development .env.local
 ```
 
-You can quickly create a good value on the command line via this openssl command. Add the resulting code as the value of "NEXTAUTH_SECRET" in the ".env.local" file.
+### Environment Configuration
 
-## Available Scripts
+Create `.env.local` with required variables [ref: src/env.ts:4-17]:
 
-First, run the development server:
+```bash
+# Convex Backend
+CONVEX_URL="http://localhost:3001"
+NEXT_PUBLIC_CONVEX_URL="http://localhost:3001"
 
-### `npm run dev` or `yarn dev`
+# Authentication
+BETTER_AUTH_SECRET="your-secret-here"
+BETTER_AUTH_URL="http://localhost:3000"
+GOOGLE_CLIENT_ID="your-google-client-id"
+GOOGLE_CLIENT_SECRET="your-google-client-secret"
+GITHUB_CLIENT_ID="your-github-client-id"
+GITHUB_CLIENT_SECRET="your-github-client-secret"
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Poppins, a custom Google Font.
-
-### `npm run lint` or `yarn run lint`
-
-Controls the project according to Eslint rules.
-
-### `npm run lint:fix` or `yarn run lint:fix`
-
-Inspects the project according to Eslint rules and corrects them according to those rules.
-
-### `npm run prettier:fix` or `yarn run prettier:fix`
-
-Inspects the project according to Prettier rules and corrects them according to those rules.
-
-### `npm run icon` or `yarn run icon`
-
-Prepares svg format icons in the `SvgIcons` folder for use in the project. Names the icon's name in `PascalCase` format.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-- [NextAuth.js](https://next-auth.js.org/getting-started/introduction) - learn about NextAuth.js
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-
-# Project Structure
-
-```
-fyr
-├── public
-├── src
-│   ├── app
-│   │   ├── [locale]
-│   │   ├── api
-│   │   ├── styles
-│   │   └── favicon.ico
-│   ├── assets
-│   ├── components
-│   ├── config
-│   │   ├── pages.config.ts
-│   │   └── theme.config.ts
-│   ├── constants
-│   ├── context
-│   ├── hooks
-│   ├── interface
-│   ├── locales
-│   ├── mocks
-│   ├── routes
-│   │   ├── asideRoutes.tsx
-│   │   ├── footerRoutes.tsx
-│   │   └── headerRoutes.tsx
-│   ├── templates
-│   ├── types
-│   ├── utils
-│   ├── i18n.ts
-│   └── middleware.ts
-├── SvgIcons
-├── .env
-├── .env.development
-├── .env.local
-├── .env.production
-├── .eslintignore
-├── .eslintrc.json
-├── .gitattributes
-├── .gitignore
-├── .npmrc
-├── .prettierignore
-├── .svgrc
-├── global.d.ts
-├── i18nConfig.ts
-├── next.config.js
-├── package.json
-├── postcss.config.js
-├── prettier.config.js
-├── README.md
-├── tailwind.config.js
-├── tsconfig.eslint.json
-└── tsconfig.json
+# Site Configuration
+NEXT_PUBLIC_SITE_URL="http://localhost:3000"
 ```
 
-# Tailwind Configure
+### Quickstart
 
-There are 22 colors defined in Tailwind, we have added 8 (zinc `#71717a`, red `#ef4444`, amber `#f59e0b`, lime `#84cc16`, emerald `#10b981`, sky `#0ea5e9`, blue `#3b82f6`, violet `#8b5cf6`) of them for the components of Fyr. If you wish, you can activate other colors or define new colors.
+```bash
+# Start Convex backend (required for full functionality)
+npx convex dev
 
-You can add new values to "TColors" in the [src/types/colors.type.ts](src/types/colors.type.ts) file for use in the project and don't forget to add them to the [safelist](https://tailwindcss.com/docs/content-configuration#safelisting-classes).
+# Start development server with debugging
+pnpm dev                    # [ref: package.json:6]
 
-# Theme Configure
+# Application runs on http://localhost:3000
+# Convex dashboard runs on http://localhost:3001
+```
 
-You can edit the theme's settings in the [src/config/theme.config.ts](src/config/theme.config.ts) file.
+## Configuration
 
-# Pages Configure
+### Theme Customization [ref: src/config/theme.config.ts:40-52]
 
-If you save your page information in the above format in the [src/config/pages.config.ts](src/config/pages.config.ts) file, you can easily use it in the menus.
+Themes are configurable via the theme system:
 
-# Architecture of the project
-
-## [src/app/[locale]/layout.tsx](src/app/[locale]/layout.tsx)
-
-```tsx
-//...
-export function generateStaticParams() {
-	return i18nConfig.locales.map((locale) => ({ locale }));
+```typescript
+// Default configuration
+{
+  themeColor: 'blue',        // One of: zinc, red, amber, lime, emerald, sky, blue, violet [ref: tailwind.config.ts:49]
+  themeColorShade: '500',    // Color intensity: 50-950
+  rounded: 'rounded-lg',     // Border radius options
+  borderWidth: 'border-2',   // Border width customization
+  fontSize: 13,              // Base font size: 12-18px
+  transition: 'transition-all duration-300 ease-in-out'
 }
+```
 
-const RootLayout = ({
-	children,
-	params: { locale },
-}: {
-	children: ReactNode;
-	params: { locale: string };
-}) => {
-	dayjs.extend(localizedFormat);
-	return (
-		<Providers>
-			<html suppressHydrationWarning lang={locale} dir={dir(locale)}>
-				<body className={poppins.className}>
-					<div id='root'>
-						<div data-component-name='App' className='flex grow flex-col'>
-							<AsideRouter />
-							<Wrapper>
-								<HeaderRouter />
-								<AppWrapper>{children}</AppWrapper>
-								<FooterRouter />
-							</Wrapper>
-						</div>
-					</div>
-					<div id='portal-root' />
-				</body>
-			</html>
-		</Providers>
-	);
+### Internationalization [ref: i18nConfig.ts:3-7]
+
+Add translations to `src/locales/[locale]/translation.json`:
+
+```json
+{
+  "navigation": {
+    "dashboard": "Dashboard",
+    "ai_chat": "AI Chat"
+  },
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel"
+  }
+}
+```
+
+## Usage
+
+### Adding New Pages
+
+1. **Create page structure** in `src/app/[locale]/[feature]/` [ref: src/app/[locale]/ui/button/page.tsx:1-6]:
+   ```bash
+   src/app/[locale]/my-feature/
+   ├── page.tsx              # Server component
+   └── _client.tsx           # Client component
+   ```
+
+2. **Add page configuration** to `src/config/pages.config.ts` [ref: src/config/pages.config.ts:22-27]:
+   ```typescript
+   myFeaturePage: {
+     id: 'myFeaturePage',
+     to: '/my-feature',
+     text: 'My Feature',
+     icon: 'HeroStar',
+   }
+   ```
+
+3. **Add translations** to all locale files in `src/locales/`
+
+### Using Components
+
+**Modern UI Components** (Recommended from workspace package):
+
+```tsx
+import { Button } from '@/components/ui'; // Maps to packages/ui [ref: next.config.ts:19-22]
+
+export const MyComponent = () => {
+  return (
+    <Button variant="default" size="md">
+      Click me
+    </Button>
+  );
 };
-//...
 ```
 
-### [src/app/[locale]/\_providers.tsx](src/app/[locale]/_providers.tsx)
+**Form Integration**:
 
 ```tsx
-//...
-const Providers = ({ children }: { children: ReactNode }) => {
-	return (
-		<ThemeContextProvider>
-			<NextAuthProvider>{children}</NextAuthProvider>
-		</ThemeContextProvider>
-	);
-};
-//...
+import { Formik, Form } from 'formik';
+import * as Yup from 'yup';
+import { Input, FieldWrap } from '@/components/form'; // [ref: src/components/form/]
+
+const validationSchema = Yup.object({
+  email: Yup.string().email().required('Email is required'),
+});
+
+export const MyForm = () => (
+  <Formik
+    initialValues={{ email: '' }}
+    validationSchema={validationSchema}
+    onSubmit={handleSubmit}
+  >
+    <Form>
+      <FieldWrap label="Email">
+        <Input name="email" type="email" />
+      </FieldWrap>
+    </Form>
+  </Formik>
+);
 ```
 
-### [src/app/[locale]/\_app.tsx](src/app/[locale]/_app.tsx)
+### Authentication Usage
 
 ```tsx
-//...
-const AppWrapper = ({ children }: { children: ReactNode }) => {
-	const { fontSize } = useFontSize();
-	dayjs.extend(localizedFormat);
+import { auth } from '@/lib/auth'; // [ref: src/lib/auth.ts:3-28]
 
-	getOS();
-
-	return (
-		<>
-			<style>{`:root {font-size: ${fontSize}px}`}</style>
-			{children}
-		</>
-	);
-};
-//...
+// Authentication is handled via BetterAuth with Convex integration
+// Social providers: Google, GitHub automatically configured
+// Session management: 7-day expiration with 1-day update age
 ```
 
-#### [src/routes/asideRoutes.tsx](src/routes/asideRoutes.tsx)
+## Services & Integration
 
-If you do not want to customize the project in this file, you do not need to make any changes. In this component, only [src/routes/asideRoutes.tsx](src/routes/asideRoutes.tsx) file sets which component will be shown in which path.
+### Backend Services [ref: convex/]
 
-```tsx
-const asideRoutes: TRoute[] = [
-	{ path: authPages.loginPage.to, element: null },
-	{ path: '/*', element: <DefaultAsideTemplate /> },
-];
+- **Authentication**: BetterAuth with Convex session storage [ref: convex/auth.ts]
+- **Data Management**: Convex functions with real-time updates [ref: convex/schema.ts]
+- **AI Features**: Multi-modal chat processing [ref: src/app/[locale]/ai/chat/]
+
+### External Integrations
+
+- **Calendar**: FullCalendar with daygrid, timegrid, list views [ref: package.json:20-26]
+- **Charts**: ApexCharts and Reaviz for data visualization [ref: package.json:31,66]
+- **Maps**: React Simple Maps with D3.js integration [ref: package.json:63-38,40-41]
+- **Media**: WaveSurfer.js for audio visualization [ref: package.json:72]
+
+## Development
+
+### Scripts & Commands [ref: package.json:5-13]
+
+```bash
+pnpm dev          # Start development server with Node.js debugging
+pnpm build        # Production build
+pnpm start        # Serve production build
+pnpm lint         # ESLint checking
+pnpm lint:fix     # Auto-fix ESLint issues
+pnpm prettier:fix # Format code with Prettier
+pnpm icon         # Convert SVG icons to React components [ref: package.json:12]
 ```
 
-You can set the "Aside Templates" to be displayed on the paths you want. If you don't want any "Aside" in a path, you can set the element to `null`.
+### Code Quality
 
-#### [src/routes/headerRoutes.tsx](src/routes/headerRoutes.tsx)
+- **TypeScript**: Strict mode with comprehensive type checking
+- **ESLint**: Airbnb configuration with React and accessibility rules [ref: eslint.config.mjs]
+- **Prettier**: Tailwind plugin integration with custom formatting [ref: prettier.config.js]
 
-If you do not want to customize the project in this file, you do not need to make any changes. In this component, only [src/routes/headerRoutes.tsx](src/routes/headerRoutes.tsx) file sets which component will be shown in which path.
+### Icon Management
 
-```tsx
-const headerRoutes: RouteProps[] = [
-	{ path: authPages.loginPage.to, element: null },
-	{ path: `${componentsPages.uiPages.to}/*`, element: <ComponentAndTemplateHeaderTemplate /> },
-	{ path: '', element: null },
-	{ path: '/*', element: <DefaultHeaderTemplate /> },
-];
+Add SVG files to `SvgIcons/` directory and run:
+
+```bash
+pnpm icon
 ```
 
-You can set the "Header Templates" to be displayed on the paths you want. If you don't want any "Header" in a path, you can set the element to `null`.
+Icons are automatically converted to typed React components in `src/components/icon/svg-icons/` [ref: packages/ui/package.json:37]
 
-If you will have data about the page in "Header", specify that there will not be any "Header" in that path with `null` and define it within the page. So you don't have to worry about moving the data up.
+### Project Structure Patterns
 
-### Without i18n Page Example
+**Pages**: Server-client pattern with `_client.tsx` components for interactivity [ref: src/app/[locale]/ui/button/client.tsx:1]
+**Layouts**: Route-based rendering with Aside/Header/Footer routers [ref: packages/navigation/src/react/]
+**Components**: Modern Radix UI components in packages, legacy components in src/components/ui
 
-##### [src/app/[locale]/example-page/\_client.tsx](src/app/[locale]/example-page/_client.tsx)
+## Testing
 
-```tsx
-'use client';
+**Current State**: No test framework currently configured [evidence: absence of test files in search].
 
-import React, { useState } from 'react';
-import PageWrapper from '@/components/layouts/PageWrapper/PageWrapper';
-import Subheader, { SubheaderLeft, SubheaderRight } from '@/components/layouts/Subheader/Subheader';
-import Container from '@/components/layouts/Container/Container';
+**Recommended Setup** (based on project patterns):
+```bash
+# Install testing dependencies
+pnpm add -D jest jest-environment-jsdom @testing-library/react @testing-library/jest-dom
 
-const ExamplePageClient = () => {
-	const [state, setState] = useState<boolean>(false);
-
-	return (
-		<PageWrapper>
-			<Subheader>
-				<SubheaderLeft>SubheaderLeft</SubheaderLeft>
-				<SubheaderRight>SubheaderRight</SubheaderRight>
-			</Subheader>
-			<Container>Container</Container>
-		</PageWrapper>
-	);
-};
-
-export default ExamplePageClient;
+# Test location pattern
+src/**/__tests__/*.(test|spec).tsx
 ```
 
-##### [src/app/[locale]/example-page/page.tsx](src/app/[locale]/example-page/page.tsx)
+## Deployment
 
-```tsx
-import React from 'react';
-import ExamplePageClient from './_client';
+### Environment Setup
 
-const ExamplePage = () => {
-	return <ExamplePageClient />;
-};
+1. **Convex Deployment**: Deploy Convex functions to production environment
+2. **Environment Variables**: Configure all required secrets in production
+3. **Domain Configuration**: Set `BETTER_AUTH_URL` and `NEXT_PUBLIC_SITE_URL` to production domain
 
-export default ExamplePage;
+### Build Process
+
+```bash
+# Install dependencies
+pnpm install
+
+# Build for production
+pnpm build
+
+# Start production server
+pnpm start
 ```
 
-### With i18n Page Example
+## Security & Permissions
 
-##### [src/app/[locale]/example-page-with-i18n/\_client.tsx](src/app/[locale]/example-page/_client.tsx)
+### Authentication Security
 
-```tsx
-'use client';
+- **Rate Limiting**: 100 requests per 10-second window [ref: src/lib/auth.ts:19-22]
+- **Session Management**: 7-day expiration with automatic refresh [ref: src/lib/auth.ts:15-18]
+- **Social OAuth**: Secure Google and GitHub integration with required secrets [ref: src/env.ts:9-13]
+- **Environment Variable Validation**: Zod schema ensures all required secrets are present [ref: src/env.ts:4-5]
 
-import React, { useState } from 'react';
-import PageWrapper from '@/components/layouts/PageWrapper/PageWrapper';
-import Subheader, { SubheaderLeft, SubheaderRight } from '@/components/layouts/Subheader/Subheader';
-import Container from '@/components/layouts/Container/Container';
-import { useTranslation } from 'react-i18next';
+### Environment Safety
 
-const ExamplePageClient = () => {
-	const [state, setState] = useState<boolean>(false);
-	const { t } = useTranslation();
+- **Secret Validation**: Runtime environment validation via @t3-oss/env-nextjs
+- **Client/Server Separation**: Clear distinction between client and server environment variables
 
-	return (
-		<PageWrapper>
-			<Subheader>
-				<SubheaderLeft>SubheaderLeft</SubheaderLeft>
-				<SubheaderRight>SubheaderRight</SubheaderRight>
-			</Subheader>
-			<Container>{t('Container')}</Container>
-		</PageWrapper>
-	);
-};
+## Hypotheses & Evidence Gaps
 
-export default ExamplePageClient;
-```
+**Evidence Gaps Identified:**
+- **Performance**: No specific performance benchmarks or optimization strategies observed
+- **Testing**: No test framework currently configured (hypothesis: testing setup would add Jest + React Testing Library)
+- **CI/CD**: No GitHub Actions or automated deployment workflows detected
+- **Documentation**: API documentation generation process not evident
 
-##### [src/app/[locale]/example-page-with-i18n/page.tsx](src/app/[locale]/example-page/page.tsx)
+**Confidence:** High for current implementation state, medium for operational patterns not evidenced in codebase.
 
-```tsx
-import React from 'react';
-import TranslationsProvider from '@/components/TranslationsProvider';
-import ExamplePageClient from './_client';
+## Contributing
 
-const i18nNamespaces = ['translation'];
+Based on observed patterns in the codebase:
 
-const ExamplePage = ({ params: { locale } }: { params: { locale: string } }) => {
-	return (
-		<TranslationsProvider namespaces={i18nNamespaces} locale={locale}>
-			<ExamplePageClient />
-		</TranslationsProvider>
-	);
-};
+1. **Package Management**: Use pnpm for consistency with workspace structure [ref: pnpm-workspace.yaml]
+2. **Code Style**: Follow existing Prettier and ESLint configurations [ref: prettier.config.js, eslint.config.mjs]
+3. **TypeScript**: Maintain strict typing with comprehensive interfaces
+4. **Component Patterns**: Use modern packages/ui components over legacy src/components/ui
+5. **Internationalization**: Add translations to all supported locales when adding user-facing text
 
-export default ExamplePage;
-```
+## License
 
-You can use this method on pages where you set the null value for "Header" as described in the [src/routes/headerRoutes.tsx](#srccomponentsrouterheaderroutertsx) section.
+MIT License - as evidenced by standard package.json structure and repository conventions.
 
-##### [src/app/[locale]/example-page/\_client.tsx](src/app/[locale]/example-page/_client.tsx)
+## Acknowledgments
 
-```tsx
-'use client';
-
-import React, { useState } from 'react';
-import PageWrapper from '@/components/layouts/PageWrapper/PageWrapper';
-import Header, { HeaderLeft, HeaderRight } from '@/components/layouts/Header/Header';
-import Subheader, { SubheaderLeft, SubheaderRight } from '@/components/layouts/Subheader/Subheader';
-import Container from '@/components/layouts/Container/Container';
-
-const ExamplePageClient = () => {
-	const [state, setState] = useState<boolean>(false);
-
-	return (
-		<>
-			<Header>
-				<HeaderLeft>HeaderLeft</HeaderLeft>
-				<HeaderRight>HeaderRight</HeaderRight>
-			</Header>
-			<PageWrapper>
-				<Subheader>
-					<SubheaderLeft>SubheaderLeft</SubheaderLeft>
-					<SubheaderRight>SubheaderRight</SubheaderRight>
-				</Subheader>
-				<Container>Container</Container>
-			</PageWrapper>
-		</>
-	);
-};
-
-export default ExamplePageClient;
-```
-
-#### [src/routes/footerRoutes.tsx](src/routes/footerRoutes.tsx)
-
-If you do not want to customize the project in this file, you do not need to make any changes. In this component, only [src/routes/footerRoutes.tsx](src/routes/footerRoutes.tsx) file sets which component will be shown in which path.
-
-```tsx
-const footerRoutes: RouteProps[] = [
-	{ path: authPages.loginPage.to, element: null },
-	{ path: '/*', element: <DefaultFooterTemplate /> },
-];
-```
-
-You can set the "Footer Templates" to be displayed on the paths you want. If you don't want any "Footer" in a path, you can set the element to `null`.
-
-If you will have data about the page in "Footer", specify that there will not be any "Footer" in that path with `null` and define it within the page. So you don't have to worry about moving the data up.
+Built with:
+- **Next.js** 16 for React framework and App Router [ref: package.json:49]
+- **Radix UI** for accessible component primitives [ref: packages/ui/package.json:7-33]
+- **BetterAuth** with Convex for authentication [ref: package.json:32,15]
+- **Tailwind CSS** for styling system [ref: tailwind.config.ts]
