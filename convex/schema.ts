@@ -155,6 +155,7 @@ const schema = defineEntSchema({
 		})
 		.edges('subscriptions', { to: 'subscriptions', ref: 'userId' })
 		.edges('auditLogs', { to: 'auditLog', ref: 'userId' })
+		.edges('notifications', { to: 'notifications', ref: 'userId' })
 		// Project management edges
 		.edges('managedProjects', { to: 'projects', ref: 'managerId' })
 		.edges('assignedTasks', { to: 'tasks', ref: 'assigneeId' })
@@ -200,6 +201,13 @@ const schema = defineEntSchema({
 		updatedAt: v.number(),
 	})
 		.edge('manager', { to: 'user', field: 'managerId' })
+		.edges('tasks', { to: 'tasks', ref: 'projectId' })
+		.edges('resources', { to: 'resources', ref: 'projectId' })
+		.edges('siteActivities', { to: 'siteActivities', ref: 'projectId' })
+		.edges('equipment', { to: 'equipment', ref: 'projectId' })
+		.edges('safetyIncidents', { to: 'safetyIncidents', ref: 'projectId' })
+		.edges('documents', { to: 'documents', ref: 'projectId' })
+		.edges('analytics', { to: 'analytics', ref: 'projectId' })
 		.index('by_status', ['status']),
 
 	// Construction Tasks
@@ -218,8 +226,7 @@ const schema = defineEntSchema({
 		updatedAt: v.number(),
 	})
 		.edge('assignee', { to: 'user', field: 'assigneeId', optional: true })
-		.edge('project', { to: 'projects', field: 'projectId' })
-		.index('by_project', ['projectId']),
+		.edge('project', { to: 'projects', field: 'projectId' }),
 
 	// Resources (Materials, Equipment, Labor)
 	resources: defineEnt({
@@ -235,9 +242,7 @@ const schema = defineEntSchema({
 		specifications: v.optional(v.object({})),
 		createdAt: v.number(),
 		updatedAt: v.number(),
-	})
-		.edge('project', { to: 'projects', field: 'projectId' })
-		.index('by_project', ['projectId']),
+	}).edge('project', { to: 'projects', field: 'projectId' }),
 
 	// Site Activities
 	siteActivities: defineEnt({
@@ -261,8 +266,7 @@ const schema = defineEntSchema({
 		createdAt: v.number(),
 	})
 		.edge('project', { to: 'projects', field: 'projectId' })
-		.edge('recordedBy', { to: 'user', field: 'recordedById' })
-		.index('by_project', ['projectId']),
+		.edge('recordedBy', { to: 'user', field: 'recordedById' }),
 
 	// Equipment Management
 	equipment: defineEnt({
@@ -281,8 +285,7 @@ const schema = defineEntSchema({
 		updatedAt: v.number(),
 	})
 		.edge('project', { to: 'projects', field: 'projectId' })
-		.edge('operator', { to: 'user', field: 'operatorId', optional: true })
-		.index('by_project', ['projectId']),
+		.edge('operator', { to: 'user', field: 'operatorId', optional: true }),
 
 	// Safety Incidents
 	safetyIncidents: defineEnt({
@@ -302,8 +305,7 @@ const schema = defineEntSchema({
 		createdAt: v.number(),
 	})
 		.edge('project', { to: 'projects', field: 'projectId' })
-		.edge('reportedBy', { to: 'user', field: 'reportedById' })
-		.index('by_project', ['projectId']),
+		.edge('reportedBy', { to: 'user', field: 'reportedById' }),
 
 	// Documents & Files
 	documents: defineEnt({
@@ -317,8 +319,7 @@ const schema = defineEntSchema({
 		createdAt: v.number(),
 	})
 		.edge('project', { to: 'projects', field: 'projectId' })
-		.edge('uploadedBy', { to: 'user', field: 'uploadedById' })
-		.index('by_project', ['projectId']),
+		.edge('uploadedBy', { to: 'user', field: 'uploadedById' }),
 
 	// Notifications (extended)
 	notifications: defineEnt({
@@ -361,7 +362,6 @@ const schema = defineEntSchema({
 		timestamp: v.number(),
 	})
 		.edge('user', { to: 'user', field: 'userId', optional: true })
-		.index('by_user', ['userId'])
 		.index('by_action', ['action'])
 		.index('by_resource', ['resource'])
 		.index('by_timestamp', ['timestamp']),
@@ -383,7 +383,6 @@ const schema = defineEntSchema({
 		updatedAt: v.number(),
 	})
 		.edge('user', { to: 'user', field: 'userId' })
-		.index('by_user', ['userId'])
 		.index('by_stripe_subscription', ['stripeSubscriptionId'])
 		.index('by_stripe_customer', ['stripeCustomerId'])
 		.index('by_status', ['status']),

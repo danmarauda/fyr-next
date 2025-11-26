@@ -348,10 +348,16 @@ importers:
       '@udecode/plate-basic-marks':
         specifier: ^49.0.0
         version: 49.0.0(@udecode/plate@49.0.0(@types/react@19.2.7)(immer@10.1.3)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(scheduler@0.27.0)(slate-dom@0.114.0(slate@0.112.0))(slate@0.112.0)(use-sync-external-store@1.5.0(react@19.2.0)))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@udecode/plate-basic-nodes':
+        specifier: ^49.0.0
+        version: 49.0.0(@udecode/plate@49.0.0(@types/react@19.2.7)(immer@10.1.3)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(scheduler@0.27.0)(slate-dom@0.114.0(slate@0.112.0))(slate@0.112.0)(use-sync-external-store@1.5.0(react@19.2.0)))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@udecode/plate-block-quote':
         specifier: ^49.0.0
         version: 49.0.0(@udecode/plate@49.0.0(@types/react@19.2.7)(immer@10.1.3)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(scheduler@0.27.0)(slate-dom@0.114.0(slate@0.112.0))(slate@0.112.0)(use-sync-external-store@1.5.0(react@19.2.0)))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@udecode/plate-break':
+        specifier: ^49.0.0
+        version: 49.0.0(@udecode/plate@49.0.0(@types/react@19.2.7)(immer@10.1.3)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(scheduler@0.27.0)(slate-dom@0.114.0(slate@0.112.0))(slate@0.112.0)(use-sync-external-store@1.5.0(react@19.2.0)))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@udecode/plate-callout':
         specifier: ^49.0.0
         version: 49.0.0(@udecode/plate@49.0.0(@types/react@19.2.7)(immer@10.1.3)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(scheduler@0.27.0)(slate-dom@0.114.0(slate@0.112.0))(slate@0.112.0)(use-sync-external-store@1.5.0(react@19.2.0)))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@udecode/plate-code-block':
@@ -382,6 +388,9 @@ importers:
         specifier: ^49.0.0
         version: 49.0.0(@udecode/plate@49.0.0(@types/react@19.2.7)(immer@10.1.3)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(scheduler@0.27.0)(slate-dom@0.114.0(slate@0.112.0))(slate@0.112.0)(use-sync-external-store@1.5.0(react@19.2.0)))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@udecode/plate-kbd':
+        specifier: ^49.0.0
+        version: 49.0.0(@udecode/plate@49.0.0(@types/react@19.2.7)(immer@10.1.3)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(scheduler@0.27.0)(slate-dom@0.114.0(slate@0.112.0))(slate@0.112.0)(use-sync-external-store@1.5.0(react@19.2.0)))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@udecode/plate-layout':
         specifier: ^49.0.0
         version: 49.0.0(@udecode/plate@49.0.0(@types/react@19.2.7)(immer@10.1.3)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(scheduler@0.27.0)(slate-dom@0.114.0(slate@0.112.0))(slate@0.112.0)(use-sync-external-store@1.5.0(react@19.2.0)))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@udecode/plate-line-height':
@@ -3780,6 +3789,14 @@ packages:
       react: '>=18.0.0'
       react-dom: '>=18.0.0'
 
+  '@udecode/plate-basic-nodes@49.0.0':
+    resolution: {integrity: sha512-QJceSGuGgxiZF1/zWh3uHHU8g+TfnfBj1l8Xh7J6gSsPZN5GVk+8ZS/Kz6WgrP3Jno7cSVWi9OkoNTfsruD9kA==}
+    deprecated: Package no longer supported, use @platejs/basic-nodes instead.
+    peerDependencies:
+      '@udecode/plate': '>=49.0.0'
+      react: '>=18.0.0'
+      react-dom: '>=18.0.0'
+
   '@udecode/plate-block-quote@49.0.0':
     resolution: {integrity: sha512-9tz+iD2FKBJgHLNzXO+KkMWYSTv6vE0jL5R13lcPXrjS7BONwpLLv8E7cHAH1Ndq+xCpZ06HoOJ2ANqFWAULPw==}
     deprecated: Package no longer supported, use @platejs/basic-nodes instead.
@@ -3791,6 +3808,14 @@ packages:
   '@udecode/plate-break@49.0.0':
     resolution: {integrity: sha512-0ej9Yj1s1hZoZJf74hsVrtEKbDzWEfza0lD2dYkp86MsPpern4LKA+FHiQmtrq8XOkC4jqrWKDLWluH3En1dXg==}
     deprecated: Package no longer supported, use @platejs/utils instead.
+    peerDependencies:
+      '@udecode/plate': '>=49.0.0'
+      react: '>=18.0.0'
+      react-dom: '>=18.0.0'
+
+  '@udecode/plate-callout@49.0.0':
+    resolution: {integrity: sha512-CH69NOYENT8GDz9OhwRtWn6WVPFdikPFfUCIYtJCW8VuIMn3Az22/7Bf/pXSrtcT5jAadgB4MEBFHJlrzNfQIg==}
+    deprecated: Package no longer supported, use @platejs/callout instead.
     peerDependencies:
       '@udecode/plate': '>=49.0.0'
       react: '>=18.0.0'
@@ -3895,6 +3920,14 @@ packages:
   '@udecode/plate-kbd@49.0.0':
     resolution: {integrity: sha512-/lKeVXtVI/1uUTsYQIM8Fk+BkyUDJjGkw2z4LT0aUaLbX8jMbz0+WMr9xraNZE4RZXYVDQD68NbM1HpBbiOyAA==}
     deprecated: Package no longer supported, use @platejs/basic-nodes instead.
+    peerDependencies:
+      '@udecode/plate': '>=49.0.0'
+      react: '>=18.0.0'
+      react-dom: '>=18.0.0'
+
+  '@udecode/plate-layout@49.0.0':
+    resolution: {integrity: sha512-RnEQCaCYE4dVmqupjTkfZDs2Eu20+HlmyP8nDxKQ4djVmXOJfiGV7CndGgGUP/Pz92a5YT9KLrgoqO1kYc/ljQ==}
+    deprecated: Package no longer supported, use @platejs/layout instead.
     peerDependencies:
       '@udecode/plate': '>=49.0.0'
       react: '>=18.0.0'
@@ -13927,6 +13960,12 @@ snapshots:
       react: 19.2.0
       react-dom: 19.2.0(react@19.2.0)
 
+  '@udecode/plate-basic-nodes@49.0.0(@udecode/plate@49.0.0(@types/react@19.2.7)(immer@10.1.3)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(scheduler@0.27.0)(slate-dom@0.114.0(slate@0.112.0))(slate@0.112.0)(use-sync-external-store@1.5.0(react@19.2.0)))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
+    dependencies:
+      '@udecode/plate': 49.0.0(@types/react@19.2.7)(immer@10.1.3)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(scheduler@0.27.0)(slate-dom@0.114.0(slate@0.112.0))(slate@0.112.0)(use-sync-external-store@1.5.0(react@19.2.0))
+      react: 19.2.0
+      react-dom: 19.2.0(react@19.2.0)
+
   '@udecode/plate-block-quote@49.0.0(@udecode/plate@49.0.0(@types/react@19.2.7)(immer@10.1.3)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(scheduler@0.27.0)(slate-dom@0.114.0(slate@0.112.0))(slate@0.112.0)(use-sync-external-store@1.5.0(react@19.2.0)))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
     dependencies:
       '@udecode/plate': 49.0.0(@types/react@19.2.7)(immer@10.1.3)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(scheduler@0.27.0)(slate-dom@0.114.0(slate@0.112.0))(slate@0.112.0)(use-sync-external-store@1.5.0(react@19.2.0))
@@ -13934,6 +13973,12 @@ snapshots:
       react-dom: 19.2.0(react@19.2.0)
 
   '@udecode/plate-break@49.0.0(@udecode/plate@49.0.0(@types/react@19.2.7)(immer@10.1.3)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(scheduler@0.27.0)(slate-dom@0.114.0(slate@0.112.0))(slate@0.112.0)(use-sync-external-store@1.5.0(react@19.2.0)))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
+    dependencies:
+      '@udecode/plate': 49.0.0(@types/react@19.2.7)(immer@10.1.3)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(scheduler@0.27.0)(slate-dom@0.114.0(slate@0.112.0))(slate@0.112.0)(use-sync-external-store@1.5.0(react@19.2.0))
+      react: 19.2.0
+      react-dom: 19.2.0(react@19.2.0)
+
+  '@udecode/plate-callout@49.0.0(@udecode/plate@49.0.0(@types/react@19.2.7)(immer@10.1.3)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(scheduler@0.27.0)(slate-dom@0.114.0(slate@0.112.0))(slate@0.112.0)(use-sync-external-store@1.5.0(react@19.2.0)))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
     dependencies:
       '@udecode/plate': 49.0.0(@types/react@19.2.7)(immer@10.1.3)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(scheduler@0.27.0)(slate-dom@0.114.0(slate@0.112.0))(slate@0.112.0)(use-sync-external-store@1.5.0(react@19.2.0))
       react: 19.2.0
@@ -14043,6 +14088,12 @@ snapshots:
       react-dom: 19.2.0(react@19.2.0)
 
   '@udecode/plate-kbd@49.0.0(@udecode/plate@49.0.0(@types/react@19.2.7)(immer@10.1.3)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(scheduler@0.27.0)(slate-dom@0.114.0(slate@0.112.0))(slate@0.112.0)(use-sync-external-store@1.5.0(react@19.2.0)))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
+    dependencies:
+      '@udecode/plate': 49.0.0(@types/react@19.2.7)(immer@10.1.3)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(scheduler@0.27.0)(slate-dom@0.114.0(slate@0.112.0))(slate@0.112.0)(use-sync-external-store@1.5.0(react@19.2.0))
+      react: 19.2.0
+      react-dom: 19.2.0(react@19.2.0)
+
+  '@udecode/plate-layout@49.0.0(@udecode/plate@49.0.0(@types/react@19.2.7)(immer@10.1.3)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(scheduler@0.27.0)(slate-dom@0.114.0(slate@0.112.0))(slate@0.112.0)(use-sync-external-store@1.5.0(react@19.2.0)))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
     dependencies:
       '@udecode/plate': 49.0.0(@types/react@19.2.7)(immer@10.1.3)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(scheduler@0.27.0)(slate-dom@0.114.0(slate@0.112.0))(slate@0.112.0)(use-sync-external-store@1.5.0(react@19.2.0))
       react: 19.2.0

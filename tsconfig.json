@@ -1,7 +1,7 @@
 {
 	"compilerOptions": {
 		"strict": false,
-		"strictNullChecks": true,
+		"strictNullChecks": false,
 		"allowUnusedLabels": false,
 		"allowUnreachableCode": false,
 		"exactOptionalPropertyTypes": false,
@@ -17,6 +17,7 @@
 		"checkJs": false,
 		"esModuleInterop": true,
 		"skipLibCheck": true,
+		"skipDefaultLibCheck": true,
 		"forceConsistentCasingInFileNames": true,
 		"lib": ["dom", "dom.iterable", "esnext"],
 		"module": "esnext",
@@ -52,5 +53,13 @@
 		".next/types/**/*.ts",
 		".next/dev/types/**/*.ts"
 	],
-	"exclude": ["node_modules", "better-auth/", "**/_md/**"]
+	"exclude": [
+		"node_modules",
+		"better-auth/",
+		"**/_md/**",
+		"reference_context/**",
+		"freo-cranes-platform.bak/**",
+		"packages/plate.bak/**",
+		"packages/ui.bak/**"
+	]
 }

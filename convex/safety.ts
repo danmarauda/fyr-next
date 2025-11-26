@@ -6,7 +6,7 @@ export const getIncidentsByProject = query({
 	handler: async (ctx, args) => {
 		const incidents = await ctx.db
 			.query('safetyIncidents')
-			.withIndex('by_project', (q) => q.eq('projectId', args.projectId))
+			.withIndex('projectId', (q) => q.eq('projectId', args.projectId))
 			.collect();
 		return incidents;
 	},

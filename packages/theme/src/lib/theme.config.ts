@@ -4,7 +4,7 @@ import { TColors } from '@/types/colors.type';
 import { TColorIntensity } from '@/types/colorIntensities.type';
 import { TBorderWidth } from '@/types/borderWidth.type';
 import { TLang } from '@/types/lang.type';
-import DARK_MODE from '../constants/darkMode.constant';
+import DARK_MODE from './darkMode.constant';
 
 type TThemeConfigs = {
 	projectTitle: string;

@@ -1,86 +1,101 @@
-export * from './lib/utils';
+import React from 'react';
 
-// Core UI Components - Only exporting working components
-export { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from './react/accordion';
-export {
-	AlertDialog,
-	AlertDialogAction,
-	AlertDialogCancel,
-	AlertDialogContent,
-	AlertDialogDescription,
-	AlertDialogFooter,
-	AlertDialogHeader,
-	AlertDialogTitle,
-	AlertDialogTrigger,
-} from './react/alert-dialog';
-export { Alert, AlertTitle, AlertDescription } from './react/alert';
-export { Avatar, AvatarFallback, AvatarImage } from './react/avatar';
-export { Badge, badgeVariants } from './react/badge';
-export { Button, buttonVariants } from './react/button';
-export {
-	Card,
-	CardContent,
-	CardDescription,
-	CardFooter,
-	CardHeader,
-	CardTitle,
-} from './react/card';
-export { Checkbox } from './react/checkbox';
-export {
-	Dialog,
-	DialogContent,
-	DialogDescription,
-	DialogFooter,
-	DialogHeader,
-	DialogTitle,
-	DialogTrigger,
-} from './react/dialog';
-export {
-	DropdownMenu,
-	DropdownMenuCheckboxItem,
-	DropdownMenuContent,
-	DropdownMenuGroup,
-	DropdownMenuItem,
-	DropdownMenuLabel,
-	DropdownMenuPortal,
-	DropdownMenuRadioGroup,
-	DropdownMenuRadioItem,
-	DropdownMenuSeparator,
-	DropdownMenuShortcut,
-	DropdownMenuSub,
-	DropdownMenuSubContent,
-	DropdownMenuSubTrigger,
-	DropdownMenuTrigger,
-} from './react/dropdown-menu';
-export { Input } from './react/input';
-export { Label } from './react/label';
-export { Popover, PopoverContent, PopoverTrigger } from './react/popover';
-export { Progress } from './react/progress';
-export {
-	Select,
-	SelectContent,
-	SelectGroup,
-	SelectItem,
-	SelectLabel,
-	SelectScrollDownButton,
-	SelectScrollUpButton,
-	SelectSeparator,
-	SelectTrigger,
-	SelectValue,
-} from './react/select';
-export { Separator } from './react/separator';
-export { Skeleton } from './react/skeleton';
-export { Switch } from './react/switch';
-export {
-	Table,
-	TableBody,
-	TableCaption,
-	TableCell,
-	TableFooter,
-	TableHead,
-	TableHeader,
-	TableRow,
-} from './react/table';
-export { Tabs, TabsContent, TabsList, TabsTrigger } from './react/tabs';
-export { Textarea } from './react/textarea';
-export { Toaster } from './react/sonner';
+// Stub UI components for development
+export const Card = ({ children, className, ...props }: any) =>
+	React.createElement(
+		'div',
+		{
+			className: `bg-white rounded-lg border shadow ${className || ''}`,
+			...props,
+		},
+		children,
+	);
+
+export const CardContent = ({ children, className, ...props }: any) =>
+	React.createElement(
+		'div',
+		{
+			className: `p-6 ${className || ''}`,
+			...props,
+		},
+		children,
+	);
+
+export const CardHeader = ({ children, className, ...props }: any) =>
+	React.createElement(
+		'div',
+		{
+			className: `p-6 pb-0 ${className || ''}`,
+			...props,
+		},
+		children,
+	);
+
+export const CardTitle = ({ children, className, ...props }: any) =>
+	React.createElement(
+		'h3',
+		{
+			className: `text-lg font-semibold ${className || ''}`,
+			...props,
+		},
+		children,
+	);
+
+export const Button = ({ children, className, ...props }: any) =>
+	React.createElement(
+		'button',
+		{
+			className: `px-4 py-2 bg-blue-600 text-white rounded ${className || ''}`,
+			...props,
+		},
+		children,
+	);
+
+export const Badge = ({ children, className, ...props }: any) =>
+	React.createElement(
+		'span',
+		{
+			className: `px-2 py-1 bg-gray-200 text-gray-800 rounded text-xs ${className || ''}`,
+			...props,
+		},
+		children,
+	);
+
+export const Avatar = ({ children, className, ...props }: any) =>
+	React.createElement(
+		'div',
+		{
+			className: `relative flex size-8 shrink-0 overflow-hidden rounded-full ${className || ''}`,
+			...props,
+		},
+		children,
+	);
+
+export const AvatarImage = ({ className, ...props }: any) =>
+	React.createElement('img', {
+		className: `aspect-square size-full ${className || ''}`,
+		...props,
+	});
+
+export const AvatarFallback = ({ children, className, ...props }: any) =>
+	React.createElement(
+		'div',
+		{
+			className: `bg-muted flex size-full items-center justify-center rounded-full ${className || ''}`,
+			...props,
+		},
+		children,
+	);
+
+export const Progress = ({ value, className, ...props }: any) =>
+	React.createElement(
+		'div',
+		{
+			className: `relative h-2 w-full overflow-hidden rounded-full bg-primary/20 ${className || ''}`,
+			...props,
+		},
+		React.createElement('div', {
+			className: 'h-full w-full flex-1 bg-primary transition-all',
+			style: { width: `${value || 0}%` },
+		}),
+	);

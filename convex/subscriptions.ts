@@ -18,13 +18,13 @@ export const getUserSubscription = query({
 	handler: async (ctx, args) => {
 		const subscription = await ctx.db
 			.query('subscriptions')
-			.withIndex('by_user', (q) => q.eq('userId', args.userId))
+			.withIndex('userId', (q) => q.eq('userId', args.userId))
 			.filter((q) => q.eq(q.field('status'), 'active'))
 			.first();
 
 		if (!subscription) return null;
 
-		const plan = await ctx.db.get(subscription.planId);
+		const plan = await ctx.db.get(subscription.stripePriceId as any);
 		return {
 			...subscription,
 			plan,

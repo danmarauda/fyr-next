@@ -6,7 +6,7 @@ export const getResourcesByProject = query({
 	handler: async (ctx, args) => {
 		const resources = await ctx.db
 			.query('resources')
-			.withIndex('by_project', (q) => q.eq('projectId', args.projectId))
+			.withIndex('projectId', (q) => q.eq('projectId', args.projectId))
 			.collect();
 		return resources;
 	},
@@ -17,7 +17,7 @@ export const getEquipmentByProject = query({
 	handler: async (ctx, args) => {
 		const equipment = await ctx.db
 			.query('equipment')
-			.withIndex('by_project', (q) => q.eq('projectId', args.projectId))
+			.withIndex('projectId', (q) => q.eq('projectId', args.projectId))
 			.collect();
 		return equipment;
 	},
@@ -28,7 +28,7 @@ export const getResourceUtilization = query({
 	handler: async (ctx, args) => {
 		const resources = await ctx.db
 			.query('resources')
-			.withIndex('by_project', (q) => q.eq('projectId', args.projectId))
+			.withIndex('projectId', (q) => q.eq('projectId', args.projectId))
 			.collect();
 
 		const activeResources = resources.filter((r) => r.status === 'active').length;

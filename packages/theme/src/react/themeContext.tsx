@@ -17,9 +17,9 @@ import theme from 'tailwindcss/defaultTheme';
 import { TDarkMode } from '@/types/darkMode.type';
 // import { TLang } from '@/types/lang.type';
 import { TLang } from '@/types/lang.type';
-import DARK_MODE from '../constants/darkMode.constant';
-import themeConfig from '../config/theme.config';
-import useDeviceScreen from '../hooks/useDeviceScreen';
+import DARK_MODE from '../lib/darkMode.constant';
+import themeConfig from '../lib/theme.config';
+import useDeviceScreen from './useDeviceScreen';
 
 export interface IThemeContextProps {
 	isDarkTheme: boolean;

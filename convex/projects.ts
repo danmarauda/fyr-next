@@ -32,7 +32,7 @@ export const getProjectProgress = query({
 	handler: async (ctx, args) => {
 		const tasks = await ctx.db
 			.query('tasks')
-			.withIndex('by_project', (q) => q.eq('projectId', args.projectId))
+			.withIndex('projectId', (q) => q.eq('projectId', args.projectId))
 			.collect();
 
 		const completedTasks = tasks.filter((task) => task.status === 'completed').length;
