@@ -2,6 +2,7 @@
 	"buildCommand": "pnpm build",
 	"devCommand": "pnpm dev",
 	"installCommand": "pnpm install",
+	"packageManager": "pnpm@9",
 	"framework": "nextjs",
 	"outputDirectory": ".next",
 	"regions": ["iad1"],
