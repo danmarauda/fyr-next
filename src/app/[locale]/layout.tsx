@@ -46,7 +46,11 @@ const RootLayout = async ({
 
 	return (
 		<Providers>
-			<html suppressHydrationWarning lang={locale} dir={dir(locale)}>
+			<html
+				suppressHydrationWarning
+				lang={locale}
+				dir={dir(locale)}
+				data-scroll-behavior='smooth'>
 				<body className={poppins.className}>
 					<div id='root'>
 						<div data-component-name='App' className='flex grow flex-col'>

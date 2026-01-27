@@ -1,14 +1,9 @@
 'use client';
 
-import React, { ReactNode } from 'react';
-import { ConvexBetterAuthProvider } from '@convex-dev/better-auth/react';
-import { convexClient } from '@/lib/convex-client';
-import { authClient } from '@/lib/auth-client';
+import React from 'react';
+import type { ReactNode } from 'react';
 
+// Mock provider for testing without Convex/better-auth
 export const ConvexClientProvider = ({ children }: { children: ReactNode }) => {
-	return (
-		<ConvexBetterAuthProvider authClient={authClient} client={convexClient}>
-			{children}
-		</ConvexBetterAuthProvider>
-	);
+	return <>{children}</>;
 };

@@ -1,12 +1,12 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, Suspense } from 'react';
 import { FaGoogle, FaApple, FaLinkedin, FaEye, FaEyeSlash, FaArrowRight } from 'react-icons/fa';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { authClient } from '@/lib/auth-client';
 import Link from 'next/link';
 
-const LoginPage = () => {
+const LoginForm = () => {
 	const router = useRouter();
 	const searchParams = useSearchParams();
 
@@ -34,7 +34,7 @@ const LoginPage = () => {
 					'/';
 				router.push(callbackUrl);
 			}
-		} catch (err) {
+		} catch {
 			setError('Login failed. Please try again.');
 		} finally {
 			setIsLoading(false);
@@ -48,7 +48,7 @@ const LoginPage = () => {
 				return;
 			}
 			await authClient.signIn.social({ provider });
-		} catch (err) {
+		} catch {
 			setError('Social login failed. Please try again.');
 		}
 	};
@@ -84,7 +84,7 @@ const LoginPage = () => {
 							</h1>
 						</div>
 
-						<div className='animate-fade-slide-up mb-4'>
+						<div className='mb-4 animate-fade-slide-up'>
 							<h2 className='mb-8 text-5xl font-thin leading-tight tracking-tight drop-shadow-xl'>
 								Design your <br />
 								intelligence, <br />
@@ -111,7 +111,7 @@ const LoginPage = () => {
 				{/* Mobile Background (Subtle) */}
 				<div className='bg-grid-white/[0.02] pointer-events-none absolute inset-0 lg:hidden' />
 
-				<div className='animate-fade-in z-10 w-full max-w-md'>
+				<div className='z-10 w-full max-w-md animate-fade-in'>
 					<div className='mb-10'>
 						<h2 className='mb-2 text-3xl font-light text-white'>Welcome back</h2>
 						<p className='text-sm text-gray-500'>
@@ -170,7 +170,9 @@ const LoginPage = () => {
 								/>
 								Remember me
 							</label>
-							<Link href='/forgot-password' className='transition-colors hover:text-blue-400'>
+							<Link
+								href='/forgot-password'
+								className='transition-colors hover:text-blue-400'>
 								Forgot password?
 							</Link>
 						</div>
@@ -229,6 +231,14 @@ const LoginPage = () => {
 				</div>
 			</div>
 		</div>
+	);
+};
+
+const LoginPage = () => {
+	return (
+		<Suspense fallback={<div>Loading...</div>}>
+			<LoginForm />
+		</Suspense>
 	);
 };
 

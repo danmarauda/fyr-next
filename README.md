@@ -1,6 +1,6 @@
-# ALIAS
+# FYR - React Tailwind Admin Template
 
-> React TypeScript Tailwind Admin & AI Chat Template [ref: src/config/theme.config.ts:42]
+> Next.js 16 Admin Template with AI Chat, i18n, and Real-time Backend [ref: src/config/theme.config.ts:42]
 
 A sophisticated Next.js 16 admin template featuring AI chat capabilities, internationalization, and a comprehensive component system built on modern web technologies.
 
@@ -82,8 +82,8 @@ graph TD
 
 ```bash
 # Clone the repository
-git clone <repository-url>
-cd alias-nextjs
+git clone https://github.com/danmarauda/fyr-next.git
+cd fyr-next
 
 # Install dependencies (uses pnpm workspace)
 pnpm install

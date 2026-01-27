@@ -1,30 +1,18 @@
-import { betterAuth } from 'better-auth';
+// Mock auth types for testing without Convex/better-auth
 
-export const auth = betterAuth({
-	baseURL: process.env.BETTER_AUTH_URL || 'http://localhost:3000',
-	socialProviders: {
-		google: {
-			clientId: process.env.GOOGLE_CLIENT_ID!,
-			clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-		},
-		github: {
-			clientId: process.env.GITHUB_CLIENT_ID!,
-			clientSecret: process.env.GITHUB_CLIENT_SECRET!,
-		},
-	},
-	session: {
-		expiresIn: 60 * 60 * 24 * 7, // 7 days
-		updateAge: 60 * 60 * 24, // 1 day
-	},
-	rateLimit: {
-		window: 10,
-		max: 100,
-	},
-	emailAndPassword: {
-		enabled: true,
-		autoSignIn: true,
-		requireEmailVerification: false,
-	},
-});
+export interface Session {
+	user: {
+		id: string;
+		email: string;
+		name?: string;
+		username?: string;
+		role?: string;
+		image?: string | null;
+		emailVerified?: boolean;
+		createdAt?: string;
+	};
+}
 
-export type Session = typeof auth.$Infer.Session;
+export type Auth = {
+	session: Session | null;
+};

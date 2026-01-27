@@ -89,7 +89,7 @@ export const updateTaskStatus = mutation({
 	},
 	handler: async (ctx, args) => {
 		const now = Date.now();
-		const updateData: any = {
+		const updateData: { status: string; updatedAt: number; completedAt?: number } = {
 			status: args.status,
 			updatedAt: now,
 		};

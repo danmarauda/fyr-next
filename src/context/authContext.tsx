@@ -5,9 +5,20 @@ import { useRouter } from 'next/navigation';
 import { authPages } from '@/config/pages.config';
 import { authClient } from '@/lib/auth-client';
 
+interface AuthUser {
+	id: string;
+	email: string;
+	name: string;
+	emailVerified: boolean;
+	createdAt: string;
+	username: string;
+	role: string;
+	image: string | null;
+}
+
 export interface IAuthContextProps {
-	user: any;
-	session: any;
+	user: AuthUser | null | undefined;
+	session: { user: AuthUser | null | undefined } | null | undefined;
 	isLoading: boolean;
 	isAuthenticated: boolean;
 	onLogin: (email: string, password: string) => Promise<void>;
@@ -93,6 +104,7 @@ export const AuthProvider: FC<IAuthProviderProps> = ({ children }) => {
 			onSignUp,
 			error,
 		}),
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 		[user, session, isLoading, isAuthenticated, error],
 	);
 	return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

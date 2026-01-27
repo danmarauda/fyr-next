@@ -1,9 +1,10 @@
 import { v } from 'convex/values';
 import { mutation, query } from './_generated/server';
-import { requireRole, logSecurityEvent } from './auth';
+import { requireRole } from './auth';
 
 // Get current user with full profile
 export const getCurrentUser = query({
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	handler: async (ctx) => {
 		// For now, return null until auth is fully integrated
 		return null;
@@ -21,6 +22,7 @@ export const setUserRole = mutation({
 			v.literal('manager'),
 		),
 	},
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	handler: async (ctx, args) => {
 		// For now, do nothing until auth is fully integrated
 		return { success: true };
@@ -175,6 +177,7 @@ export const toggleUserBan = mutation({
 		banned: v.boolean(),
 		reason: v.optional(v.string()),
 	},
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	handler: async (ctx, args) => {
 		// For now, do nothing until auth is fully integrated
 		return { success: true };
@@ -186,6 +189,7 @@ export const trackLogin = mutation({
 	args: {
 		email: v.string(),
 	},
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	handler: async (ctx, args) => {
 		// For now, do nothing until auth is fully integrated
 		return { success: true };

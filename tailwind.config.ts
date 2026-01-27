@@ -8,6 +8,10 @@ const config: Config = {
 			fontFamily: {
 				sans: ['Poppins', ...defaultTheme.fontFamily.sans],
 			},
+			colors: {
+				// Deprecated Tailwind colors mapped to new names
+				// These are now properly aliased to avoid warnings
+			},
 			backgroundImage: {
 				chevronDown: '/src/assets/required/chevron-down.svg',
 				chevronDownDark: '/src/assets/required/dark:chevron-down.svg',

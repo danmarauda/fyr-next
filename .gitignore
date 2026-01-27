@@ -40,3 +40,4 @@ package-lock.json
 yarn.lock
 
 .idea
+packages/*/node_modules/@next/swc-*/

@@ -38,6 +38,7 @@ export const createDevAdminMutation = mutation({
 
 // Create admin user for development (action wrapper that calls the mutation)
 export const createDevAdmin = action({
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	handler: async (ctx) => {
 		// Only allow in development
 		if (process.env.NODE_ENV !== 'development') {
@@ -54,9 +55,10 @@ export const createDevAdmin = action({
 				success: true,
 				message: 'Use createDevAdminMutation directly from the client',
 			};
-		} catch (error: any) {
+		} catch (error: unknown) {
+			const message = error instanceof Error ? error.message : 'Unknown error';
 			console.error('Failed to create admin user:', error);
-			return { success: false, message: 'Failed to create admin user', error: error.message };
+			return { success: false, message: 'Failed to create admin user', error: message };
 		}
 	},
 });

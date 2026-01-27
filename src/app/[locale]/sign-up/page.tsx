@@ -53,7 +53,7 @@ const SignUpPage = () => {
 			if (res?.data) {
 				router.push('/');
 			}
-		} catch (err) {
+		} catch {
 			setError('Sign up failed. Please try again.');
 		} finally {
 			setIsLoading(false);
@@ -66,7 +66,7 @@ const SignUpPage = () => {
 				return;
 			}
 			await authClient.signIn.social({ provider });
-		} catch (err) {
+		} catch {
 			setError('Social sign up failed. Please try again.');
 		}
 	};
@@ -105,17 +105,18 @@ const SignUpPage = () => {
 							</h1>
 						</div>
 
-						<div className='animate-fade-slide-up mb-4'>
+						<div className='mb-4 animate-fade-slide-up'>
 							<h2 className='mb-8 text-5xl font-thin leading-tight tracking-tight drop-shadow-xl'>
 								Join the future <br />
-								of enterprise  <br />
+								of enterprise <br />
 								<span className='font-normal text-blue-400 drop-shadow-[0_0_15px_rgba(59,130,246,0.4)]'>
 									intelligence.
 								</span>
 							</h2>
 							<div className='border-l border-blue-500/30 pl-6'>
 								<p className='mb-4 max-w-md text-sm font-light leading-relaxed tracking-wide text-gray-300'>
-									Create your account and start leveraging advanced analytics for strategic decision making.
+									Create your account and start leveraging advanced analytics for
+									strategic decision making.
 								</p>
 								<span className='text-[10px] font-semibold uppercase tracking-[0.25em] text-blue-400/80'>
 									ALIAS — Your AI Partner
@@ -130,7 +131,7 @@ const SignUpPage = () => {
 			<div className='relative flex w-full items-center justify-center p-8 lg:w-1/2 lg:p-24'>
 				<div className='bg-grid-white/[0.02] pointer-events-none absolute inset-0 lg:hidden' />
 
-				<div className='animate-fade-in z-10 w-full max-w-md'>
+				<div className='z-10 w-full max-w-md animate-fade-in'>
 					<div className='mb-10'>
 						<h2 className='mb-2 text-3xl font-light text-white'>Create account</h2>
 						<p className='text-sm text-gray-500'>

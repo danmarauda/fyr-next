@@ -2,12 +2,10 @@
 
 import React, { useState, useId } from 'react';
 import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
-import { useRouter } from 'next/navigation';
 import { authClient } from '@/lib/auth-client';
 import Link from 'next/link';
 
 const ForgotPasswordPage = () => {
-	const router = useRouter();
 	const emailId = useId();
 
 	const [email, setEmail] = useState('');
@@ -26,7 +24,7 @@ const ForgotPasswordPage = () => {
 				redirectTo: '/reset-password',
 			});
 			setSuccess(true);
-		} catch (err) {
+		} catch {
 			setError('Failed to send reset email. Please try again.');
 		} finally {
 			setIsLoading(false);
@@ -60,17 +58,18 @@ const ForgotPasswordPage = () => {
 							</h1>
 						</div>
 
-						<div className='animate-fade-slide-up mb-4'>
+						<div className='mb-4 animate-fade-slide-up'>
 							<h2 className='mb-8 text-5xl font-thin leading-tight tracking-tight drop-shadow-xl'>
 								Recover your <br />
-								account with  <br />
+								account with <br />
 								<span className='font-normal text-blue-400 drop-shadow-[0_0_15px_rgba(59,130,246,0.4)]'>
 									ease.
 								</span>
 							</h2>
 							<div className='border-l border-blue-500/30 pl-6'>
 								<p className='mb-4 max-w-md text-sm font-light leading-relaxed tracking-wide text-gray-300'>
-									Enter your email address and we'll send you instructions to reset your password.
+									Enter your email address and we'll send you instructions to
+									reset your password.
 								</p>
 								<span className='text-[10px] font-semibold uppercase tracking-[0.25em] text-blue-400/80'>
 									ALIAS — Secure & Reliable
@@ -85,7 +84,7 @@ const ForgotPasswordPage = () => {
 			<div className='relative flex w-full items-center justify-center p-8 lg:w-1/2 lg:p-24'>
 				<div className='bg-grid-white/[0.02] pointer-events-none absolute inset-0 lg:hidden' />
 
-				<div className='animate-fade-in z-10 w-full max-w-md'>
+				<div className='z-10 w-full max-w-md animate-fade-in'>
 					<div className='mb-10'>
 						<h2 className='mb-2 text-3xl font-light text-white'>Reset password</h2>
 						<p className='text-sm text-gray-500'>

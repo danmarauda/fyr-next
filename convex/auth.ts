@@ -1,94 +1,111 @@
 import { convex } from '@convex-dev/better-auth/plugins';
-import { betterAuth } from 'better-auth';
-import { createApi } from 'better-auth-convex';
-import { api, internal } from './_generated/api';
+import { type BetterAuthOptions, betterAuth } from 'better-auth';
+import { createApi, createClient } from 'better-convex/auth';
 import type { ActionCtx, MutationCtx, QueryCtx } from './_generated/server';
-import { internalMutation } from './_generated/server';
-import { getConvexEnv } from './helpers/getEnv';
+import { internalMutation, query } from './_generated/server';
+import { internal } from './_generated/api';
+import type { DataModel } from './_generated/dataModel';
+import authConfig from './auth.config';
 import schema from './schema';
 
-// const authFunctions: any = internal.auth;
+const siteUrl = process.env.SITE_URL!;
 
-export const createAuth = (ctx: ActionCtx, { optionsOnly = false } = {}) => {
-	const baseURL = process.env.NEXT_PUBLIC_SITE_URL!;
+// Create the auth client using better-convex
+export const authClient = createClient<DataModel, typeof schema>({
+	authFunctions: internal.auth,
+	schema,
+	internalMutation,
+});
 
-	return betterAuth({
-		baseURL,
-		logger: { disabled: optionsOnly },
-		plugins: [convex()],
-		session: {
-			expiresIn: 60 * 60 * 24 * 30, // 30 days
-			updateAge: 60 * 60 * 24 * 15, // 15 days
+// Auth options factory
+const createAuthOptions = (ctx: QueryCtx | MutationCtx | ActionCtx): BetterAuthOptions => ({
+	baseURL: siteUrl,
+	emailAndPassword: {
+		enabled: true,
+		requireEmailVerification: false,
+	},
+	session: {
+		expiresIn: 60 * 60 * 24 * 30, // 30 days
+		updateAge: 60 * 60 * 24 * 15, // 15 days
+	},
+	socialProviders: {
+		google: {
+			clientId: process.env.GOOGLE_CLIENT_ID!,
+			clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
 		},
-		socialProviders: {
-			github: {
-				clientId: process.env.GITHUB_CLIENT_ID!,
-				clientSecret: process.env.GITHUB_CLIENT_SECRET!,
+	},
+	telemetry: { enabled: false },
+	trustedOrigins: [siteUrl],
+	user: {
+		additionalFields: {
+			bio: {
+				required: false,
+				type: 'string',
 			},
-			google: {
-				clientId: process.env.GOOGLE_CLIENT_ID!,
-				clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+			firstName: {
+				required: false,
+				type: 'string',
+			},
+			lastName: {
+				required: false,
+				type: 'string',
+			},
+			username: {
+				required: false,
+				type: 'string',
 			},
 		},
-		telemetry: { enabled: false },
-		trustedOrigins: [process.env.NEXT_PUBLIC_SITE_URL!],
-		user: {
-			additionalFields: {
-				bio: {
-					required: false,
-					type: 'string',
-				},
-				firstName: {
-					required: false,
-					type: 'string',
-				},
-				lastName: {
-					required: false,
-					type: 'string',
-				},
-				username: {
-					required: false,
-					type: 'string',
-				},
-			},
-		},
-		database: {
-			type: 'convex',
-			url: process.env.CONVEX_URL!,
-		},
-	});
-};
+	},
+	plugins: [
+		convex({
+			authConfig,
+		}),
+	],
+	database: authClient.httpAdapter(ctx),
+});
 
-export const auth = createAuth({} as any, { optionsOnly: true });
-
-export const getAuth = (ctx: ActionCtx) =>
+// For queries/mutations - uses sync adapter
+export const getAuth = <Ctx extends QueryCtx | MutationCtx>(ctx: Ctx) =>
 	betterAuth({
-		...auth.options,
-		database: {
-			type: 'convex',
-			url: process.env.CONVEX_URL!,
-			ctx,
-		},
+		...createAuthOptions(ctx),
+		database: authClient.adapter(ctx, createAuthOptions),
 	});
 
+// For actions/HTTP - uses http adapter
+export const createAuth = (ctx: ActionCtx) => betterAuth(createAuthOptions(ctx));
+
+// Create API functions for Better Auth
 export const { create, deleteMany, deleteOne, findMany, findOne, updateMany, updateOne } =
-	createApi(schema, { ...auth.options, internalMutation });
+	createApi(schema, createAuth, { internalMutation });
 
-// Helper function to get current user
-export const getCurrentUser = async (ctx: QueryCtx | MutationCtx) => {
-	// For now, return null until Better Auth is fully integrated
-	// This will be implemented once the auth system is working
-	return null;
-};
+// Get current user helper
+export const getCurrentUser = query({
+	args: {},
+	handler: async (ctx) => {
+		const auth = getAuth(ctx);
+		const session = await auth.api.getSession({ headers: new Headers() });
+		return session?.user ?? null;
+	},
+});
 
-// Helper function to require role (placeholder)
+// Role guard helper
 export const requireRole = async (ctx: QueryCtx | MutationCtx, role: string) => {
-	// For now, do nothing until auth is fully integrated
+	const auth = getAuth(ctx);
+	const session = await auth.api.getSession({ headers: new Headers() });
+	if (!session?.user || session.user.role !== role) {
+		throw new Error(`Role "${role}" required`);
+	}
+	return session.user;
+};
+
+// Security event logger
+export const logSecurityEvent = async (
+	_ctx: QueryCtx | MutationCtx,
+	event: Record<string, unknown>,
+) => {
+	console.log('Security event:', event);
 	return null;
 };
 
-// Helper function to log security events (placeholder)
-export const logSecurityEvent = async (ctx: QueryCtx | MutationCtx, event: any) => {
-	// For now, do nothing until auth is fully integrated
-	return null;
-};
+// Export auth for CLI usage
+export const auth = betterAuth(createAuthOptions({} as ActionCtx));

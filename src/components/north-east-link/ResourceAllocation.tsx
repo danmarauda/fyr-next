@@ -12,6 +12,7 @@ interface ResourceData {
 	efficiency: number;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const ResourceAllocation = ({ projectId }: ResourceAllocationProps) => {
 	// Mock data for demonstration
 	const resourceData: ResourceData[] = [

@@ -28,16 +28,6 @@ export const useTasks = (projectId: Id<'projects'>) => {
 
 	const createTask = useCallback(
 		async (taskData: Omit<Task, '_id' | 'createdAt' | 'updatedAt'>) => {
-			// Optimistic update: immediately add task to local state
-			const optimisticTask: Task = {
-				_id: `temp-${Date.now()}` as Id<'tasks'>,
-				...taskData,
-				createdAt: Date.now(),
-				updatedAt: Date.now(),
-			};
-
-			// Add to optimistic state
-			const previousTasks = tasks || [];
 			// Note: In a real implementation, you'd use a state management solution
 			// to handle optimistic updates. For now, we'll just call the mutation.
 
@@ -50,7 +40,7 @@ export const useTasks = (projectId: Id<'projects'>) => {
 				throw error;
 			}
 		},
-		[createTaskMutation, tasks],
+		[createTaskMutation],
 	);
 
 	const updateTask = useCallback(

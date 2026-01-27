@@ -1,7 +1,22 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
+
+interface BaseProps {
+	children?: ReactNode;
+	className?: string;
+	[key: string]: unknown;
+}
+
+interface ProgressProps extends Omit<BaseProps, 'children'> {
+	value?: number;
+}
+
+interface ImageProps extends Omit<BaseProps, 'children'> {
+	src?: string;
+	alt?: string;
+}
 
 // Stub UI components for development
-export const Card = ({ children, className, ...props }: any) =>
+export const Card = ({ children, className, ...props }: BaseProps) =>
 	React.createElement(
 		'div',
 		{
@@ -11,7 +26,7 @@ export const Card = ({ children, className, ...props }: any) =>
 		children,
 	);
 
-export const CardContent = ({ children, className, ...props }: any) =>
+export const CardContent = ({ children, className, ...props }: BaseProps) =>
 	React.createElement(
 		'div',
 		{
@@ -21,7 +36,7 @@ export const CardContent = ({ children, className, ...props }: any) =>
 		children,
 	);
 
-export const CardHeader = ({ children, className, ...props }: any) =>
+export const CardHeader = ({ children, className, ...props }: BaseProps) =>
 	React.createElement(
 		'div',
 		{
@@ -31,7 +46,7 @@ export const CardHeader = ({ children, className, ...props }: any) =>
 		children,
 	);
 
-export const CardTitle = ({ children, className, ...props }: any) =>
+export const CardTitle = ({ children, className, ...props }: BaseProps) =>
 	React.createElement(
 		'h3',
 		{
@@ -41,7 +56,7 @@ export const CardTitle = ({ children, className, ...props }: any) =>
 		children,
 	);
 
-export const Button = ({ children, className, ...props }: any) =>
+export const Button = ({ children, className, ...props }: BaseProps) =>
 	React.createElement(
 		'button',
 		{
@@ -51,7 +66,7 @@ export const Button = ({ children, className, ...props }: any) =>
 		children,
 	);
 
-export const Badge = ({ children, className, ...props }: any) =>
+export const Badge = ({ children, className, ...props }: BaseProps) =>
 	React.createElement(
 		'span',
 		{
@@ -61,7 +76,7 @@ export const Badge = ({ children, className, ...props }: any) =>
 		children,
 	);
 
-export const Avatar = ({ children, className, ...props }: any) =>
+export const Avatar = ({ children, className, ...props }: BaseProps) =>
 	React.createElement(
 		'div',
 		{
@@ -71,13 +86,13 @@ export const Avatar = ({ children, className, ...props }: any) =>
 		children,
 	);
 
-export const AvatarImage = ({ className, ...props }: any) =>
+export const AvatarImage = ({ className, ...props }: ImageProps) =>
 	React.createElement('img', {
 		className: `aspect-square size-full ${className || ''}`,
 		...props,
 	});
 
-export const AvatarFallback = ({ children, className, ...props }: any) =>
+export const AvatarFallback = ({ children, className, ...props }: BaseProps) =>
 	React.createElement(
 		'div',
 		{
@@ -87,7 +102,7 @@ export const AvatarFallback = ({ children, className, ...props }: any) =>
 		children,
 	);
 
-export const Progress = ({ value, className, ...props }: any) =>
+export const Progress = ({ value, className, ...props }: ProgressProps) =>
 	React.createElement(
 		'div',
 		{

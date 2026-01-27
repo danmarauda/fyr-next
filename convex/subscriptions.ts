@@ -24,7 +24,12 @@ export const getUserSubscription = query({
 
 		if (!subscription) return null;
 
-		const plan = await ctx.db.get(subscription.stripePriceId as any);
+		// Find plan by stripePriceId
+		const plan = await ctx.db
+			.query('plans')
+			.filter((q) => q.eq(q.field('stripePriceId'), subscription.stripePriceId))
+			.first();
+
 		return {
 			...subscription,
 			plan,

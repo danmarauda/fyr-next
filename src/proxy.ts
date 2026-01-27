@@ -3,10 +3,10 @@ import { NextRequest, NextResponse } from 'next/server';
 const locales = ['en', 'es', 'ar', 'tr'];
 const defaultLocale = 'en';
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
 	const { pathname } = request.nextUrl;
 
-	// Skip middleware for API routes, static files, etc.
+	// Skip proxy for API routes, static files, etc.
 	if (
 		pathname.startsWith('/api') ||
 		pathname.startsWith('/_next') ||
@@ -30,7 +30,7 @@ export function middleware(request: NextRequest) {
 	return NextResponse.redirect(newUrl);
 }
 
-// only applies this middleware to files in the app directory
+// only applies this proxy to files in the app directory
 export const config = {
 	matcher: '/((?!api|static|.*\\..*|_next).*)',
 };

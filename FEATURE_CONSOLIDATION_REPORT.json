@@ -1,427 +1,432 @@
 {
-  "cwd": "/Users/alias/Desktop/Fyr - React Tailwind Admin Template/fyr-next",
-  "scanned_at": "2025-01-27T00:00:00.000Z",
-  "siblings": [
-    {
-      "name": "alias-website",
-      "path": "../alias-website",
-      "language_stack": ["TypeScript", "JavaScript"],
-      "frameworks": ["React 19.2.0", "Vite 6.2.0"],
-      "tooling": ["Turbo", "Vitest", "Playwright", "ESLint 9", "Tailwind CSS v4"],
-      "testing": ["Vitest", "Playwright", "Testing Library", "axe-core"],
-      "infra": ["GitHub Actions", "Turbo caching"],
-      "design_system": ["Radix UI", "shadcn/ui", "Tailwind CSS v4"],
-      "product_signals": ["Component Forge", "DnD system", "3D graphics", "Comprehensive testing"],
-      "licenses": ["Private"],
-      "features": [
-        {
-          "title": "Comprehensive Testing Infrastructure",
-          "category": "Testing",
-          "evidence": ["vitest.config.ts", "playwright.config.ts", "package.json"],
-          "impact": 5,
-          "ease": 3,
-          "risk": 2,
-          "score": 20,
-          "attribution": "Not needed",
-          "notes": "Vitest for unit tests, Playwright for E2E, accessibility and visual regression testing"
-        },
-        {
-          "title": "Advanced DnD System",
-          "category": "Product",
-          "evidence": ["package.json", "@dnd-kit dependencies"],
-          "impact": 4,
-          "ease": 3,
-          "risk": 2,
-          "score": 18,
-          "attribution": "Not needed",
-          "notes": "@dnd-kit with sortable, tree support, and modifiers for modern drag-and-drop"
-        },
-        {
-          "title": "Performance Optimization Patterns",
-          "category": "Performance",
-          "evidence": ["vite.config.ts", "manual chunking configuration"],
-          "impact": 4,
-          "ease": 3,
-          "risk": 2,
-          "score": 18,
-          "attribution": "Not needed",
-          "notes": "Manual vendor chunking, bundle optimization, console removal in production"
-        },
-        {
-          "title": "Tailwind CSS v4",
-          "category": "Build",
-          "evidence": ["package.json", "vite.config.ts", "@tailwindcss/vite"],
-          "impact": 4,
-          "ease": 2,
-          "risk": 3,
-          "score": 17,
-          "attribution": "Not needed",
-          "notes": "Latest Tailwind with Vite integration, faster builds, better performance"
-        }
-      ]
-    },
-    {
-      "name": "better-convex",
-      "path": "../better-convex",
-      "language_stack": ["TypeScript"],
-      "frameworks": ["Next.js 16.0.1", "React 19.2.0"],
-      "tooling": ["Biome", "Ultracite", "pnpm", "Convex", "Better Auth"],
-      "testing": [],
-      "infra": ["GitHub Actions CI", "Convex backend"],
-      "design_system": ["Tailwind CSS v4", "Radix UI"],
-      "product_signals": ["Convex integration", "Better Auth", "React Compiler"],
-      "licenses": ["Private"],
-      "features": [
-        {
-          "title": "React Compiler Integration",
-          "category": "Performance",
-          "evidence": ["package.json", "next.config.ts", "babel-plugin-react-compiler"],
-          "impact": 5,
-          "ease": 3,
-          "risk": 2,
-          "score": 20,
-          "attribution": "Not needed",
-          "notes": "Automatic React optimization, reduced re-renders, better performance"
-        },
-        {
-          "title": "Biome + Ultracite Linting",
-          "category": "Build",
-          "evidence": ["package.json", "@biomejs/biome", "ultracite"],
-          "impact": 4,
-          "ease": 3,
-          "risk": 2,
-          "score": 19,
-          "attribution": "Not needed",
-          "notes": "10-100x faster than ESLint, single tool for linting + formatting"
-        },
-        {
-          "title": "GitHub Actions CI/CD",
-          "category": "Observability",
-          "evidence": [".github/workflows/ci.yml"],
-          "impact": 4,
-          "ease": 4,
-          "risk": 1,
-          "score": 19,
-          "attribution": "Not needed",
-          "notes": "Automated testing, linting, type checking with pnpm caching"
-        },
-        {
-          "title": "Tailwind CSS v4",
-          "category": "Build",
-          "evidence": ["package.json", "@tailwindcss/postcss"],
-          "impact": 4,
-          "ease": 2,
-          "risk": 3,
-          "score": 17,
-          "attribution": "Not needed",
-          "notes": "Latest Tailwind with PostCSS integration"
-        }
-      ]
-    },
-    {
-      "name": "plate",
-      "path": "../plate",
-      "language_stack": ["TypeScript"],
-      "frameworks": ["Yarn workspaces", "Turborepo"],
-      "tooling": ["Turbo", "Biome", "Bun", "Changesets"],
-      "testing": ["Bun test", "Playwright"],
-      "infra": ["GitHub Actions", "Turbo caching"],
-      "design_system": ["Plate.js", "shadcn/ui"],
-      "product_signals": ["Rich text editor", "AI integration", "Collaboration"],
-      "licenses": ["MIT"],
-      "features": [
-        {
-          "title": "Plate Rich Text Editor",
-          "category": "Product",
-          "evidence": ["packages/plate/", "README.md", "50+ plugins"],
-          "impact": 5,
-          "ease": 2,
-          "risk": 3,
-          "score": 18,
-          "attribution": "Not needed",
-          "notes": "Full Plate.js implementation with AI, collaboration, media support"
-        },
-        {
-          "title": "Turbo Monorepo Tooling",
-          "category": "Build",
-          "evidence": ["turbo.json", "package.json"],
-          "impact": 4,
-          "ease": 3,
-          "risk": 2,
-          "score": 19,
-          "attribution": "Not needed",
-          "notes": "Faster builds, intelligent caching, task orchestration"
-        },
-        {
-          "title": "Biome Linting",
-          "category": "Build",
-          "evidence": ["package.json", "@biomejs/biome"],
-          "impact": 4,
-          "ease": 3,
-          "risk": 2,
-          "score": 19,
-          "attribution": "Not needed",
-          "notes": "Replacing ESLint/Prettier with faster Biome"
-        }
-      ]
-    },
-    {
-      "name": "plate-playground-template",
-      "path": "../plate-playground-template",
-      "language_stack": ["TypeScript"],
-      "frameworks": ["Next.js 16.0.0-beta.0", "React 19.2.0"],
-      "tooling": ["Plate.js 49.2.21", "React Compiler", "Tailwind CSS v4"],
-      "testing": [],
-      "infra": ["GitHub Actions"],
-      "design_system": ["Plate.js", "Tailwind CSS v4"],
-      "product_signals": ["Full Plate stack", "AI integration", "Media support"],
-      "licenses": ["Private"],
-      "features": [
-        {
-          "title": "Plate Full Stack",
-          "category": "Product",
-          "evidence": ["package.json", "@platejs/* packages"],
-          "impact": 5,
-          "ease": 2,
-          "risk": 3,
-          "score": 18,
-          "attribution": "Not needed",
-          "notes": "Complete Plate.js implementation with all plugins"
-        },
-        {
-          "title": "React Compiler",
-          "category": "Performance",
-          "evidence": ["package.json", "babel-plugin-react-compiler"],
-          "impact": 5,
-          "ease": 3,
-          "risk": 2,
-          "score": 20,
-          "attribution": "Not needed",
-          "notes": "Enabled React Compiler for optimization"
-        }
-      ]
-    },
-    {
-      "name": "plate-template",
-      "path": "../plate-template",
-      "language_stack": ["TypeScript"],
-      "frameworks": ["Next.js 16.0.0-beta.0", "React 19.2.0"],
-      "tooling": ["Plate.js 49.2.21", "React Compiler", "Tailwind CSS v4"],
-      "testing": [],
-      "infra": ["GitHub Actions"],
-      "design_system": ["Plate.js minimal", "Tailwind CSS v4"],
-      "product_signals": ["Minimal Plate setup", "Good starting point"],
-      "licenses": ["Private"],
-      "features": [
-        {
-          "title": "Plate Minimal Setup",
-          "category": "Product",
-          "evidence": ["package.json", "@platejs/basic-nodes"],
-          "impact": 4,
-          "ease": 4,
-          "risk": 2,
-          "score": 18,
-          "attribution": "Not needed",
-          "notes": "Minimal Plate.js setup, good for starting point"
-        },
-        {
-          "title": "React Compiler",
-          "category": "Performance",
-          "evidence": ["package.json", "babel-plugin-react-compiler"],
-          "impact": 5,
-          "ease": 3,
-          "risk": 2,
-          "score": 20,
-          "attribution": "Not needed",
-          "notes": "Enabled React Compiler"
-        }
-      ]
-    },
-    {
-      "name": "ALIAS-Strategy",
-      "path": "../ALIAS-Strategy",
-      "language_stack": ["TypeScript"],
-      "frameworks": ["React 19.1.0", "Vite 6.2.0"],
-      "tooling": ["@google/genai"],
-      "testing": [],
-      "infra": [],
-      "design_system": [],
-      "product_signals": ["AI integration", "Gemini API"],
-      "licenses": ["Private"],
-      "features": [
-        {
-          "title": "AI Integration (Gemini)",
-          "category": "Product",
-          "evidence": ["package.json", "@google/genai"],
-          "impact": 3,
-          "ease": 4,
-          "risk": 2,
-          "score": 15,
-          "attribution": "Not needed",
-          "notes": "Google Gemini API integration pattern"
-        }
-      ]
-    },
-    {
-      "name": "Global-Deployment-Map",
-      "path": "../Global-Deployment-Map",
-      "language_stack": ["TypeScript"],
-      "frameworks": ["React 19.1.1", "Vite 6.2.0"],
-      "tooling": ["Tailwind CSS v4", "@google/genai"],
-      "testing": [],
-      "infra": [],
-      "design_system": ["Tailwind CSS v4"],
-      "product_signals": ["AI integration", "Deployment visualization"],
-      "licenses": ["Private"],
-      "features": [
-        {
-          "title": "Tailwind CSS v4",
-          "category": "Build",
-          "evidence": ["package.json", "tailwindcss@^4.1.17"],
-          "impact": 4,
-          "ease": 2,
-          "risk": 3,
-          "score": 17,
-          "attribution": "Not needed",
-          "notes": "Latest Tailwind CSS version"
-        }
-      ]
-    }
-  ],
-  "top_recommendations": [
-    {
-      "feature_ref": "better-convex#React Compiler Integration",
-      "why_now": "High impact performance improvement with low risk, easy to enable",
-      "adoption_steps": [
-        "Install babel-plugin-react-compiler",
-        "Enable in next.config.ts",
-        "Test thoroughly",
-        "Monitor for issues"
-      ],
-      "dependencies": [],
-      "estimated_effort_days": 0.25
-    },
-    {
-      "feature_ref": "better-convex#Biome + Ultracite Linting",
-      "why_now": "10-100x faster than ESLint, better DX, can run in parallel initially",
-      "adoption_steps": [
-        "Install @biomejs/biome and ultracite",
-        "Initialize configurations",
-        "Run in parallel with ESLint",
-        "Gradually migrate rules",
-        "Remove ESLint once stable"
-      ],
-      "dependencies": [],
-      "estimated_effort_days": 0.5
-    },
-    {
-      "feature_ref": "alias-website#Comprehensive Testing Infrastructure",
-      "why_now": "Foundation for quality, enables safe refactoring and feature additions",
-      "adoption_steps": [
-        "Install Vitest and Playwright",
-        "Create test configuration files",
-        "Write initial test suite",
-        "Add to CI/CD pipeline",
-        "Establish testing patterns"
-      ],
-      "dependencies": [],
-      "estimated_effort_days": 3
-    },
-    {
-      "feature_ref": "plate#Plate Rich Text Editor",
-      "why_now": "Replace basic Slate.js with full-featured editor, better UX",
-      "adoption_steps": [
-        "Install Plate.js packages",
-        "Migrate existing editor components",
-        "Test content serialization",
-        "Add AI features",
-        "Remove old Slate.js code"
-      ],
-      "dependencies": [],
-      "estimated_effort_days": 5
-    },
-    {
-      "feature_ref": "alias-website#Tailwind CSS v4",
-      "why_now": "Faster builds, better performance, modern CSS features",
-      "adoption_steps": [
-        "Install Tailwind CSS v4",
-        "Update configuration",
-        "Test all components",
-        "Fix breaking changes",
-        "Remove v3 dependencies"
-      ],
-      "dependencies": [],
-      "estimated_effort_days": 1
-    },
-    {
-      "feature_ref": "plate#Turbo Monorepo Tooling",
-      "why_now": "Faster builds, better caching, improved monorepo DX",
-      "adoption_steps": [
-        "Install Turbo",
-        "Create turbo.json",
-        "Configure task pipelines",
-        "Update package.json scripts",
-        "Test build performance"
-      ],
-      "dependencies": [],
-      "estimated_effort_days": 2
-    },
-    {
-      "feature_ref": "alias-website#Advanced DnD System",
-      "why_now": "Better UX for admin interfaces, modern drag-and-drop",
-      "adoption_steps": [
-        "Install @dnd-kit packages",
-        "Implement in admin components",
-        "Replace existing DnD solutions",
-        "Test thoroughly"
-      ],
-      "dependencies": [],
-      "estimated_effort_days": 3
-    },
-    {
-      "feature_ref": "better-convex#GitHub Actions CI/CD",
-      "why_now": "Automated quality checks, prevents regressions",
-      "adoption_steps": [
-        "Create .github/workflows/ci.yml",
-        "Setup pnpm caching",
-        "Add lint, typecheck, test, build jobs",
-        "Configure concurrency",
-        "Test workflow"
-      ],
-      "dependencies": ["Testing Infrastructure"],
-      "estimated_effort_days": 2
-    },
-    {
-      "feature_ref": "alias-website#Performance Optimization Patterns",
-      "why_now": "Better bundle sizes, faster load times",
-      "adoption_steps": [
-        "Implement manual chunking",
-        "Add bundle analyzer",
-        "Optimize images",
-        "Remove console logs in production",
-        "Measure improvements"
-      ],
-      "dependencies": [],
-      "estimated_effort_days": 3
-    },
-    {
-      "feature_ref": "alias-website#Advanced Form Management",
-      "why_now": "Better validation, type safety, developer experience",
-      "adoption_steps": [
-        "Upgrade to Zod v4",
-        "Enhance React Hook Form integration",
-        "Add validation patterns",
-        "Test all forms",
-        "Update documentation"
-      ],
-      "dependencies": [],
-      "estimated_effort_days": 2
-    }
-  ],
-  "weights": {
-    "impact": 3,
-    "ease": 2,
-    "risk_inverse": 1
-  },
-  "ethics_mode": "strict"
+	"cwd": "/Users/alias/Desktop/Fyr - React Tailwind Admin Template/fyr-next",
+	"scanned_at": "2025-01-27T00:00:00.000Z",
+	"siblings": [
+		{
+			"name": "alias-website",
+			"path": "../alias-website",
+			"language_stack": ["TypeScript", "JavaScript"],
+			"frameworks": ["React 19.2.0", "Vite 6.2.0"],
+			"tooling": ["Turbo", "Vitest", "Playwright", "ESLint 9", "Tailwind CSS v4"],
+			"testing": ["Vitest", "Playwright", "Testing Library", "axe-core"],
+			"infra": ["GitHub Actions", "Turbo caching"],
+			"design_system": ["Radix UI", "shadcn/ui", "Tailwind CSS v4"],
+			"product_signals": [
+				"Component Forge",
+				"DnD system",
+				"3D graphics",
+				"Comprehensive testing"
+			],
+			"licenses": ["Private"],
+			"features": [
+				{
+					"title": "Comprehensive Testing Infrastructure",
+					"category": "Testing",
+					"evidence": ["vitest.config.ts", "playwright.config.ts", "package.json"],
+					"impact": 5,
+					"ease": 3,
+					"risk": 2,
+					"score": 20,
+					"attribution": "Not needed",
+					"notes": "Vitest for unit tests, Playwright for E2E, accessibility and visual regression testing"
+				},
+				{
+					"title": "Advanced DnD System",
+					"category": "Product",
+					"evidence": ["package.json", "@dnd-kit dependencies"],
+					"impact": 4,
+					"ease": 3,
+					"risk": 2,
+					"score": 18,
+					"attribution": "Not needed",
+					"notes": "@dnd-kit with sortable, tree support, and modifiers for modern drag-and-drop"
+				},
+				{
+					"title": "Performance Optimization Patterns",
+					"category": "Performance",
+					"evidence": ["vite.config.ts", "manual chunking configuration"],
+					"impact": 4,
+					"ease": 3,
+					"risk": 2,
+					"score": 18,
+					"attribution": "Not needed",
+					"notes": "Manual vendor chunking, bundle optimization, console removal in production"
+				},
+				{
+					"title": "Tailwind CSS v4",
+					"category": "Build",
+					"evidence": ["package.json", "vite.config.ts", "@tailwindcss/vite"],
+					"impact": 4,
+					"ease": 2,
+					"risk": 3,
+					"score": 17,
+					"attribution": "Not needed",
+					"notes": "Latest Tailwind with Vite integration, faster builds, better performance"
+				}
+			]
+		},
+		{
+			"name": "better-convex",
+			"path": "../better-convex",
+			"language_stack": ["TypeScript"],
+			"frameworks": ["Next.js 16.0.1", "React 19.2.0"],
+			"tooling": ["Biome", "Ultracite", "pnpm", "Convex", "Better Auth"],
+			"testing": [],
+			"infra": ["GitHub Actions CI", "Convex backend"],
+			"design_system": ["Tailwind CSS v4", "Radix UI"],
+			"product_signals": ["Convex integration", "Better Auth", "React Compiler"],
+			"licenses": ["Private"],
+			"features": [
+				{
+					"title": "React Compiler Integration",
+					"category": "Performance",
+					"evidence": ["package.json", "next.config.ts", "babel-plugin-react-compiler"],
+					"impact": 5,
+					"ease": 3,
+					"risk": 2,
+					"score": 20,
+					"attribution": "Not needed",
+					"notes": "Automatic React optimization, reduced re-renders, better performance"
+				},
+				{
+					"title": "Biome + Ultracite Linting",
+					"category": "Build",
+					"evidence": ["package.json", "@biomejs/biome", "ultracite"],
+					"impact": 4,
+					"ease": 3,
+					"risk": 2,
+					"score": 19,
+					"attribution": "Not needed",
+					"notes": "10-100x faster than ESLint, single tool for linting + formatting"
+				},
+				{
+					"title": "GitHub Actions CI/CD",
+					"category": "Observability",
+					"evidence": [".github/workflows/ci.yml"],
+					"impact": 4,
+					"ease": 4,
+					"risk": 1,
+					"score": 19,
+					"attribution": "Not needed",
+					"notes": "Automated testing, linting, type checking with pnpm caching"
+				},
+				{
+					"title": "Tailwind CSS v4",
+					"category": "Build",
+					"evidence": ["package.json", "@tailwindcss/postcss"],
+					"impact": 4,
+					"ease": 2,
+					"risk": 3,
+					"score": 17,
+					"attribution": "Not needed",
+					"notes": "Latest Tailwind with PostCSS integration"
+				}
+			]
+		},
+		{
+			"name": "plate",
+			"path": "../plate",
+			"language_stack": ["TypeScript"],
+			"frameworks": ["Yarn workspaces", "Turborepo"],
+			"tooling": ["Turbo", "Biome", "Bun", "Changesets"],
+			"testing": ["Bun test", "Playwright"],
+			"infra": ["GitHub Actions", "Turbo caching"],
+			"design_system": ["Plate.js", "shadcn/ui"],
+			"product_signals": ["Rich text editor", "AI integration", "Collaboration"],
+			"licenses": ["MIT"],
+			"features": [
+				{
+					"title": "Plate Rich Text Editor",
+					"category": "Product",
+					"evidence": ["packages/plate/", "README.md", "50+ plugins"],
+					"impact": 5,
+					"ease": 2,
+					"risk": 3,
+					"score": 18,
+					"attribution": "Not needed",
+					"notes": "Full Plate.js implementation with AI, collaboration, media support"
+				},
+				{
+					"title": "Turbo Monorepo Tooling",
+					"category": "Build",
+					"evidence": ["turbo.json", "package.json"],
+					"impact": 4,
+					"ease": 3,
+					"risk": 2,
+					"score": 19,
+					"attribution": "Not needed",
+					"notes": "Faster builds, intelligent caching, task orchestration"
+				},
+				{
+					"title": "Biome Linting",
+					"category": "Build",
+					"evidence": ["package.json", "@biomejs/biome"],
+					"impact": 4,
+					"ease": 3,
+					"risk": 2,
+					"score": 19,
+					"attribution": "Not needed",
+					"notes": "Replacing ESLint/Prettier with faster Biome"
+				}
+			]
+		},
+		{
+			"name": "plate-playground-template",
+			"path": "../plate-playground-template",
+			"language_stack": ["TypeScript"],
+			"frameworks": ["Next.js 16.0.0-beta.0", "React 19.2.0"],
+			"tooling": ["Plate.js 49.2.21", "React Compiler", "Tailwind CSS v4"],
+			"testing": [],
+			"infra": ["GitHub Actions"],
+			"design_system": ["Plate.js", "Tailwind CSS v4"],
+			"product_signals": ["Full Plate stack", "AI integration", "Media support"],
+			"licenses": ["Private"],
+			"features": [
+				{
+					"title": "Plate Full Stack",
+					"category": "Product",
+					"evidence": ["package.json", "@platejs/* packages"],
+					"impact": 5,
+					"ease": 2,
+					"risk": 3,
+					"score": 18,
+					"attribution": "Not needed",
+					"notes": "Complete Plate.js implementation with all plugins"
+				},
+				{
+					"title": "React Compiler",
+					"category": "Performance",
+					"evidence": ["package.json", "babel-plugin-react-compiler"],
+					"impact": 5,
+					"ease": 3,
+					"risk": 2,
+					"score": 20,
+					"attribution": "Not needed",
+					"notes": "Enabled React Compiler for optimization"
+				}
+			]
+		},
+		{
+			"name": "plate-template",
+			"path": "../plate-template",
+			"language_stack": ["TypeScript"],
+			"frameworks": ["Next.js 16.0.0-beta.0", "React 19.2.0"],
+			"tooling": ["Plate.js 49.2.21", "React Compiler", "Tailwind CSS v4"],
+			"testing": [],
+			"infra": ["GitHub Actions"],
+			"design_system": ["Plate.js minimal", "Tailwind CSS v4"],
+			"product_signals": ["Minimal Plate setup", "Good starting point"],
+			"licenses": ["Private"],
+			"features": [
+				{
+					"title": "Plate Minimal Setup",
+					"category": "Product",
+					"evidence": ["package.json", "@platejs/basic-nodes"],
+					"impact": 4,
+					"ease": 4,
+					"risk": 2,
+					"score": 18,
+					"attribution": "Not needed",
+					"notes": "Minimal Plate.js setup, good for starting point"
+				},
+				{
+					"title": "React Compiler",
+					"category": "Performance",
+					"evidence": ["package.json", "babel-plugin-react-compiler"],
+					"impact": 5,
+					"ease": 3,
+					"risk": 2,
+					"score": 20,
+					"attribution": "Not needed",
+					"notes": "Enabled React Compiler"
+				}
+			]
+		},
+		{
+			"name": "ALIAS-Strategy",
+			"path": "../ALIAS-Strategy",
+			"language_stack": ["TypeScript"],
+			"frameworks": ["React 19.1.0", "Vite 6.2.0"],
+			"tooling": ["@google/genai"],
+			"testing": [],
+			"infra": [],
+			"design_system": [],
+			"product_signals": ["AI integration", "Gemini API"],
+			"licenses": ["Private"],
+			"features": [
+				{
+					"title": "AI Integration (Gemini)",
+					"category": "Product",
+					"evidence": ["package.json", "@google/genai"],
+					"impact": 3,
+					"ease": 4,
+					"risk": 2,
+					"score": 15,
+					"attribution": "Not needed",
+					"notes": "Google Gemini API integration pattern"
+				}
+			]
+		},
+		{
+			"name": "Global-Deployment-Map",
+			"path": "../Global-Deployment-Map",
+			"language_stack": ["TypeScript"],
+			"frameworks": ["React 19.1.1", "Vite 6.2.0"],
+			"tooling": ["Tailwind CSS v4", "@google/genai"],
+			"testing": [],
+			"infra": [],
+			"design_system": ["Tailwind CSS v4"],
+			"product_signals": ["AI integration", "Deployment visualization"],
+			"licenses": ["Private"],
+			"features": [
+				{
+					"title": "Tailwind CSS v4",
+					"category": "Build",
+					"evidence": ["package.json", "tailwindcss@^4.1.17"],
+					"impact": 4,
+					"ease": 2,
+					"risk": 3,
+					"score": 17,
+					"attribution": "Not needed",
+					"notes": "Latest Tailwind CSS version"
+				}
+			]
+		}
+	],
+	"top_recommendations": [
+		{
+			"feature_ref": "better-convex#React Compiler Integration",
+			"why_now": "High impact performance improvement with low risk, easy to enable",
+			"adoption_steps": [
+				"Install babel-plugin-react-compiler",
+				"Enable in next.config.ts",
+				"Test thoroughly",
+				"Monitor for issues"
+			],
+			"dependencies": [],
+			"estimated_effort_days": 0.25
+		},
+		{
+			"feature_ref": "better-convex#Biome + Ultracite Linting",
+			"why_now": "10-100x faster than ESLint, better DX, can run in parallel initially",
+			"adoption_steps": [
+				"Install @biomejs/biome and ultracite",
+				"Initialize configurations",
+				"Run in parallel with ESLint",
+				"Gradually migrate rules",
+				"Remove ESLint once stable"
+			],
+			"dependencies": [],
+			"estimated_effort_days": 0.5
+		},
+		{
+			"feature_ref": "alias-website#Comprehensive Testing Infrastructure",
+			"why_now": "Foundation for quality, enables safe refactoring and feature additions",
+			"adoption_steps": [
+				"Install Vitest and Playwright",
+				"Create test configuration files",
+				"Write initial test suite",
+				"Add to CI/CD pipeline",
+				"Establish testing patterns"
+			],
+			"dependencies": [],
+			"estimated_effort_days": 3
+		},
+		{
+			"feature_ref": "plate#Plate Rich Text Editor",
+			"why_now": "Replace basic Slate.js with full-featured editor, better UX",
+			"adoption_steps": [
+				"Install Plate.js packages",
+				"Migrate existing editor components",
+				"Test content serialization",
+				"Add AI features",
+				"Remove old Slate.js code"
+			],
+			"dependencies": [],
+			"estimated_effort_days": 5
+		},
+		{
+			"feature_ref": "alias-website#Tailwind CSS v4",
+			"why_now": "Faster builds, better performance, modern CSS features",
+			"adoption_steps": [
+				"Install Tailwind CSS v4",
+				"Update configuration",
+				"Test all components",
+				"Fix breaking changes",
+				"Remove v3 dependencies"
+			],
+			"dependencies": [],
+			"estimated_effort_days": 1
+		},
+		{
+			"feature_ref": "plate#Turbo Monorepo Tooling",
+			"why_now": "Faster builds, better caching, improved monorepo DX",
+			"adoption_steps": [
+				"Install Turbo",
+				"Create turbo.json",
+				"Configure task pipelines",
+				"Update package.json scripts",
+				"Test build performance"
+			],
+			"dependencies": [],
+			"estimated_effort_days": 2
+		},
+		{
+			"feature_ref": "alias-website#Advanced DnD System",
+			"why_now": "Better UX for admin interfaces, modern drag-and-drop",
+			"adoption_steps": [
+				"Install @dnd-kit packages",
+				"Implement in admin components",
+				"Replace existing DnD solutions",
+				"Test thoroughly"
+			],
+			"dependencies": [],
+			"estimated_effort_days": 3
+		},
+		{
+			"feature_ref": "better-convex#GitHub Actions CI/CD",
+			"why_now": "Automated quality checks, prevents regressions",
+			"adoption_steps": [
+				"Create .github/workflows/ci.yml",
+				"Setup pnpm caching",
+				"Add lint, typecheck, test, build jobs",
+				"Configure concurrency",
+				"Test workflow"
+			],
+			"dependencies": ["Testing Infrastructure"],
+			"estimated_effort_days": 2
+		},
+		{
+			"feature_ref": "alias-website#Performance Optimization Patterns",
+			"why_now": "Better bundle sizes, faster load times",
+			"adoption_steps": [
+				"Implement manual chunking",
+				"Add bundle analyzer",
+				"Optimize images",
+				"Remove console logs in production",
+				"Measure improvements"
+			],
+			"dependencies": [],
+			"estimated_effort_days": 3
+		},
+		{
+			"feature_ref": "alias-website#Advanced Form Management",
+			"why_now": "Better validation, type safety, developer experience",
+			"adoption_steps": [
+				"Upgrade to Zod v4",
+				"Enhance React Hook Form integration",
+				"Add validation patterns",
+				"Test all forms",
+				"Update documentation"
+			],
+			"dependencies": [],
+			"estimated_effort_days": 2
+		}
+	],
+	"weights": {
+		"impact": 3,
+		"ease": 2,
+		"risk_inverse": 1
+	},
+	"ethics_mode": "strict"
 }

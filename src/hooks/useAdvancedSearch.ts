@@ -124,7 +124,7 @@ export const useAdvancedSearch = (projectId?: Id<'projects'>) => {
 		setSearchOptions((prev) => ({ ...prev, filters }));
 	};
 
-	const updateFilter = (key: keyof SearchFilters, value: any) => {
+	const updateFilter = (key: keyof SearchFilters, value: SearchFilters[keyof SearchFilters]) => {
 		setSearchOptions((prev) => ({
 			...prev,
 			filters: {

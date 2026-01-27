@@ -1,12 +1,12 @@
 'use client';
 
-import React, { useState, useId } from 'react';
+import React, { useState, useId, Suspense } from 'react';
 import { FaEye, FaEyeSlash, FaArrowRight } from 'react-icons/fa';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { authClient } from '@/lib/auth-client';
 import Link from 'next/link';
 
-const ResetPasswordPage = () => {
+const ResetPasswordForm = () => {
 	const router = useRouter();
 	const searchParams = useSearchParams();
 	const passwordId = useId();
@@ -54,7 +54,7 @@ const ResetPasswordPage = () => {
 			setTimeout(() => {
 				router.push('/login');
 			}, 2000);
-		} catch (err) {
+		} catch {
 			setError('Failed to reset password. The link may have expired.');
 		} finally {
 			setIsLoading(false);
@@ -88,17 +88,18 @@ const ResetPasswordPage = () => {
 							</h1>
 						</div>
 
-						<div className='animate-fade-slide-up mb-4'>
+						<div className='mb-4 animate-fade-slide-up'>
 							<h2 className='mb-8 text-5xl font-thin leading-tight tracking-tight drop-shadow-xl'>
 								Create a new <br />
-								password for  <br />
+								password for <br />
 								<span className='font-normal text-blue-400 drop-shadow-[0_0_15px_rgba(59,130,246,0.4)]'>
 									your account.
 								</span>
 							</h2>
 							<div className='border-l border-blue-500/30 pl-6'>
 								<p className='mb-4 max-w-md text-sm font-light leading-relaxed tracking-wide text-gray-300'>
-									Choose a strong password to keep your account secure and protected.
+									Choose a strong password to keep your account secure and
+									protected.
 								</p>
 								<span className='text-[10px] font-semibold uppercase tracking-[0.25em] text-blue-400/80'>
 									ALIAS — Your Security Matters
@@ -113,12 +114,10 @@ const ResetPasswordPage = () => {
 			<div className='relative flex w-full items-center justify-center p-8 lg:w-1/2 lg:p-24'>
 				<div className='bg-grid-white/[0.02] pointer-events-none absolute inset-0 lg:hidden' />
 
-				<div className='animate-fade-in z-10 w-full max-w-md'>
+				<div className='z-10 w-full max-w-md animate-fade-in'>
 					<div className='mb-10'>
 						<h2 className='mb-2 text-3xl font-light text-white'>Reset your password</h2>
-						<p className='text-sm text-gray-500'>
-							Enter your new password below.
-						</p>
+						<p className='text-sm text-gray-500'>Enter your new password below.</p>
 					</div>
 
 					{error && (
@@ -131,9 +130,7 @@ const ResetPasswordPage = () => {
 						<div className='space-y-6'>
 							<div className='rounded-lg border border-green-500/30 bg-green-900/20 p-4 text-sm text-green-400'>
 								<p className='mb-2 font-medium'>Password reset successful!</p>
-								<p className='text-green-400/80'>
-									Redirecting to login page...
-								</p>
+								<p className='text-green-400/80'>Redirecting to login page...</p>
 							</div>
 						</div>
 					) : (
@@ -217,6 +214,14 @@ const ResetPasswordPage = () => {
 				</div>
 			</div>
 		</div>
+	);
+};
+
+const ResetPasswordPage = () => {
+	return (
+		<Suspense fallback={<div>Loading...</div>}>
+			<ResetPasswordForm />
+		</Suspense>
 	);
 };
 

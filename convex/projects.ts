@@ -2,9 +2,9 @@ import { query } from './_generated/server';
 import { v } from 'convex/values';
 
 export const getProject = query({
-	args: { id: v.string() },
+	args: { id: v.id('projects') },
 	handler: async (ctx, args) => {
-		const project = await ctx.db.get(args.id as any);
+		const project = await ctx.db.get(args.id);
 		return project;
 	},
 });

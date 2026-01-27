@@ -5,6 +5,7 @@ interface ConstructionProgressProps {
 	projectId: string;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const ConstructionProgress = ({ projectId }: ConstructionProgressProps) => {
 	// Mock data for demonstration
 	const progressData = [
