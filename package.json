@@ -5,8 +5,12 @@
 	"packageManager": "pnpm@9.15.0",
 	"scripts": {
 		"dev": "NODE_OPTIONS='--inspect' next dev",
+		"dev:op": "op run --env-file=.env.1password -- pnpm dev",
 		"build": "next build",
+		"build:op": "op run --env-file=.env.1password -- pnpm build",
 		"start": "next start",
+		"start:op": "op run --env-file=.env.1password -- pnpm start",
+		"setup:1password": "./scripts/setup-1password.sh",
 		"lint": "eslint .",
 		"lint:fix": "eslint --fix .",
 		"prettier:fix": "prettier --write .",

@@ -24,9 +24,12 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# local env files
+# local env files (contain secrets)
 .env*.local
 .env
+
+# 1Password env file is safe to commit (contains op:// references only)
+!.env.1password
 
 # vercel
 .vercel
