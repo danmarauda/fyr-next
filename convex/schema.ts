@@ -438,6 +438,17 @@ const schema = defineEntSchema({
 	numbers: defineEnt({
 		value: v.number(),
 	}),
+
+	// Email Events table for Resend webhook tracking
+	emailEvents: defineEnt({
+		emailId: v.string(),
+		eventType: v.string(),
+		timestamp: v.number(),
+		data: v.string(),
+	})
+		.index('by_emailId', ['emailId'])
+		.index('by_eventType', ['eventType'])
+		.index('by_timestamp', ['timestamp']),
 });
 
 export const entDefinitions = getEntDefinitions(schema);
