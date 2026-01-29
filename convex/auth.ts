@@ -8,7 +8,8 @@ import type { DataModel } from './_generated/dataModel';
 import authConfig from './auth.config';
 import schema from './schema';
 
-const siteUrl = process.env.SITE_URL!;
+const siteUrl =
+	process.env.BETTER_AUTH_URL || process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
 
 // Create the auth client using better-convex
 export const authClient = createClient<DataModel, typeof schema>({
@@ -35,7 +36,13 @@ const createAuthOptions = (ctx: QueryCtx | MutationCtx | ActionCtx): BetterAuthO
 		},
 	},
 	telemetry: { enabled: false },
-	trustedOrigins: [siteUrl],
+	trustedOrigins: [
+		siteUrl,
+		'http://localhost:3000',
+		'http://localhost:3001',
+		'http://localhost:3002',
+		'http://localhost:3003',
+	],
 	user: {
 		additionalFields: {
 			bio: {
